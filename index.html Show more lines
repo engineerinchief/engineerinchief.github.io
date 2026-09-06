@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Engineer In Chief</title>
+</head>
+<body>
+    <h1>Hello, I'm Engineer In Chief</h1>
+
+    <h2>About Me</h2>
+    <p>Engineering student in Germany interested in Python, Data Analysis and AI.</p>
+
+    <h2>Projects</h2>
+    <ul>
+        <li>https://github.com/engineerinchief/Python-ProgrammePython Programme</a></li>
+    </ul>
+
+    <h2>Resume</h2>
+    <p>Coming soon</p>
+</body>
+</html>
