@@ -1,67 +1,118 @@
-Eventually by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Prannay Nath
+engineerinchief.com | LinkedIn: engineerinchief
+Mannheim, Germany
 
 
-Just a simple placeholder template for your kickass app/product/startup/whatever until it
-launches. Includes an email signup form and a cool slideshow background (more on both below).
+Welcome
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+This website serves as the personal portfolio and digital hub of Prannay Nath, an aspiring engineer and technology professional with interests spanning aerospace, mechatronics, data science, engineering management, and emerging technologies.
 
-(* = not included)
+Currently pursuing studies in Engineering & Management, International Engineering, Applied Mechatronics, and Data Science, I focus on combining technical expertise with business and analytical thinking to develop innovative solutions for complex real-world challenges.
 
-AJ
-aj@lkn.io | @ajlkn
+My goal is to contribute to technology-driven industries, particularly aerospace, defense, automation, and advanced engineering systems.
 
 
-Signup Form:
+Highlights
 
-	The signup form won't actually do anything (other than report back with a "thank you" message)
-	until you tie it to either a third party service (eg. MailChimp) or your own hosted solution.
-	In either case, there are two ways to go:
+• Student Council Member, Faculty of Mechanical Engineering
+• Former Intern at GMV GmbH
+• Experience working with aerospace and simulation technologies
+• Python, C, Autodesk Inventor, Linux, SQL, Excel, and Data Analytics
+• Engineering, Management, and Data Science background
+• Passionate about aerospace systems and emerging technologies
+• International academic exposure in Germany and India
 
-	1. The conventional (non-AJAX) way, which pretty much comes down to pointing the form's "action"
-	attribute to your service/script URL. If you go this route, remove the entire "Signup Form" code
-	block from assets/js/main.js (since it's not needed for this approach).
-
-	-or-
-
-	2. The AJAX way. How you set this up is largely dependent on the service/solution you're using
-	so you'll need to consult their/its documentation. However, I have included some basic code
-	(under "Signup Form" in assets/js/main.js) that will at least let you interact with the
-	form itself.
+This information is based on the academic, volunteer, and professional experience listed in Prannay_CV_MA.pdf. 【1-c8d0ee】
 
 
-Slideshow Background:
+About This Website
 
-	This is pretty straightforward, but there are two JS settings you'll want to be aware of
-	(found under "Slideshow Background" in assets/js/main.js):
+This website showcases:
 
-	images
+• Academic achievements
+• Professional experience
+• Technical projects
+• Research interests
+• Engineering portfolio
+• Personal blog and insights
+• Contact information
 
-		The list of images to cycle through, given in the following format:
-
-			'url': 'alignment'
-
-		Where 'url' is the image (eg. 'images/foo.jpg', 'http://somewhere.else/foo.jpg'), and
-		'alignment' is how the image should be vertically aligned ('top', 'center', or 'bottom').
-
-		Note: Browsers that don't support CSS transitions (like IE<=9) will only see the first image.
-
-	delay
-
-		How long to wait between transitions (in ms). Note that this must be at least twice as long as
-		the transition speed itself (currently 3 seconds).
+The site is intended to serve as a platform for collaboration, networking, and sharing knowledge across engineering and technology communities.
 
 
-Credits:
+Professional Interests
 
-	Demo Images:
-		Unsplash (unsplash.com)
+• Aerospace Engineering
+• Space Systems
+• Defense Technologies
+• Mechanical Engineering
+• Mechatronics
+• Robotics
+• Data Science
+• Artificial Intelligence
+• Simulation and Digital Engineering
+• Technology Management
+• Innovation Strategy
 
-	Icons:
-		Font Awesome (fontawesome.io)
 
-	Other:
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+Technical Skills
+
+Programming
+- Python
+- C
+- C++
+- C#
+- SQL
+
+Data Science
+- Data Collection
+- Data Processing
+- Data Analysis
+- Data Visualization
+
+Engineering & Management
+- Systems Thinking
+- Technical Problem Solving
+- Engineering Management
+- Cross-Disciplinary Collaboration
+
+Current Focus
+
+Developing expertise at the intersection of engineering, business, and data analytics to support innovation in aerospace and other high-technology industries.
+
+By integrating technical knowledge, analytical methods, and management principles, I aim to create impactful solutions that address future engineering challenges.
+
+This focus is described in the profile section of Prannay_CV_MA.pdf. 【1-c8d0ee】
+
+
+Contact
+
+Email:
+prannay.nath@outlook.co.nz
+
+Website:
+engineerinchief.com
+
+LinkedIn:
+linkedin.com/in/engineerinchief
+
+
+Credits
+
+Website Owner:
+Prannay Nath
+
+Design:
+Customized from HTML5 UP
+
+Original Template:
+engineerinchief.com
+
+Icons:
+Font Awesome
+
+Images:
+Project-specific and personal portfolio assets
+
+
+"Engineering the future through innovation, analytics, and leadership."
