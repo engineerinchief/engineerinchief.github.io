@@ -3,7 +3,7 @@ engineerinchief.com | LinkedIn: engineerinchief
 Mannheim, Germany
 
 
-Welcome
+Servus
 
 This website serves as the personal portfolio and digital hub of Prannay Nath, an aspiring engineer and technology professional with interests spanning aerospace, mechatronics, data science, engineering management, and emerging technologies.
 
