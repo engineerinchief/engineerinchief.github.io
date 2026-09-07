@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Prannay Nath | Engineer In Chief</title>
+	<title>Prannay Nath | EngineerinChief</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<style>
-		/* Global Reset to override template JS animations */
+		/* Layout Reset & Centering */
 		html, body {
 			height: auto !important;
 			min-height: 100vh !important;
@@ -24,19 +24,26 @@
 			flex-direction: column !important;
 			align-items: center !important;
 			justify-content: center !important;
-			padding: 3rem 1.5rem !important;
+			padding: 4rem 1.5rem !important;
 			box-sizing: border-box !important;
 		}
 
-		/* Main Split Layout Grid */
+		/* Main Glass Container - Top Aligned */
 		.container {
 			display: grid !important;
-			grid-template-columns: 260px 1fr;
+			grid-template-columns: 240px 1fr;
 			gap: 2.5rem;
-			max-width: 950px;
+			max-width: 980px;
 			width: 100%;
 			margin: 0 auto;
-			align-items: start;
+			align-items: start !important; /* Align top edges */
+			background: rgba(15, 23, 42, 0.45);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 16px;
+			padding: 2.5rem;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 		}
 
 		/* Left Column Styling */
@@ -48,25 +55,24 @@
 		}
 
 		.profile-pic {
-			width: 160px;
-			height: 160px;
+			width: 150px;
+			height: 150px;
 			border-radius: 50%;
 			object-fit: cover;
-			border: 3px solid #cccccc;
-			outline: 2px solid rgba(255, 255, 255, 0.8);
-			outline-offset: -5px;
-			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-			margin-bottom: 1rem;
+			border: 3px solid rgba(255, 255, 255, 0.8);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+			margin-bottom: 0.8rem;
 		}
 
 		.left-column h1 {
 			display: block !important;
 			visibility: visible !important;
 			opacity: 1 !important;
-			font-size: 1.8rem !important;
-			margin: 0 0 1.2rem 0 !important;
+			font-size: 1.6rem !important;
+			margin: 0 0 1rem 0 !important;
 			color: #ffffff !important;
 			font-family: "Times New Roman", Times, serif !important;
+			letter-spacing: 0.5px;
 		}
 
 		.social-handles-vertical {
@@ -81,47 +87,50 @@
 
 		.social-handles-vertical li a {
 			display: block;
-			padding: 7px 12px;
-			background: rgba(255, 255, 255, 0.1);
-			border: 1px solid rgba(255, 255, 255, 0.3);
-			border-radius: 6px;
-			color: #ffffff !important;
+			padding: 6px 10px;
+			background: rgba(255, 255, 255, 0.06);
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			border-radius: 8px;
+			color: #e2e8f0 !important;
 			text-decoration: none;
-			font-size: 0.9rem;
+			font-size: 0.85rem;
 			font-family: "Times New Roman", Times, serif !important;
-			transition: all 0.2s ease;
+			transition: all 0.25s ease;
 		}
 
 		.social-handles-vertical li a:hover {
-			background: rgba(255, 255, 255, 0.25);
-			border-color: #ffffff;
+			background: rgba(255, 255, 255, 0.2);
+			border-color: rgba(255, 255, 255, 0.5);
+			color: #ffffff !important;
+			transform: translateY(-1px);
 		}
 
-		/* Right Column Styling (Bio Content in Times New Roman) */
+		/* Right Column Styling - Offset to match h1 position */
 		.right-column {
 			text-align: left;
 			font-family: "Times New Roman", Times, serif !important;
 			font-size: 0.95rem !important;
-			line-height: 1.6 !important;
-			color: rgba(255, 255, 255, 0.9) !important;
+			line-height: 1.7 !important;
+			color: #e2e8f0 !important;
+			margin-top: 172px; /* Aligns description start with name below photo */
 		}
 
 		.right-column p {
-			margin-bottom: 1.2rem;
+			margin-bottom: 1rem;
 			font-family: "Times New Roman", Times, serif !important;
 			font-size: 0.95rem !important;
 		}
 
 		.skills-section {
-			margin-top: 1.5rem;
-			padding-top: 1rem;
-			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			margin-top: 1.2rem;
+			padding-top: 0.8rem;
+			border-top: 1px solid rgba(255, 255, 255, 0.15);
 			font-size: 0.95rem !important;
 		}
 
 		/* Footer Styling */
 		#footer {
-			margin-top: 3rem !important;
+			margin-top: 2.5rem !important;
 			text-align: center !important;
 			width: 100% !important;
 			position: relative !important;
@@ -131,7 +140,7 @@
 		#footer .copyright {
 			list-style: none;
 			padding: 0;
-			color: rgba(255, 255, 255, 0.6);
+			color: rgba(255, 255, 255, 0.5);
 			font-size: 0.8rem;
 			font-family: "Times New Roman", Times, serif !important;
 		}
@@ -140,7 +149,11 @@
 		@media (max-width: 768px) {
 			.container {
 				grid-template-columns: 1fr;
-				gap: 1.5rem;
+				gap: 1.8rem;
+				padding: 1.5rem;
+			}
+			.right-column {
+				margin-top: 0 !important; /* Reset offset on mobile screens */
 			}
 		}
 	</style>
@@ -163,7 +176,7 @@
 			</ul>
 		</div>
 
-		<!-- Right Column: Text in Times New Roman -->
+		<!-- Right Column: Text in Times New Roman Aligned with Name -->
 		<div class="right-column">
 			<p>
 				<strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Developer | Data Analyst</strong>
