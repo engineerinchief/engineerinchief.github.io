@@ -3,66 +3,125 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>EngineerinChief</title>
+	<meta name="theme-color" content="#07111f">
+	<title>EngineerinChief | Prannay Nath</title>
 
 	<link rel="icon" type="image/png" href="images/chieficon.png">
 	<link rel="stylesheet" href="assets/css/main.css">
 
 	<style>
+		:root {
+			--dark: #07111f;
+			--mid: #102a43;
+			--glass: rgba(10, 28, 48, .75);
+			--text: #e9f3ff;
+			--muted: #b7c7da;
+			--blue: #38bdf8;
+			--purple: #a78bfa;
+			--gold: #fbbf24;
+			--red: #fb7185;
+			--z: 1;
+		}
+
 		* { box-sizing: border-box; }
 
-		html, body {
-			min-height: 100vh;
-			margin: 0;
-			background: #1e1e1e;
+		html {
+			min-height: 100%;
+			scroll-behavior: smooth;
 		}
 
 		body {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			padding: 2rem 1.5rem;
-			color: #e2e8f0;
-			font-family: "Times New Roman", serif;
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: center !important;
+			justify-content: center !important;
+			min-width: 320px;
+			min-height: 100vh;
+			margin: 0;
+			padding: 2rem 1.25rem;
+			overflow-x: hidden;
+			color: var(--text);
+			font-family: Arial, Helvetica, sans-serif !important;
+			background:
+				radial-gradient(circle at 12% 15%, rgba(56,189,248,.18), transparent 30%),
+				radial-gradient(circle at 88% 80%, rgba(167,139,250,.18), transparent 32%),
+				linear-gradient(135deg, var(--dark), var(--mid), #111827);
+		}
+
+		body::before {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			width: 100%;
+			height: 4px;
+			content: "";
+			background: linear-gradient(90deg, var(--blue), var(--gold), var(--purple));
+			box-shadow: 0 0 18px var(--gold);
+		}
+
+		button,
+		a {
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		button:focus-visible,
+		a:focus-visible {
+			outline: 3px solid var(--gold);
+			outline-offset: 3px;
 		}
 
 		.container {
-			display: grid;
-			grid-template-columns: 220px minmax(0, 1fr);
-			gap: 2.5rem;
+			display: grid !important;
+			grid-template-columns: 215px minmax(0, 1fr);
+			gap: 2rem;
 			width: 100%;
-			max-width: 980px;
-			padding: 2.5rem;
-			background: rgba(15, 23, 42, .55);
-			border: 1px solid rgba(255,255,255,.12);
-			border-radius: 16px;
-			box-shadow: 0 20px 40px rgba(0,0,0,.4);
-			backdrop-filter: blur(12px);
+			max-width: 1040px;
+			padding: 2rem;
+			background: var(--glass);
+			border: 1px solid rgba(255,255,255,.16);
+			border-radius: 22px;
+			box-shadow: 0 25px 60px rgba(0,0,0,.42);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
 		}
 
 		.left-column {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			text-align: center;
 		}
 
 		.profile-pic {
-			width: 150px;
-			height: 150px;
+			width: 132px;
+			height: 132px;
 			object-fit: cover;
-			border: 3px solid white;
+			border: 3px solid var(--gold);
 			border-radius: 50%;
-			box-shadow: 0 8px 24px rgba(0,0,0,.4);
+			box-shadow: 0 0 0 7px rgba(251,191,36,.12), 0 12px 28px rgba(0,0,0,.45);
 		}
 
-		h1 {
-			margin: .8rem 0 1rem;
-			color: white;
-			font-size: 1.6rem;
+		.left-column h1 {
+			margin: 1rem 0 .25rem !important;
+			color: white !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			font-size: 1.45rem !important;
+		}
+
+		.role-label {
+			margin: 0 0 1.15rem;
+			color: var(--gold);
+			font-size: .68rem;
+			font-weight: bold;
+			letter-spacing: 1.35px;
+			text-transform: uppercase;
 		}
 
 		.social-handles-vertical {
 			display: flex;
 			flex-direction: column;
+			width: 100%;
 			gap: 8px;
 			padding: 0;
 			margin: 0;
@@ -70,139 +129,223 @@
 		}
 
 		.social-handles-vertical a,
-		.cv-action-btn {
+		.action-btn {
 			display: block;
-			padding: 8px 10px;
-			color: white !important;
+			padding: 9px 11px;
+			color: var(--text) !important;
+			font-family: Arial, Helvetica, sans-serif !important;
+			font-size: .78rem !important;
+			font-weight: 600;
 			text-decoration: none;
-			font-family: Arial, sans-serif;
-			font-size: .9rem;
 			cursor: pointer;
-			background: rgba(255,255,255,.08);
-			border: 1px solid rgba(255,255,255,.25);
-			border-radius: 7px;
-			transition: .2s;
+			background: rgba(255,255,255,.06);
+			border: 1px solid rgba(255,255,255,.14);
+			border-radius: 8px;
+			transition: transform .2s ease, background .2s ease, border-color .2s ease;
 		}
 
 		.social-handles-vertical a:hover,
-		.cv-action-btn:hover {
-			background: rgba(255,255,255,.22);
+		.action-btn:hover {
+			transform: translateY(-2px);
+			color: white !important;
+			background: rgba(56,189,248,.17);
+			border-color: var(--blue);
+			box-shadow: 0 8px 18px rgba(0,0,0,.22);
 		}
 
-		.right-column {
-			min-width: 0;
-		}
+		.right-column { min-width: 0; }
 
 		.tabs-nav {
 			display: flex;
-			justify-content: space-between;
 			gap: 8px;
-			margin-bottom: 25px;
-			padding-bottom: 10px;
-			border-bottom: 1px solid rgba(255,255,255,.2);
+			margin-bottom: 1.3rem;
+			padding: 7px;
+			background: rgba(0,0,0,.18);
+			border: 1px solid rgba(255,255,255,.1);
+			border-radius: 12px;
 		}
 
 		.tab-btn {
-			padding: 6px 10px;
-			color: white;
-			font-family: Arial, sans-serif;
-			font-size: 1.05rem;
+			flex: 1;
+			min-height: 40px;
+			padding: 8px 7px;
+			color: var(--muted);
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: .78rem;
 			font-weight: bold;
 			cursor: pointer;
 			background: transparent;
-			border: 2px solid transparent;
-			border-radius: 6px;
+			border: 1px solid transparent;
+			border-radius: 8px;
+			transition: .2s ease;
 		}
 
+		.tab-btn:hover { color: white; background: rgba(255,255,255,.07); }
+
 		.tab-btn.active {
-			border-color: white;
+			color: #182033;
+			background: linear-gradient(135deg, var(--gold), #f59e0b);
+			border-color: #fde68a;
+			box-shadow: 0 5px 14px rgba(251,191,36,.22);
 		}
 
 		.tab-content,
-		.game-container {
-			display: none;
-		}
+		.game-container { display: none; }
 
 		.tab-content.active,
 		.game-container.active {
 			display: block;
+			animation: fadeIn .3s ease;
 		}
 
-		.cv-controls,
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(6px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		.intro-card,
+		.game-container {
+			padding: 1.25rem;
+			background: rgba(255,255,255,.045);
+			border: 1px solid rgba(255,255,255,.1);
+			border-left: 3px solid var(--gold);
+			border-radius: 14px;
+		}
+
+		.intro-card p {
+			margin: 0 0 .75rem !important;
+			color: var(--muted);
+			font-size: .81rem !important;
+			line-height: 1.65;
+		}
+
+		.intro-card p:first-child {
+			color: white;
+			font-size: .84rem !important;
+		}
+
+		.skills {
+			margin-top: 1rem;
+			padding-top: .9rem;
+			font-size: .76rem;
+			border-top: 1px solid rgba(255,255,255,.12);
+		}
+
+		.skills span {
+			display: inline-block;
+			margin: 5px 4px 0 0;
+			padding: 4px 8px;
+			color: #dff5ff;
+			font-size: .68rem;
+			background: rgba(56,189,248,.12);
+			border: 1px solid rgba(56,189,248,.22);
+			border-radius: 999px;
+		}
+
+		.controls,
 		.game-menu {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 8px;
-			margin-bottom: 15px;
+			margin-bottom: 13px;
 		}
 
 		.cv-viewer {
-			height: 550px;
-			padding: 20px;
+			height: min(68vh, 560px);
+			min-height: 330px;
+			padding: 16px;
 			overflow: auto;
 			text-align: center;
-			background: rgba(0,0,0,.2);
-			border: 1px solid rgba(255,255,255,.15);
-			border-radius: 8px;
+			cursor: grab;
+			touch-action: pan-x pan-y;
+			background: rgba(0,0,0,.24);
+			border: 1px solid rgba(255,255,255,.12);
+			border-radius: 12px;
+			scrollbar-color: var(--blue) rgba(255,255,255,.08);
 		}
+
+		.cv-viewer.dragging {
+			cursor: grabbing;
+			user-select: none;
+		}
+
+		.cv-viewer.dragging .cv-image { pointer-events: none; }
 
 		#cv-wrapper {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: 20px;
-			transform-origin: top center;
-			transition: transform .2s;
+			width: calc(100% * var(--z));
+			gap: 16px;
+			margin: 0 auto;
+			transition: width .2s ease;
 		}
 
 		.cv-image {
+			display: block;
+			width: 100%;
 			max-width: 100%;
 			height: auto;
-			box-shadow: 0 4px 15px rgba(0,0,0,.5);
+			border-radius: 4px;
+			box-shadow: 0 8px 20px rgba(0,0,0,.48);
 		}
 
-		.game-container {
-			padding: 20px;
-			text-align: center;
-			background: rgba(0,0,0,.2);
-			border: 1px solid rgba(255,255,255,.12);
-			border-radius: 8px;
+		.game-container { text-align: center; }
+
+		.game-container h3 {
+			margin: 0 0 .35rem;
+			color: var(--gold);
+			font-size: 1rem;
+		}
+
+		.game-note,
+		#ttt-status,
+		#sl-status {
+			margin: .5rem 0 .85rem;
+			color: var(--muted);
+			font-size: .76rem;
+			line-height: 1.45;
 		}
 
 		.ttt-board {
 			display: grid;
-			grid-template-columns: repeat(3, 75px);
-			gap: 5px;
+			grid-template-columns: repeat(3, 70px);
+			gap: 7px;
 			justify-content: center;
-			margin: 15px auto;
+			margin: 1rem auto;
 		}
 
 		.ttt-cell {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 75px;
-			height: 75px;
-			font-family: Arial, sans-serif;
-			font-size: 2.2rem;
+			width: 70px;
+			height: 70px;
+			font-size: 1.8rem;
+			font-weight: bold;
 			cursor: pointer;
-			background: rgba(255,255,255,.1);
-			border: 2px solid rgba(255,255,255,.3);
+			background: rgba(255,255,255,.08);
+			border: 1px solid rgba(255,255,255,.18);
+			border-radius: 10px;
+			transition: .2s ease;
 		}
 
 		.ttt-cell:hover {
-			background: rgba(255,255,255,.2);
+			background: rgba(56,189,248,.15);
+			border-color: var(--blue);
+			transform: scale(1.04);
 		}
 
 		.sl-board {
 			display: grid;
-			grid-template-columns: repeat(10, 34px);
+			grid-template-columns: repeat(10, 32px);
 			gap: 2px;
 			justify-content: center;
-			margin: 15px auto;
-			padding: 2px;
-			background: #eee;
-			border: 2px solid #333;
+			margin: 1rem auto;
+			padding: 3px;
+			background: #0a1726;
+			border: 2px solid rgba(251,191,36,.55);
+			border-radius: 8px;
 		}
 
 		.sl-cell {
@@ -210,47 +353,72 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			height: 34px;
-			color: #333;
-			font-family: Arial, sans-serif;
-			font-size: 9px;
+			width: 32px;
+			height: 32px;
+			color: #172033;
+			font-size: 8px;
 			font-weight: bold;
-			background: white;
+			background: #f1f5f9;
 		}
 
 		.sl-player {
 			position: absolute;
-			width: 12px;
-			height: 12px;
-			background: #ef4444;
+			width: 11px;
+			height: 11px;
+			background: var(--red);
+			border: 2px solid white;
 			border-radius: 50%;
+			box-shadow: 0 0 7px var(--red);
 		}
 
 		#footer {
-			margin-top: 1.5rem;
-			color: rgba(255,255,255,.6);
-			font-family: Arial, sans-serif;
-			font-size: .85rem;
+			width: 100%;
+			margin-top: 1.35rem;
+			color: rgba(255,255,255,.65);
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: .72rem;
 			text-align: center;
 		}
 
 		@media (max-width: 768px) {
+			body {
+				justify-content: flex-start !important;
+				padding: 1rem;
+			}
+
 			.container {
 				grid-template-columns: 1fr;
-				padding: 1.5rem;
+				gap: 1.5rem;
+				padding: 1.25rem;
 			}
 
-			.tabs-nav {
-				flex-direction: column;
+			.tabs-nav { flex-direction: column; }
+
+			.tab-btn { width: 100%; }
+
+			.cv-viewer {
+				height: 62vh;
+				min-height: 300px;
+				padding: 10px;
 			}
 
-			.sl-board {
-				grid-template-columns: repeat(10, 27px);
-			}
+			.sl-board { grid-template-columns: repeat(10, 27px); }
 
 			.sl-cell {
+				width: 27px;
 				height: 27px;
 			}
+		}
+
+		@media (max-width: 360px) {
+			body { padding: .7rem; }
+			.container { padding: 1rem; }
+			.sl-board { grid-template-columns: repeat(10, 24px); }
+			.sl-cell { width: 24px; height: 24px; font-size: 7px; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			* { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 		}
 	</style>
 </head>
@@ -258,87 +426,83 @@
 <body>
 
 	<div class="container">
-
-		<div class="left-column">
+		<aside class="left-column">
 			<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
 
 			<h1>Prannay Nath</h1>
+			<p class="role-label">Engineering • Data • Aerospace</p>
 
 			<ul class="social-handles-vertical">
-				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python</a></li>
-				<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
-				<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
-				<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
-				<li><a href="https://x.com/ingenieurchef" target="_blank">X</a></li>
-				<li><a href="mailto:theengineerinchief@gmail.com">Email</a></li>
+				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener">Python Projects</a></li>
+				<li><a href="https://github.com/engineerinchief" target="_blank" rel="noopener">GitHub</a></li>
+				<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank" rel="noopener">LinkedIn</a></li>
+				<li><a href="https://instagram.com/engineerinchief" target="_blank" rel="noopener">Instagram</a></li>
+				<li><a href="https://x.com/ingenieurchef" target="_blank" rel="noopener">X / Twitter</a></li>
+				<li><a href="mailto:theengineerinchief@gmail.com">Email Me</a></li>
 			</ul>
-		</div>
+		</aside>
 
-		<div class="right-column">
+		<main class="right-column">
+			<nav class="tabs-nav" aria-label="Website sections">
+				<button class="tab-btn active" type="button" data-tab="intro-tab">Introduction</button>
+				<button class="tab-btn" type="button" data-tab="cv-tab">CV</button>
+				<button class="tab-btn" type="button" data-tab="games-tab">Games</button>
+			</nav>
 
-			<div class="tabs-nav">
-				<button class="tab-btn active" data-tab="intro-tab">Introduction</button>
-				<button class="tab-btn" data-tab="cv-tab">CV</button>
-				<button class="tab-btn" data-tab="games-tab">Page Games</button>
-			</div>
+			<section id="intro-tab" class="tab-content active">
+				<div class="intro-card">
+					<p><strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+					<p>I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.</p>
+					<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
+					<p>My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.</p>
 
-			<div id="intro-tab" class="tab-content active">
-				<p><strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+					<div class="skills">
+						<strong>Skills</strong><br>
+						<span>Python</span><span>C</span><span>SQL</span><span>Data Analytics</span><span>Inventor</span>
+					</div>
+				</div>
+			</section>
 
-				<p>I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.</p>
-
-				<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
-
-				<p>My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.</p>
-
-				<p>My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through engineering, software development, and analytics.</p>
-
-				<p><strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor</p>
-			</div>
-
-			<div id="cv-tab" class="tab-content">
-				<div class="cv-controls">
-					<button class="cv-action-btn" id="zoom-in">➕ Zoom In</button>
-					<button class="cv-action-btn" id="zoom-out">➖ Zoom Out</button>
-					<button class="cv-action-btn" id="zoom-reset">🔄 Reset</button>
-
-					<a class="cv-action-btn" href="Documents/Prannay_CV_MA_De.pdf" download>
-						Download CV
-					</a>
+			<section id="cv-tab" class="tab-content">
+				<div class="controls">
+					<button class="action-btn" id="zoom-in" type="button">➕ Zoom In</button>
+					<button class="action-btn" id="zoom-out" type="button">➖ Zoom Out</button>
+					<button class="action-btn" id="zoom-reset" type="button">↺ Reset</button>
+					<a class="action-btn" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
 				</div>
 
-				<div class="cv-viewer">
+				<div class="cv-viewer" id="cv-viewer" aria-label="Draggable CV viewer">
 					<div id="cv-wrapper">
 						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
 						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
 					</div>
 				</div>
-			</div>
+			</section>
 
-			<div id="games-tab" class="tab-content">
-
+			<section id="games-tab" class="tab-content">
 				<div class="game-menu">
-					<button class="cv-action-btn" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
-					<button class="cv-action-btn" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
+					<button class="action-btn" type="button" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
+					<button class="action-btn" type="button" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
 				</div>
 
 				<div id="tic-tac-toe" class="game-container active">
-					<h3>Tic Tac Toe (vs Bot)</h3>
+					<h3>Tic Tac Toe: Challenge Mode</h3>
+					<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
 					<div id="ttt-board" class="ttt-board"></div>
-					<h4 id="ttt-status">Your Turn (X)</h4>
-					<button class="cv-action-btn" id="ttt-reset">Restart Game</button>
+					<p id="ttt-status" aria-live="polite">Your turn. Jeetega bhai jeetega! 🏆</p>
+					<button id="ttt-reset" class="action-btn" type="button">Restart Game</button>
 				</div>
 
 				<div id="snake-ladder" class="game-container">
-					<h3>Snake &amp; Ladder (Solo)</h3>
+					<h3>Snake &amp; Ladder: Hard Mode</h3>
+					<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
 					<div id="sl-board" class="sl-board"></div>
-					<button class="cv-action-btn" id="roll-btn">Roll Dice 🎲</button>
-					<button class="cv-action-btn" id="sl-reset">Restart</button>
-					<h4 id="sl-status">Roll to start!</h4>
+					<button id="roll-btn" class="action-btn" type="button">Roll Dice 🎲</button>
+					<button id="sl-reset" class="action-btn" type="button">Restart</button>
+					<p id="sl-status" aria-live="polite">Roll the dice. Aaj kuch toofani karte hain!</p>
 				</div>
-
-			</div>
-		</div>
+			</section>
+		</main>
 	</div>
 
 	<footer id="footer">
@@ -353,157 +517,246 @@
 			button.onclick = () => {
 				tabs.forEach(tab => tab.classList.remove("active"));
 				contents.forEach(content => content.classList.remove("active"));
-
 				button.classList.add("active");
 				document.getElementById(button.dataset.tab).classList.add("active");
 			};
 		});
 
+		document.querySelectorAll("[data-game]").forEach(button => {
+			button.onclick = () => {
+				document.querySelectorAll(".game-container").forEach(game => game.classList.remove("active"));
+				document.getElementById(button.dataset.game).classList.add("active");
+			};
+		});
+
 		let zoom = 1;
-		const cv = document.getElementById("cv-wrapper");
+		const viewer = document.getElementById("cv-viewer");
+		const wrapper = document.getElementById("cv-wrapper");
 
 		function updateZoom() {
-			cv.style.transform = `scale(${zoom})`;
+			wrapper.style.setProperty("--z", zoom);
 		}
 
 		document.getElementById("zoom-in").onclick = () => {
-			zoom = Math.min(zoom + 0.2, 2.5);
+			zoom = Math.min(zoom + .2, 2.5);
 			updateZoom();
 		};
 
 		document.getElementById("zoom-out").onclick = () => {
-			zoom = Math.max(zoom - 0.2, 0.5);
+			zoom = Math.max(zoom - .2, .6);
 			updateZoom();
 		};
 
 		document.getElementById("zoom-reset").onclick = () => {
 			zoom = 1;
 			updateZoom();
+			viewer.scrollTo(0, 0);
 		};
 
-		document.querySelectorAll("[data-game]").forEach(button => {
-			button.onclick = () => {
-				document.querySelectorAll(".game-container").forEach(game => {
-					game.classList.remove("active");
-				});
+		let dragging = false;
+		let startX = 0, startY = 0, scrollX = 0, scrollY = 0;
 
-				document.getElementById(button.dataset.game).classList.add("active");
-			};
+		viewer.addEventListener("pointerdown", event => {
+			dragging = true;
+			startX = event.clientX;
+			startY = event.clientY;
+			scrollX = viewer.scrollLeft;
+			scrollY = viewer.scrollTop;
+			viewer.classList.add("dragging");
+			viewer.setPointerCapture(event.pointerId);
 		});
+
+		viewer.addEventListener("pointermove", event => {
+			if (!dragging) return;
+			viewer.scrollLeft = scrollX - (event.clientX - startX);
+			viewer.scrollTop = scrollY - (event.clientY - startY);
+		});
+
+		function endDrag() {
+			dragging = false;
+			viewer.classList.remove("dragging");
+		}
+
+		viewer.addEventListener("pointerup", endDrag);
+		viewer.addEventListener("pointercancel", endDrag);
+		viewer.addEventListener("lostpointercapture", endDrag);
+
+		const phrases = {
+			win: [
+				"Mogambo khush hua! You won like a champion. 🏆🎉",
+				"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
+				"Baap baap hota hai! Victory is yours. 😎🏆",
+				"Kya baat hai sirji! Absolute masterclass. 🎯🎉",
+				"Ek number! You played like a true champion. 💪🏆",
+				"Ye hui na baat! Winner mode activated. 👑🎉"
+			],
+			lose: [
+				"Bhai, kya kar raha hai tu?",
+				"Arre yaar! Bot ne game palat diya. 😭",
+				"Bhagg! B*DK. 🤬",
+				"Picture abhi baaki hai mere dost. Try again! 🎬",
+				"System hang ho gaya kya? Bot takes this round. 🤖",
+				"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅",
+				"Bot bola: control Uday, control! 🤖"
+			],
+			draw: [
+				"All is well. It is a draw. 🤝",
+				"Takkkar ki thi! Nobody gives up. Draw. 🤝",
+				"Perfectly balanced, as all things should be. ⚖️",
+				"Match tie ho gaya, but respect is real. 🤝",
+				"Dono players strong nikle. Draw! 💪",
+				"Game kehta hai: phir se khelo! It is a draw. 🔁"
+			]
+		};
+
+		const lastPhrase = { win: -1, lose: -1, draw: -1 };
+
+		function randomPhrase(type) {
+			let index;
+			do {
+				index = Math.floor(Math.random() * phrases[type].length);
+			} while (index === lastPhrase[type]);
+			lastPhrase[type] = index;
+			return phrases[type][index];
+		}
 
 		let board = Array(9).fill("");
 		let active = true;
 
 		const tttBoard = document.getElementById("ttt-board");
 		const tttStatus = document.getElementById("ttt-status");
-		const winLines = [
-			[0, 1, 2], [3, 4, 5], [6, 7, 8],
-			[0, 3, 6], [1, 4, 7], [2, 5, 8],
-			[0, 4, 8], [2, 4, 6]
+
+		const wins = [
+			[0,1,2], [3,4,5], [6,7,8],
+			[0,3,6], [1,4,7], [2,5,8],
+			[0,4,8], [2,4,6]
 		];
 
-		function hasWon(player) {
-			return winLines.some(line => line.every(index => board[index] === player));
+		function result(current) {
+			for (const [a,b,c] of wins) {
+				if (current[a] && current[a] === current[b] && current[a] === current[c]) return current[a];
+			}
+			return current.includes("") ? null : "draw";
 		}
 
 		function drawTTT() {
 			tttBoard.innerHTML = "";
-
 			board.forEach((value, index) => {
-				const cell = document.createElement("div");
+				const cell = document.createElement("button");
+				cell.type = "button";
 				cell.className = "ttt-cell";
 				cell.textContent = value;
-				cell.style.color = value === "X" ? "#ef4444" : "#3b82f6";
-				cell.onclick = () => playTTT(index);
+				cell.setAttribute("aria-label", `Square ${index + 1}${value ? `, ${value}` : ""}`);
+				cell.style.color = value === "X" ? "#fbbf24" : "#38bdf8";
+				cell.onclick = () => playerMove(index);
 				tttBoard.appendChild(cell);
 			});
 		}
 
-		function playTTT(index) {
+		function botChoice() {
+			const empty = board.map((v,i) => v === "" ? i : null).filter(v => v !== null);
+
+			for (const i of empty) {
+				board[i] = "O";
+				if (result(board) === "O") { board[i] = ""; return i; }
+				board[i] = "";
+			}
+
+			for (const i of empty) {
+				board[i] = "X";
+				if (result(board) === "X") {
+					board[i] = "";
+					if (Math.random() < .8) return i;
+					break;
+				}
+				board[i] = "";
+			}
+
+			const strong = [4,0,2,6,8].filter(i => board[i] === "");
+			return strong.length && Math.random() < .65
+				? strong[Math.floor(Math.random() * strong.length)]
+				: empty[Math.floor(Math.random() * empty.length)];
+		}
+
+		function playerMove(index) {
 			if (!active || board[index]) return;
 
 			board[index] = "X";
 			drawTTT();
 
-			if (hasWon("X")) {
-				tttStatus.textContent = "You Win! 🎉";
+			let winner = result(board);
+
+			if (winner === "X") {
+				tttStatus.textContent = randomPhrase("win");
 				active = false;
 				return;
 			}
 
-			if (!board.includes("")) {
-				tttStatus.textContent = "It's a Draw! 🤝";
+			if (winner === "draw") {
+				tttStatus.textContent = randomPhrase("draw");
 				active = false;
 				return;
 			}
 
 			active = false;
-			tttStatus.textContent = "Bot's Turn (O)...";
+			tttStatus.textContent = "Bot is thinking... picture abhi baaki hai!";
 
 			setTimeout(() => {
-				const empty = board
-					.map((value, index) => value === "" ? index : null)
-					.filter(index => index !== null);
-
-				if (empty.length) {
-					board[empty[Math.floor(Math.random() * empty.length)]] = "O";
-				}
-
+				board[botChoice()] = "O";
 				drawTTT();
+				winner = result(board);
 
-				if (hasWon("O")) {
-					tttStatus.textContent = "Bot Wins! 🤖";
+				if (winner === "O") {
+					tttStatus.textContent = randomPhrase("lose");
 					return;
 				}
 
-				if (!board.includes("")) {
-					tttStatus.textContent = "It's a Draw! 🤝";
+				if (winner === "draw") {
+					tttStatus.textContent = randomPhrase("draw");
 					return;
 				}
 
-				tttStatus.textContent = "Your Turn (X)";
 				active = true;
-			}, 400);
+				tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
+			}, 450);
 		}
 
 		document.getElementById("ttt-reset").onclick = () => {
 			board = Array(9).fill("");
 			active = true;
-			tttStatus.textContent = "Your Turn (X)";
+			tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
 			drawTTT();
 		};
 
 		let position = 0;
-
 		const slBoard = document.getElementById("sl-board");
 		const slStatus = document.getElementById("sl-status");
 		const rollButton = document.getElementById("roll-btn");
 
 		const moves = {
-			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100,
-			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79
+			3:22, 11:26, 20:38, 36:44, 51:67,
+			17:6, 29:8, 41:19, 47:25, 54:34,
+			62:18, 66:45, 73:52, 79:39, 87:24,
+			92:70, 95:56, 98:60
 		};
 
-		function drawSL() {
+		function drawSnakeLadder() {
 			slBoard.innerHTML = "";
 
 			for (let row = 9; row >= 0; row--) {
 				for (let col = 0; col < 10; col++) {
-					const number = row % 2 === 0
-						? row * 10 + col + 1
-						: row * 10 + (9 - col) + 1;
-
+					const n = row % 2 === 0 ? row * 10 + col + 1 : row * 10 + (9 - col) + 1;
 					const cell = document.createElement("div");
 					cell.className = "sl-cell";
-					cell.textContent = number;
+					cell.textContent = n;
 
-					if (moves[number]) {
-						const ladder = moves[number] > number;
-						cell.style.background = ladder ? "#dcfce7" : "#fee2e2";
+					if (moves[n]) {
+						const ladder = moves[n] > n;
+						cell.style.background = ladder ? "#d1fae5" : "#ffe4e6";
 						cell.innerHTML += ladder ? "<br>🪜" : "<br>🐍";
 					}
 
-					if (number === position) {
+					if (n === position) {
 						const player = document.createElement("div");
 						player.className = "sl-player";
 						cell.appendChild(player);
@@ -518,40 +771,40 @@
 			if (position >= 100) return;
 
 			const roll = Math.floor(Math.random() * 6) + 1;
-			let message = `Rolled ${roll}! `;
+			let message = `You rolled ${roll}. `;
 
 			if (position + roll <= 100) {
 				position += roll;
 
 				if (moves[position]) {
-					message += moves[position] > position
-						? "Climbed ladder! 🪜"
-						: "Bit by snake! 🐍";
-
-					position = moves[position];
+					const destination = moves[position];
+					message += destination > position
+						? `Wah bhai wah! Ladder to ${destination}. 🪜`
+						: `Arre yaar! Snake to ${destination}. 🐍`;
+					position = destination;
 				}
 			} else {
-				message += "Need exact number for 100.";
+				message += "Exact number needed. Picture abhi baaki hai!";
 			}
 
 			if (position === 100) {
-				message = "YOU WIN! 🎉🏆";
+				message = randomPhrase("win");
 				rollButton.disabled = true;
 			}
 
 			slStatus.textContent = message;
-			drawSL();
+			drawSnakeLadder();
 		};
 
 		document.getElementById("sl-reset").onclick = () => {
 			position = 0;
 			rollButton.disabled = false;
-			slStatus.textContent = "Roll to start!";
-			drawSL();
+			slStatus.textContent = "Roll the dice. Aaj kuch toofani karte hain!";
+			drawSnakeLadder();
 		};
 
 		drawTTT();
-		drawSL();
+		drawSnakeLadder();
 	</script>
 
 	<script src="assets/js/main.js"></script>
