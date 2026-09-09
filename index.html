@@ -106,17 +106,63 @@
 			transform: translateY(-1px);
 		}
 
-		/* Right Column Styling - Offset to match h1 position */
+		/* Right Column Styling */
 		.right-column {
 			text-align: left;
 			font-family: "Times New Roman", Times, serif !important;
 			font-size: 0.95rem !important;
 			line-height: 1.7 !important;
 			color: #e2e8f0 !important;
-			margin-top: 172px; /* Aligns description start with name below photo */
+			margin-top: 10px; 
 		}
 
-		.right-column p {
+        /* Tabs Navigation Styling */
+        .tabs-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #ef4444; /* Red color matching your mockup */
+            font-size: 1.4rem;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: opacity 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            opacity: 0.8;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+        }
+
+        .tab-btn.active {
+            font-weight: bold;
+            border-bottom: 2px solid #ef4444;
+        }
+
+        /* Tab Content Control */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Content Text Styling */
+		.tab-content p {
 			margin-bottom: 1rem;
 			font-family: "Times New Roman", Times, serif !important;
 			font-size: 0.95rem !important;
@@ -128,6 +174,24 @@
 			border-top: 1px solid rgba(255, 255, 255, 0.15);
 			font-size: 0.95rem !important;
 		}
+
+        /* Download Button Styling */
+        .download-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff !important;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
 
 		/* Footer Styling */
 		#footer {
@@ -153,9 +217,11 @@
 				gap: 1.8rem;
 				padding: 1.5rem;
 			}
-			.right-column {
-				margin-top: 0 !important; /* Reset offset on mobile screens */
-			}
+            .tabs-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
 		}
 	</style>
 </head>
@@ -178,31 +244,65 @@
 			</ul>
 		</div>
 
-		<!-- Right Column: Text in Times New Roman Aligned with Name -->
+		<!-- Right Column: Tabs and Content -->
 		<div class="right-column">
-			<p>
-				<strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong>
-			</p>
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'intro-tab')">Introduction</button>
+                <button class="tab-btn" onclick="openTab(event, 'cv-tab')">CV</button>
+                <button class="tab-btn" onclick="openTab(event, 'games-tab')">Page Games</button>
+            </div>
 
-			<p>
-				I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.
-			</p>
+            <!-- TAB 1: INTRODUCTION -->
+            <div id="intro-tab" class="tab-content active">
+                <p>
+                    <strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong>
+                </p>
 
-			<p>
-				Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.
-			</p>
+                <p>
+                    I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.
+                </p>
 
-			<p>
-				My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.
-			</p>
+                <p>
+                    Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.
+                </p>
 
-			<p>
-				My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through the integration of engineering, software development, and analytics.
-			</p>
+                <p>
+                    My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.
+                </p>
 
-			<div class="skills-section">
-				<strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor
-			</div>
+                <p>
+                    My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through the integration of engineering, software development, and analytics.
+                </p>
+
+                <div class="skills-section">
+                    <strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor
+                </div>
+            </div>
+
+            <!-- TAB 2: CV -->
+            <div id="cv-tab" class="tab-content">
+                <!-- Top Right Download Button -->
+                <div style="text-align: right; margin-bottom: 15px;">
+                    <a href="Document/Prannay_CV_MA_De.pdf" download="Prannay_CV_MA_De.pdf" class="download-btn">Download CV</a>
+                </div>
+                <!-- PDF Viewer -->
+                <iframe src="Document/Prannay_CV_MA_De.pdf" width="100%" height="650px" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;">
+                    This browser does not support viewing PDFs. Please download the CV to view it.
+                </iframe>
+            </div>
+
+            <!-- TAB 3: GAMES -->
+            <div id="games-tab" class="tab-content">
+                <h2 style="color: white; font-family: Arial, sans-serif; margin-bottom: 1rem;">Arcade Zone</h2>
+                <p>Select a game below to start playing:</p>
+                <ul style="color: white; font-family: Arial, sans-serif; line-height: 2;">
+                    <li>🎮 <strong>Snake & Ladder</strong> (Coming soon - upload your JS logic here!)</li>
+                    <li>⭕ <strong>Tic Tac Toe</strong> (Coming soon - upload your JS logic here!)</li>
+                </ul>
+            </div>
+
 		</div>
 
 	</div>
@@ -213,6 +313,29 @@
 			<li>@engineerinchief</li>
 		</ul>
 	</footer>
+
+    <!-- Tab Switching Logic -->
+    <script>
+        function openTab(evt, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+                tabContents[i].classList.remove("active");
+            }
+
+            // Get all elements with class="tab-btn" and remove the class "active"
+            let tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 
 	<script src="assets/js/main.js"></script>
 
