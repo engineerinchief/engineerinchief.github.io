@@ -18,6 +18,7 @@
 	--gold:#fbbf24;
 	--purple:#a78bfa;
 	--red:#fb7185;
+	--content-width:660px;
 }
 
 *{
@@ -75,6 +76,7 @@ a:focus-visible{
 	grid-template-columns:210px minmax(0,1fr);
 	grid-template-rows:auto 1fr;
 	gap:1.5rem;
+	width:100%;
 	padding:1.75rem;
 	background:rgba(10,28,50,.84);
 	border:1px solid rgba(255,255,255,.16);
@@ -84,7 +86,7 @@ a:focus-visible{
 	-webkit-backdrop-filter:blur(18px);
 }
 
-/* LEFT: photograph and name */
+/* Photo and name */
 .profile{
 	grid-column:1;
 	grid-row:1;
@@ -112,7 +114,7 @@ a:focus-visible{
 	font-size:1.5rem;
 }
 
-/* TABS: centre aligned beside photograph */
+/* Tabs in the middle of photograph height */
 .tabs{
 	grid-column:2;
 	grid-row:1;
@@ -120,14 +122,15 @@ a:focus-visible{
 	grid-template-columns:repeat(3,minmax(0,1fr));
 	align-self:center;
 	gap:8px;
-	width:100%;
+	width:min(100%,var(--content-width));
+	margin:auto;
 	padding:7px;
 	background:rgba(0,0,0,.2);
 	border:1px solid rgba(255,255,255,.12);
 	border-radius:12px;
 }
 
-/* LINKS: below name */
+/* Social links under name */
 .links{
 	grid-column:1;
 	grid-row:2;
@@ -141,7 +144,7 @@ a:focus-visible{
 	list-style:none;
 }
 
-/* CONTENT: aligned with first link */
+/* Introduction, CV and Games all begin beside Python Projects */
 .content{
 	grid-column:2;
 	grid-row:2;
@@ -208,7 +211,6 @@ a:focus-visible{
 	box-shadow:none;
 }
 
-/* TAB PANELS */
 .panel,
 .game{
 	display:none;
@@ -233,12 +235,20 @@ a:focus-visible{
 	}
 }
 
-/* COMPACT DIALOG / CONTENT CARDS */
+/* Every content dialog has the SAME width */
+.card,
+.game,
+.viewer{
+	width:min(100%,var(--content-width));
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* Introduction and Games use same compact card size */
 .card,
 .game{
-	width:min(100%,700px);
-	min-height:400px;
-	padding:1.7rem;
+	min-height:390px;
+	padding:1.55rem;
 	text-align:center;
 	background:rgba(255,255,255,.055);
 	border:1px solid rgba(255,255,255,.14);
@@ -248,16 +258,16 @@ a:focus-visible{
 }
 
 .card p{
-	max-width:620px;
-	margin:0 auto .9rem;
+	max-width:570px;
+	margin:0 auto .85rem;
 	color:var(--muted);
-	font-size:.82rem;
+	font-size:.81rem;
 	line-height:1.65;
 }
 
 .card p:first-child{
 	color:#fff;
-	font-size:.86rem;
+	font-size:.85rem;
 }
 
 .skills{
@@ -284,7 +294,7 @@ a:focus-visible{
 	flex-wrap:wrap;
 	align-items:center;
 	gap:8px;
-	width:min(100%,700px);
+	width:min(100%,var(--content-width));
 	margin:0 auto 13px;
 }
 
@@ -297,9 +307,7 @@ a:focus-visible{
 }
 
 .viewer{
-	width:min(100%,700px);
 	height:520px;
-	margin:auto;
 	padding:14px;
 	overflow:auto;
 	text-align:center;
@@ -336,7 +344,7 @@ a:focus-visible{
 	box-shadow:0 8px 20px rgba(0,0,0,.55);
 }
 
-/* GAMES */
+/* Games */
 .game h3{
 	margin:0 0 .45rem;
 	color:var(--gold);
@@ -354,7 +362,7 @@ a:focus-visible{
 	text-align:center;
 }
 
-/* TIC TAC TOE */
+/* Tic Tac Toe */
 .ttt{
 	display:grid;
 	grid-template-columns:repeat(3,72px);
@@ -389,12 +397,12 @@ a:focus-visible{
 	border-color:var(--blue);
 }
 
-/* SNAKE AND LADDER */
+/* Snake and Ladder */
 .sl{
 	display:grid;
 	grid-template-columns:repeat(10,minmax(0,1fr));
 	gap:3px;
-	width:min(100%,560px);
+	width:min(100%,540px);
 	margin:1rem auto;
 	padding:5px;
 	overflow:hidden;
@@ -453,7 +461,7 @@ footer{
 	text-align:center;
 }
 
-/* MOBILE */
+/* Mobile */
 @media(max-width:820px){
 	body{
 		padding:1rem;
@@ -714,11 +722,11 @@ function openTab(tabId){
 
 	document.getElementById(tabId).classList.add("active");
 
-	const buttons=document.querySelectorAll(".tab");
+	const tabs=document.querySelectorAll(".tab");
 
-	if(tabId==="intro") buttons[0].classList.add("active");
-	if(tabId==="cv") buttons[1].classList.add("active");
-	if(tabId==="games") buttons[2].classList.add("active");
+	if(tabId==="intro") tabs[0].classList.add("active");
+	if(tabId==="cv") tabs[1].classList.add("active");
+	if(tabId==="games") tabs[2].classList.add("active");
 }
 
 function showGame(gameId){
@@ -1058,7 +1066,3 @@ function resetSL(){
 
 drawTTT();
 drawSL();
-</script>
-
-</body>
-</html>
