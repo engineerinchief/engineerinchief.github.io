@@ -20,9 +20,12 @@
 	--red:#fb7185;
 }
 
-*{box-sizing:border-box}
+*{
+	box-sizing:border-box;
+}
 
-html,body{
+html,
+body{
 	min-height:100%;
 	margin:0;
 }
@@ -30,26 +33,29 @@ html,body{
 body{
 	min-width:320px;
 	min-height:100vh;
-	padding:1.5rem;
+	padding:2rem 1.25rem;
 	color:var(--text);
 	font-family:Arial,Helvetica,sans-serif;
 	background:
-		radial-gradient(circle at 10% 15%,rgba(56,189,248,.15),transparent 30%),
-		radial-gradient(circle at 90% 85%,rgba(167,139,250,.15),transparent 32%),
+		radial-gradient(circle at 10% 15%,rgba(56,189,248,.16),transparent 30%),
+		radial-gradient(circle at 90% 85%,rgba(167,139,250,.16),transparent 32%),
 		linear-gradient(135deg,var(--bg),var(--panel),#111827);
 }
 
 body::before{
-	content:"";
 	position:fixed;
-	inset:0 0 auto;
+	top:0;
+	left:0;
 	z-index:-1;
+	width:100%;
 	height:4px;
+	content:"";
 	background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));
 	box-shadow:0 0 18px var(--gold);
 }
 
-button,a{
+button,
+a{
 	-webkit-tap-highlight-color:transparent;
 }
 
@@ -60,80 +66,28 @@ a:focus-visible{
 }
 
 .site{
-	width:min(1160px,100%);
+	width:min(1080px,100%);
 	margin:0 auto;
 }
 
 .container{
 	display:grid;
 	grid-template-columns:210px minmax(0,1fr);
-	grid-template-rows:auto auto 1fr;
+	grid-template-rows:auto 1fr;
 	gap:1.5rem;
-	padding:1.7rem;
+	padding:1.75rem;
 	background:rgba(10,28,50,.84);
-	border:1px solid rgba(255,255,255,.15);
-	border-radius:18px;
-	box-shadow:0 25px 60px rgba(0,0,0,.45);
+	border:1px solid rgba(255,255,255,.16);
+	border-radius:20px;
+	box-shadow:0 25px 60px rgba(0,0,0,.46);
 	backdrop-filter:blur(18px);
 	-webkit-backdrop-filter:blur(18px);
 }
 
-/* Professional top navigation */
-.top-nav{
-	grid-column:1 / -1;
-	grid-row:1;
-	display:flex;
-	justify-content:center;
-	gap:10px;
-	padding-bottom:1rem;
-	border-bottom:1px solid rgba(255,255,255,.12);
-}
-
-.nav-btn,
-.button,
-.social-links a{
-	display:inline-flex;
-	align-items:center;
-	justify-content:center;
-	min-height:39px;
-	padding:8px 16px;
-	color:var(--text);
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:.76rem;
-	font-weight:600;
-	line-height:1;
-	text-decoration:none;
-	cursor:pointer;
-	background:rgba(255,255,255,.06);
-	border:1px solid rgba(255,255,255,.18);
-	border-radius:7px;
-	transition:.2s ease;
-}
-
-.nav-btn{
-	min-width:125px;
-}
-
-.nav-btn:hover,
-.button:hover,
-.social-links a:hover{
-	transform:translateY(-1px);
-	color:#fff;
-	background:rgba(56,189,248,.16);
-	border-color:var(--blue);
-	box-shadow:0 6px 14px rgba(0,0,0,.26);
-}
-
-.nav-btn.active{
-	color:#182033;
-	background:linear-gradient(135deg,var(--gold),#f59e0b);
-	border-color:#fde68a;
-	box-shadow:0 4px 11px rgba(251,191,36,.24);
-}
-
+/* LEFT: photograph and name */
 .profile{
 	grid-column:1;
-	grid-row:2;
+	grid-row:1;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
@@ -141,8 +95,8 @@ a:focus-visible{
 }
 
 .profile img{
-	width:132px;
-	height:132px;
+	width:138px;
+	height:138px;
 	object-fit:cover;
 	border:3px solid var(--gold);
 	border-radius:50%;
@@ -158,72 +112,144 @@ a:focus-visible{
 	font-size:1.5rem;
 }
 
-/* Empty spacer keeps content aligned with first link */
-.desktop-spacer{
+/* TABS: centre aligned beside photograph */
+.tabs{
 	grid-column:2;
-	grid-row:2;
-	min-height:132px;
+	grid-row:1;
+	display:grid;
+	grid-template-columns:repeat(3,minmax(0,1fr));
+	align-self:center;
+	gap:8px;
+	width:100%;
+	padding:7px;
+	background:rgba(0,0,0,.2);
+	border:1px solid rgba(255,255,255,.12);
+	border-radius:12px;
 }
 
-.social-links{
+/* LINKS: below name */
+.links{
 	grid-column:1;
-	grid-row:3;
+	grid-row:2;
 	display:flex;
 	flex-direction:column;
 	align-self:start;
 	gap:9px;
+	width:100%;
 	padding:0;
 	margin:0;
 	list-style:none;
 }
 
-.social-links a{
-	width:100%;
-}
-
+/* CONTENT: aligned with first link */
 .content{
 	grid-column:2;
-	grid-row:3;
+	grid-row:2;
+	display:flex;
+	justify-content:center;
 	min-width:0;
 	align-self:start;
 }
 
-.tab-panel,
+.button,
+.links a,
+.tab{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	min-height:39px;
+	height:39px;
+	padding:8px 12px;
+	color:var(--text);
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:.76rem;
+	font-weight:600;
+	line-height:1;
+	text-decoration:none;
+	cursor:pointer;
+	background:rgba(255,255,255,.07);
+	border:1px solid rgba(255,255,255,.2);
+	border-radius:8px;
+	transition:.2s ease;
+}
+
+.links a{
+	width:100%;
+}
+
+.tab{
+	width:100%;
+	min-width:0;
+	white-space:nowrap;
+	background:transparent;
+}
+
+.button:hover,
+.links a:hover,
+.tab:hover{
+	transform:translateY(-1px);
+	color:#fff;
+	background:rgba(56,189,248,.18);
+	border-color:var(--blue);
+	box-shadow:0 6px 14px rgba(0,0,0,.28);
+}
+
+.tab.active{
+	color:#182033;
+	background:linear-gradient(135deg,var(--gold),#f59e0b);
+	border-color:#fde68a;
+	box-shadow:0 4px 11px rgba(251,191,36,.24);
+}
+
+.button:disabled{
+	cursor:not-allowed;
+	opacity:.45;
+	transform:none;
+	box-shadow:none;
+}
+
+/* TAB PANELS */
+.panel,
 .game{
 	display:none;
+	width:100%;
 }
 
-.tab-panel.active,
+.panel.active,
 .game.active{
 	display:block;
-	animation:show .25s ease;
+	animation:fadeIn .25s ease;
 }
 
-@keyframes show{
+@keyframes fadeIn{
 	from{
 		opacity:0;
 		transform:translateY(6px);
 	}
+
 	to{
 		opacity:1;
-		transform:none;
+		transform:translateY(0);
 	}
 }
 
+/* COMPACT DIALOG / CONTENT CARDS */
 .card,
 .game{
-	width:100%;
-	padding:1.45rem;
+	width:min(100%,700px);
+	min-height:400px;
+	padding:1.7rem;
 	text-align:center;
-	background:rgba(255,255,255,.05);
-	border:1px solid rgba(255,255,255,.12);
+	background:rgba(255,255,255,.055);
+	border:1px solid rgba(255,255,255,.14);
 	border-left:3px solid var(--gold);
-	border-radius:12px;
+	border-radius:18px;
+	box-shadow:0 14px 32px rgba(0,0,0,.2);
 }
 
 .card p{
-	max-width:720px;
-	margin:0 auto .85rem;
+	max-width:620px;
+	margin:0 auto .9rem;
 	color:var(--muted);
 	font-size:.82rem;
 	line-height:1.65;
@@ -251,13 +277,15 @@ a:focus-visible{
 	border-radius:999px;
 }
 
+/* CV */
 .controls,
 .game-menu{
 	display:flex;
 	flex-wrap:wrap;
 	align-items:center;
 	gap:8px;
-	margin-bottom:13px;
+	width:min(100%,700px);
+	margin:0 auto 13px;
 }
 
 .game-menu{
@@ -269,8 +297,9 @@ a:focus-visible{
 }
 
 .viewer{
-	height:min(68vh,580px);
-	min-height:330px;
+	width:min(100%,700px);
+	height:520px;
+	margin:auto;
 	padding:14px;
 	overflow:auto;
 	text-align:center;
@@ -278,7 +307,7 @@ a:focus-visible{
 	touch-action:pan-x pan-y;
 	background:rgba(0,0,0,.24);
 	border:1px solid rgba(255,255,255,.14);
-	border-radius:12px;
+	border-radius:18px;
 }
 
 .viewer.drag{
@@ -307,10 +336,7 @@ a:focus-visible{
 	box-shadow:0 8px 20px rgba(0,0,0,.55);
 }
 
-.game{
-	padding-bottom:2rem;
-}
-
+/* GAMES */
 .game h3{
 	margin:0 0 .45rem;
 	color:var(--gold);
@@ -318,7 +344,7 @@ a:focus-visible{
 }
 
 .note,
-#status,
+#ttt-status,
 #sl-status{
 	width:100%;
 	margin:.8rem auto 0;
@@ -328,6 +354,7 @@ a:focus-visible{
 	text-align:center;
 }
 
+/* TIC TAC TOE */
 .ttt{
 	display:grid;
 	grid-template-columns:repeat(3,72px);
@@ -347,7 +374,6 @@ a:focus-visible{
 	font-size:1.9rem;
 	font-weight:bold;
 	line-height:1;
-	text-align:center;
 	cursor:pointer;
 	appearance:none;
 	-webkit-appearance:none;
@@ -363,6 +389,7 @@ a:focus-visible{
 	border-color:var(--blue);
 }
 
+/* SNAKE AND LADDER */
 .sl{
 	display:grid;
 	grid-template-columns:repeat(10,minmax(0,1fr));
@@ -413,27 +440,21 @@ a:focus-visible{
 	width:clamp(11px,3vw,16px);
 	height:clamp(11px,3vw,16px);
 	background:var(--red);
-	border:3px solid white;
+	border:3px solid #fff;
 	border-radius:50%;
 	box-shadow:0 0 10px var(--red);
 }
 
-.button:disabled{
-	cursor:not-allowed;
-	opacity:.45;
-	transform:none;
-	box-shadow:none;
-}
-
 footer{
 	width:100%;
-	margin:1.35rem 0 0;
+	margin:1.5rem 0 0;
 	color:rgba(255,255,255,.66);
 	font-size:.72rem;
 	text-align:center;
 }
 
-@media(max-width:800px){
+/* MOBILE */
+@media(max-width:820px){
 	body{
 		padding:1rem;
 	}
@@ -445,37 +466,37 @@ footer{
 		padding:1.2rem;
 	}
 
-	.top-nav{
-		order:1;
+	.profile,
+	.tabs,
+	.links,
+	.content{
 		width:100%;
-		gap:4px;
-		padding-bottom:1rem;
-	}
-
-	.nav-btn{
-		flex:1;
-		min-width:0;
-		padding:7px 3px;
-		font-size:.67rem;
 	}
 
 	.profile{
+		order:1;
+	}
+
+	.tabs{
 		order:2;
-		width:100%;
+		grid-template-columns:repeat(3,minmax(0,1fr));
+		gap:4px;
+		padding:5px;
 	}
 
-	.desktop-spacer{
-		display:none;
-	}
-
-	.social-links{
+	.links{
 		order:3;
-		width:100%;
 	}
 
 	.content{
 		order:4;
-		width:100%;
+	}
+
+	.tab{
+		min-height:38px;
+		height:38px;
+		padding:7px 3px;
+		font-size:.66rem;
 	}
 
 	.controls,
@@ -487,7 +508,14 @@ footer{
 		margin-left:0;
 	}
 
+	.card,
+	.game{
+		min-height:auto;
+		padding:1.2rem .8rem 1.7rem;
+	}
+
 	.viewer{
+		width:100%;
 		height:62vh;
 		min-height:300px;
 		padding:8px;
@@ -528,9 +556,10 @@ footer{
 		padding:1rem;
 	}
 
-	.nav-btn{
+	.tab{
 		min-height:35px;
 		height:35px;
+		padding:6px 2px;
 		font-size:.58rem;
 	}
 
@@ -566,20 +595,18 @@ footer{
 
 	<div class="container">
 
-		<nav class="top-nav">
-			<button class="nav-btn active" type="button" onclick="openTab('intro')">Introduction</button>
-			<button class="nav-btn" type="button" onclick="openTab('cv')">CV</button>
-			<button class="nav-btn" type="button" onclick="openTab('games')">Games</button>
-		</nav>
-
 		<section class="profile">
 			<img src="images/Main_One.jpeg" alt="Prannay Nath">
 			<h1>Prannay Nath</h1>
 		</section>
 
-		<div class="desktop-spacer"></div>
+		<nav class="tabs">
+			<button class="tab active" type="button" onclick="openTab('intro')">Introduction</button>
+			<button class="tab" type="button" onclick="openTab('cv')">CV</button>
+			<button class="tab" type="button" onclick="openTab('games')">Games</button>
+		</nav>
 
-		<ul class="social-links">
+		<ul class="links">
 			<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener noreferrer">Python Projects</a></li>
 			<li><a href="https://github.com/engineerinchief" target="_blank" rel="noopener noreferrer">GitHub</a></li>
 			<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -590,7 +617,7 @@ footer{
 
 		<main class="content">
 
-			<section id="intro" class="tab-panel active">
+			<section id="intro" class="panel active">
 				<div class="card">
 					<p><strong>Engineering and Management (EMB) B.Sc. Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
 
@@ -612,12 +639,17 @@ footer{
 				</div>
 			</section>
 
-			<section id="cv" class="tab-panel">
+			<section id="cv" class="panel">
 				<div class="controls">
 					<button class="button" type="button" onclick="zoomCV(0.2)">➕ Zoom In</button>
 					<button class="button" type="button" onclick="zoomCV(-0.2)">➖ Zoom Out</button>
 					<button class="button" type="button" onclick="resetCV()">↺ Reset</button>
-					<a class="button download" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
+
+					<a class="button download"
+					   href="Documents/Prannay_CV_MA.pdf"
+					   download="Prannay_CV_MA.pdf">
+						Download CV
+					</a>
 				</div>
 
 				<div id="viewer" class="viewer">
@@ -628,7 +660,7 @@ footer{
 				</div>
 			</section>
 
-			<section id="games" class="tab-panel">
+			<section id="games" class="panel">
 
 				<div class="game-menu">
 					<button class="button" type="button" onclick="showGame('ttt-game')">⭕ Tic Tac Toe</button>
@@ -638,17 +670,23 @@ footer{
 				<div id="ttt-game" class="game active">
 					<h3>Tic Tac Toe: Hard Mode</h3>
 					<p class="note">You are X. The bot is strategic but still beatable.</p>
+
 					<div id="ttt" class="ttt"></div>
-					<p id="status">Your turn. Jeetega bhai jeetega! 🏆</p>
+
+					<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
+
 					<button class="button" type="button" onclick="resetTTT()">Restart Game</button>
 				</div>
 
 				<div id="sl-game" class="game">
 					<h3>Snake &amp; Ladder: Hard Mode</h3>
 					<p class="note">Few ladders, many snakes, and exact roll required for 100.</p>
+
 					<div id="sl" class="sl"></div>
+
 					<button class="button" id="roll" type="button" onclick="rollDice()">Roll Dice 🎲</button>
 					<button class="button" type="button" onclick="resetSL()">Restart</button>
+
 					<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
 				</div>
 
@@ -666,17 +704,17 @@ footer{
 
 <script>
 function openTab(tabId){
-	document.querySelectorAll(".tab-panel").forEach(panel=>{
+	document.querySelectorAll(".panel").forEach(panel=>{
 		panel.classList.remove("active");
 	});
 
-	document.querySelectorAll(".nav-btn").forEach(button=>{
+	document.querySelectorAll(".tab").forEach(button=>{
 		button.classList.remove("active");
 	});
 
 	document.getElementById(tabId).classList.add("active");
 
-	const buttons=document.querySelectorAll(".nav-btn");
+	const buttons=document.querySelectorAll(".tab");
 
 	if(tabId==="intro") buttons[0].classList.add("active");
 	if(tabId==="cv") buttons[1].classList.add("active");
@@ -692,6 +730,7 @@ function showGame(gameId){
 }
 
 let cvZoom=1;
+
 const viewer=document.getElementById("viewer");
 const cvWrap=document.getElementById("cv-wrap");
 
@@ -744,7 +783,7 @@ viewer.addEventListener("pointermove",event=>{
 	});
 });
 
-const gamePhrases={
+const messages={
 	win:[
 		"Mogambo khush hua! You won like a champion. 🏆🎉",
 		"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
@@ -768,37 +807,37 @@ const gamePhrases={
 	]
 };
 
-const previousPhrase={
+const lastMessage={
 	win:-1,
 	lose:-1,
 	draw:-1
 };
 
-function getPhrase(type){
+function randomMessage(type){
 	let index;
 
 	do{
-		index=Math.floor(Math.random()*gamePhrases[type].length);
-	}while(index===previousPhrase[type]);
+		index=Math.floor(Math.random()*messages[type].length);
+	}while(index===lastMessage[type]);
 
-	previousPhrase[type]=index;
-	return gamePhrases[type][index];
+	lastMessage[type]=index;
+	return messages[type][index];
 }
 
 let tttBoard=Array(9).fill("");
 let tttActive=true;
 
 const ttt=document.getElementById("ttt");
-const tttStatus=document.getElementById("status");
+const tttStatus=document.getElementById("ttt-status");
 
-const winningLines=[
+const winLines=[
 	[0,1,2],[3,4,5],[6,7,8],
 	[0,3,6],[1,4,7],[2,5,8],
 	[0,4,8],[2,4,6]
 ];
 
 function checkWinner(board){
-	for(const [a,b,c] of winningLines){
+	for(const [a,b,c] of winLines){
 		if(board[a]&&board[a]===board[b]&&board[a]===board[c]){
 			return board[a];
 		}
@@ -855,10 +894,10 @@ function chooseBotMove(){
 		tttBoard[index]="";
 	}
 
-	const strong=[4,0,2,6,8].filter(index=>tttBoard[index]==="");
+	const strongMoves=[4,0,2,6,8].filter(index=>tttBoard[index]==="");
 
-	if(strong.length&&Math.random()<.78){
-		return strong[Math.floor(Math.random()*strong.length)];
+	if(strongMoves.length&&Math.random()<.78){
+		return strongMoves[Math.floor(Math.random()*strongMoves.length)];
 	}
 
 	return empty[Math.floor(Math.random()*empty.length)];
@@ -873,13 +912,13 @@ function playerMove(index){
 	let winner=checkWinner(tttBoard);
 
 	if(winner==="X"){
-		tttStatus.textContent=getPhrase("win");
+		tttStatus.textContent=randomMessage("win");
 		tttActive=false;
 		return;
 	}
 
 	if(winner==="draw"){
-		tttStatus.textContent=getPhrase("draw");
+		tttStatus.textContent=randomMessage("draw");
 		tttActive=false;
 		return;
 	}
@@ -888,22 +927,22 @@ function playerMove(index){
 	tttStatus.textContent="Bot is thinking... picture abhi baaki hai!";
 
 	setTimeout(()=>{
-		const move=chooseBotMove();
+		const botChoice=chooseBotMove();
 
-		if(move!==undefined){
-			tttBoard[move]="O";
+		if(botChoice!==undefined){
+			tttBoard[botChoice]="O";
 		}
 
 		drawTTT();
 		winner=checkWinner(tttBoard);
 
 		if(winner==="O"){
-			tttStatus.textContent=getPhrase("lose");
+			tttStatus.textContent=randomMessage("lose");
 			return;
 		}
 
 		if(winner==="draw"){
-			tttStatus.textContent=getPhrase("draw");
+			tttStatus.textContent=randomMessage("draw");
 			return;
 		}
 
@@ -925,7 +964,7 @@ const sl=document.getElementById("sl");
 const slStatus=document.getElementById("sl-status");
 const rollButton=document.getElementById("roll");
 
-const slMoves={
+const moves={
 	3:22,
 	8:26,
 	20:38,
@@ -957,7 +996,7 @@ function drawSL(){
 				?row*10+col+1
 				:row*10+(9-col)+1;
 
-			const destination=slMoves[number];
+			const destination=moves[number];
 			const cell=document.createElement("div");
 
 			cell.className="sq";
@@ -969,9 +1008,9 @@ function drawSL(){
 			cell.innerHTML=`${number}${destination?`<b>${destination>number?"🪜":"🐍"}</b>`:""}`;
 
 			if(number===slPosition){
-				const token=document.createElement("div");
-				token.className="player";
-				cell.appendChild(token);
+				const player=document.createElement("div");
+				player.className="player";
+				cell.appendChild(player);
 			}
 
 			sl.appendChild(cell);
@@ -988,8 +1027,8 @@ function rollDice(){
 	if(slPosition+roll<=100){
 		slPosition+=roll;
 
-		if(slMoves[slPosition]){
-			const destination=slMoves[slPosition];
+		if(moves[slPosition]){
+			const destination=moves[slPosition];
 
 			message+=destination>slPosition
 				?`Wah bhai wah! Ladder to ${destination}. 🪜`
@@ -1002,7 +1041,7 @@ function rollDice(){
 	}
 
 	if(slPosition===100){
-		message=getPhrase("win");
+		message=randomMessage("win");
 		rollButton.disabled=true;
 	}
 
