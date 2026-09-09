@@ -1,25 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#07111f">
-	<title>EngineerinChief | Prannay Nath</title>
+	<title>EngineerinChief</title>
 
 	<link rel="icon" type="image/png" href="images/chieficon.png">
-	<link rel="stylesheet" href="assets/css/main.css">
 
 	<style>
 		:root{
 			--bg:#07111f;
 			--panel:#10243e;
+			--card:#1a2c43;
 			--text:#eef6ff;
-			--muted:#b9c8db;
+			--muted:#bdc9d8;
 			--blue:#38bdf8;
 			--gold:#fbbf24;
 			--purple:#a78bfa;
 			--red:#fb7185;
-			--z:1;
+			--zoom:1;
 		}
 
 		*{
@@ -28,26 +28,19 @@
 
 		html,
 		body{
-			height:auto!important;
-			min-height:100vh!important;
+			min-height:100%;
 			margin:0;
-			padding:0;
 		}
 
 		body{
-			display:flex!important;
-			flex-direction:column!important;
-			align-items:center!important;
-			justify-content:center!important;
 			min-width:320px;
-			padding:2rem 1.25rem!important;
-			overflow-x:hidden!important;
-			overflow-y:auto!important;
+			min-height:100vh;
+			padding:2rem 1.25rem;
 			color:var(--text);
-			font-family:Arial,Helvetica,sans-serif!important;
+			font-family:Arial,Helvetica,sans-serif;
 			background:
-				radial-gradient(circle at 12% 15%,rgba(56,189,248,.17),transparent 30%),
-				radial-gradient(circle at 88% 80%,rgba(167,139,250,.17),transparent 31%),
+				radial-gradient(circle at 10% 15%,rgba(56,189,248,.16),transparent 30%),
+				radial-gradient(circle at 90% 85%,rgba(167,139,250,.16),transparent 32%),
 				linear-gradient(135deg,var(--bg),var(--panel),#111827);
 		}
 
@@ -74,21 +67,21 @@
 			outline-offset:3px;
 		}
 
+		.site-shell{
+			width:min(1100px,100%);
+			margin:0 auto;
+		}
+
 		.container{
-			display:grid!important;
-			grid-template-columns:220px minmax(0,1fr);
-			gap:2rem;
+			display:grid;
+			grid-template-columns:210px minmax(0,1fr);
+			gap:1.5rem;
 			width:100%;
-			max-width:1100px;
-			height:auto!important;
-			min-height:auto!important;
-			flex:0 0 auto!important;
-			margin:0 auto!important;
-			padding:2rem;
-			background:rgba(10,28,50,.80);
+			padding:1.75rem;
+			background:rgba(10,28,50,.83);
 			border:1px solid rgba(255,255,255,.16);
 			border-radius:22px;
-			box-shadow:0 25px 60px rgba(0,0,0,.48);
+			box-shadow:0 25px 60px rgba(0,0,0,.45);
 			backdrop-filter:blur(18px);
 			-webkit-backdrop-filter:blur(18px);
 		}
@@ -101,8 +94,8 @@
 		}
 
 		.profile-pic{
-			width:140px;
-			height:140px;
+			width:138px;
+			height:138px;
 			object-fit:cover;
 			border:3px solid var(--gold);
 			border-radius:50%;
@@ -112,13 +105,13 @@
 		}
 
 		.left-column h1{
-			margin:1rem 0 1.2rem!important;
-			color:#fff!important;
-			font-family:Georgia,"Times New Roman",serif!important;
-			font-size:1.5rem!important;
+			margin:1rem 0 1.15rem;
+			color:#fff;
+			font-family:Georgia,"Times New Roman",serif;
+			font-size:1.5rem;
 		}
 
-		.social-handles-vertical{
+		.social-links{
 			display:flex;
 			flex-direction:column;
 			width:100%;
@@ -128,81 +121,83 @@
 			list-style:none;
 		}
 
-		.social-handles-vertical a,
-		.action-btn,
+		.button,
+		.social-links a,
 		.tab-btn{
 			display:inline-flex;
 			align-items:center;
 			justify-content:center;
 			min-height:42px;
 			padding:10px 13px;
-			color:var(--text)!important;
-			font-family:Arial,Helvetica,sans-serif!important;
-			font-size:.78rem!important;
+			color:var(--text);
+			font-family:Arial,Helvetica,sans-serif;
+			font-size:.78rem;
 			font-weight:600;
 			line-height:1;
 			text-decoration:none;
 			cursor:pointer;
-			background:rgba(255,255,255,.065);
-			border:1px solid rgba(255,255,255,.18);
+			background:rgba(255,255,255,.07);
+			border:1px solid rgba(255,255,255,.2);
 			border-radius:9px;
 			transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
 		}
 
-		.social-handles-vertical a{
-			display:flex;
+		.social-links a{
 			width:100%;
 		}
 
-		.social-handles-vertical a:hover,
-		.action-btn:hover,
+		.button:hover,
+		.social-links a:hover,
 		.tab-btn:hover{
 			transform:translateY(-2px);
-			color:#fff!important;
-			background:rgba(56,189,248,.17);
+			color:#fff;
+			background:rgba(56,189,248,.18);
 			border-color:var(--blue);
 			box-shadow:0 8px 18px rgba(0,0,0,.3);
 		}
 
 		.right-column{
 			min-width:0;
+			max-width:100%;
 		}
 
 		.tabs-nav{
-			display:flex;
-			flex-direction:row;
-			flex-wrap:nowrap;
+			display:grid;
+			grid-template-columns:repeat(3,minmax(0,1fr));
 			gap:8px;
+			width:100%;
 			padding:7px;
 			margin-bottom:1.4rem;
+			overflow:hidden;
 			background:rgba(0,0,0,.2);
-			border:1px solid rgba(255,255,255,.11);
+			border:1px solid rgba(255,255,255,.12);
 			border-radius:12px;
 		}
 
 		.tab-btn{
-			flex:1;
+			width:100%;
+			min-width:0;
+			overflow:hidden;
+			text-overflow:ellipsis;
 			white-space:nowrap;
 			background:transparent;
 		}
 
 		.tab-btn.active{
-			color:#182033!important;
+			color:#182033;
 			background:linear-gradient(135deg,var(--gold),#f59e0b);
 			border-color:#fde68a;
-			box-shadow:0 5px 14px rgba(251,191,36,.25);
+			box-shadow:0 5px 14px rgba(251,191,36,.24);
 		}
 
 		.tab-content,
 		.game-container{
-			display:none!important;
-			position:static!important;
-			height:auto!important;
+			display:none;
 		}
 
 		.tab-content.active,
 		.game-container.active{
-			display:block!important;
+			display:block;
 			animation:show .3s ease;
 		}
 
@@ -214,31 +209,32 @@
 
 			to{
 				opacity:1;
-				transform:none;
+				transform:translateY(0);
 			}
 		}
 
 		.intro-card,
 		.game-container{
+			width:100%;
 			padding:1.4rem;
 			text-align:center;
-			background:rgba(255,255,255,.045);
-			border:1px solid rgba(255,255,255,.12);
+			background:rgba(255,255,255,.055);
+			border:1px solid rgba(255,255,255,.13);
 			border-left:3px solid var(--gold);
 			border-radius:14px;
 		}
 
 		.intro-card p{
 			max-width:700px;
-			margin:0 auto .8rem!important;
+			margin:0 auto .85rem;
 			color:var(--muted);
-			font-size:.81rem!important;
+			font-size:.82rem;
 			line-height:1.65;
 		}
 
 		.intro-card p:first-child{
 			color:#fff;
-			font-size:.85rem!important;
+			font-size:.86rem;
 		}
 
 		.skills{
@@ -249,8 +245,8 @@
 
 		.skills span{
 			display:inline-block;
-			padding:4px 8px;
 			margin:5px 3px 0;
+			padding:4px 8px;
 			color:#dff5ff;
 			font-size:.68rem;
 			background:rgba(56,189,248,.12);
@@ -293,7 +289,7 @@
 			user-select:none;
 		}
 
-		.cv-viewer.dragging .cv-image{
+		.cv-viewer.dragging img{
 			pointer-events:none;
 		}
 
@@ -301,7 +297,7 @@
 			display:flex;
 			flex-direction:column;
 			align-items:center;
-			width:calc(100% * var(--z));
+			width:calc(100% * var(--zoom));
 			gap:16px;
 			margin:auto;
 			transition:width .2s ease;
@@ -311,16 +307,15 @@
 			display:block;
 			width:100%;
 			height:auto;
-			box-shadow:0 8px 20px rgba(0,0,0,.5);
+			box-shadow:0 8px 20px rgba(0,0,0,.55);
 		}
 
 		.game-container{
-			width:100%;
-			padding-bottom:2rem!important;
+			padding-bottom:2rem;
 		}
 
 		.game-container h3{
-			margin:0 0 .35rem;
+			margin:0 0 .45rem;
 			color:var(--gold);
 			font-size:1rem;
 		}
@@ -328,12 +323,10 @@
 		.game-note,
 		#ttt-status,
 		#sl-status{
-			display:block;
-			clear:both;
 			width:100%;
-			margin:1rem auto 0;
+			margin:.8rem auto 0;
 			color:var(--muted);
-			font-size:.76rem;
+			font-size:.78rem;
 			line-height:1.45;
 			text-align:center;
 		}
@@ -347,28 +340,29 @@
 		}
 
 		.ttt-cell{
-			display:flex!important;
-			align-items:center!important;
-			justify-content:center!important;
+			display:flex;
+			align-items:center;
+			justify-content:center;
 			width:76px;
 			height:76px;
-			padding:0!important;
-			line-height:1!important;
-			text-align:center!important;
+			padding:0;
+			font-family:Arial,Helvetica,sans-serif;
 			font-size:2rem;
 			font-weight:bold;
+			line-height:1;
+			text-align:center;
 			cursor:pointer;
 			appearance:none;
 			-webkit-appearance:none;
-			background:rgba(255,255,255,.08);
-			border:1px solid rgba(255,255,255,.22);
+			background:rgba(255,255,255,.09);
+			border:1px solid rgba(255,255,255,.24);
 			border-radius:11px;
 			transition:.2s ease;
 		}
 
 		.ttt-cell:hover{
 			transform:scale(1.04);
-			background:rgba(56,189,248,.15);
+			background:rgba(56,189,248,.16);
 			border-color:var(--blue);
 		}
 
@@ -376,9 +370,7 @@
 			display:grid;
 			grid-template-columns:repeat(10,minmax(0,1fr));
 			gap:3px;
-			justify-content:center;
-			width:min(100%,540px);
-			max-width:100%;
+			width:min(100%,560px);
 			margin:1rem auto;
 			padding:5px;
 			overflow:hidden;
@@ -395,10 +387,9 @@
 			justify-content:center;
 			width:100%;
 			min-width:0;
-			height:auto;
 			aspect-ratio:1 / 1;
 			color:#152238;
-			font-size:clamp(7px,1.8vw,10px);
+			font-size:clamp(7px,1.5vw,10px);
 			font-weight:bold;
 			background:#f1f5f9;
 			border-radius:3px;
@@ -418,7 +409,7 @@
 			position:absolute;
 			right:3px;
 			bottom:2px;
-			font-size:clamp(10px,2.6vw,16px);
+			font-size:clamp(10px,2.3vw,16px);
 		}
 
 		.sl-player{
@@ -432,60 +423,66 @@
 		}
 
 		#footer{
-			position:static!important;
-			width:100%!important;
-			height:auto!important;
-			min-height:auto!important;
-			flex:0 0 auto!important;
-			margin:1.5rem 0 0!important;
-			padding:0!important;
-			clear:both!important;
-			color:rgba(255,255,255,.65);
-			font-family:Arial,Helvetica,sans-serif!important;
-			font-size:.72rem!important;
-			text-align:center!important;
-			background:transparent!important;
-			border:0!important;
-			transform:none!important;
+			width:100%;
+			margin:1.5rem 0 0;
+			color:rgba(255,255,255,.66);
+			font-family:Arial,Helvetica,sans-serif;
+			font-size:.72rem;
+			text-align:center;
 		}
 
-		@media(max-width:768px){
+		@media(max-width:980px){
+			.container{
+				grid-template-columns:180px minmax(0,1fr);
+				gap:1.2rem;
+				padding:1.4rem;
+			}
+
+			.profile-pic{
+				width:120px;
+				height:120px;
+			}
+
+			.left-column h1{
+				font-size:1.3rem;
+			}
+
+			.tab-btn{
+				padding:8px 5px;
+				font-size:.72rem;
+			}
+		}
+
+		@media(max-width:760px){
 			body{
-				justify-content:flex-start!important;
-				padding:1rem!important;
+				padding:1rem;
 			}
 
 			.container{
 				grid-template-columns:1fr;
-				gap:1.5rem;
-				padding:1.25rem;
+				gap:1.4rem;
+				padding:1.2rem;
 			}
 
 			.tabs-nav{
-				display:flex!important;
-				flex-direction:row!important;
-				flex-wrap:nowrap!important;
-				gap:4px!important;
-				padding:5px!important;
-				overflow:hidden!important;
+				grid-template-columns:repeat(3,minmax(0,1fr));
+				gap:4px;
+				padding:5px;
 			}
 
 			.tab-btn{
-				flex:1 1 0!important;
-				min-width:0!important;
-				min-height:40px!important;
-				padding:8px 3px!important;
-				font-size:.67rem!important;
-				white-space:nowrap!important;
+				min-height:40px;
+				padding:8px 3px;
+				font-size:.67rem;
 			}
 
 			.controls,
 			.game-menu{
-				justify-content:center!important;
+				justify-content:center;
 			}
 
 			.download-cv{
-				margin-left:0!important;
+				margin-left:0;
 			}
 
 			.cv-viewer{
@@ -495,90 +492,76 @@
 			}
 
 			.game-container{
-				padding:1.2rem .65rem 2rem!important;
+				padding:1.2rem .65rem 2rem;
 			}
 
 			.ttt-board{
-				grid-template-columns:repeat(3,72px)!important;
-				gap:8px!important;
+				grid-template-columns:repeat(3,72px);
 			}
 
 			.ttt-cell{
-				width:72px!important;
-				height:72px!important;
-				font-size:2rem!important;
+				width:72px;
+				height:72px;
 			}
 
 			.sl-board{
-				width:100%!important;
-				max-width:540px!important;
-				gap:2px!important;
-				padding:4px!important;
+				width:100%;
+				gap:2px;
+				padding:4px;
 			}
 
 			.sl-cell{
-				font-size:clamp(7px,2vw,10px)!important;
+				font-size:clamp(7px,2vw,10px);
 			}
 
 			.sl-cell b{
-				right:2px!important;
-				bottom:1px!important;
-				font-size:clamp(9px,3vw,15px)!important;
-			}
-
-			#footer{
-				margin-top:1.25rem!important;
-				padding-bottom:.5rem!important;
+				right:2px;
+				bottom:1px;
+				font-size:clamp(9px,3vw,15px);
 			}
 		}
 
 		@media(max-width:380px){
 			body{
-				padding:.7rem!important;
+				padding:.7rem;
 			}
 
 			.container{
-				padding:1rem!important;
+				padding:1rem;
 			}
 
 			.tabs-nav{
-				gap:3px!important;
-				padding:4px!important;
+				gap:3px;
+				padding:4px;
 			}
 
 			.tab-btn{
-				min-height:36px!important;
-				padding:7px 2px!important;
-				font-size:.59rem!important;
-			}
-
-			.game-container{
-				padding:1rem .4rem 1.8rem!important;
-			}
-
-			.sl-board{
-				gap:1px!important;
-				padding:3px!important;
-			}
-
-			.sl-cell{
-				font-size:6px!important;
-			}
-
-			.sl-cell b{
-				right:1px!important;
-				bottom:0!important;
-				font-size:8px!important;
+				min-height:36px;
+				padding:7px 2px;
+				font-size:.59rem;
 			}
 
 			.ttt-board{
-				grid-template-columns:repeat(3,64px)!important;
+				grid-template-columns:repeat(3,64px);
 			}
 
 			.ttt-cell{
-				width:64px!important;
-				height:64px!important;
-				font-size:1.7rem!important;
+				width:64px;
+				height:64px;
+				font-size:1.7rem;
+			}
+
+			.sl-board{
+				gap:1px;
+				padding:3px;
+			}
+
+			.sl-cell{
+				font-size:6px;
+			}
+
+			.sl-cell b{
+				font-size:8px;
 			}
 		}
 	</style>
@@ -586,143 +569,147 @@
 
 <body>
 
-	<div class="container">
+	<div class="site-shell">
 
-		<aside class="left-column">
-			<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
+		<div class="container">
 
-			<h1>Prannay Nath</h1>
+			<aside class="left-column">
+				<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
 
-			<ul class="social-handles-vertical">
-				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python Projects</a></li>
-				<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
-				<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
-				<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
-				<li><a href="https://x.com/ingenieurchef" target="_blank">X / Twitter</a></li>
-				<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
-			</ul>
-		</aside>
+				<h1>Prannay Nath</h1>
 
-		<main class="right-column">
+				<ul class="social-links">
+					<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener">Python Projects</a></li>
+					<li><a href="https://github.com/engineerinchief" target="_blank" rel="noopener">GitHub</a></li>
+					<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank" rel="noopener">LinkedIn</a></li>
+					<li><a href="https://instagram.com/engineerinchief" target="_blank" rel="noopener">Instagram</a></li>
+					<li><a href="https://x.com/ingenieurchef" target="_blank" rel="noopener">X / Twitter</a></li>
+					<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
+				</ul>
+			</aside>
 
-			<nav class="tabs-nav">
-				<button class="tab-btn active" type="button" data-tab="intro-tab">Introduction</button>
-				<button class="tab-btn" type="button" data-tab="cv-tab">CV</button>
-				<button class="tab-btn" type="button" data-tab="games-tab">Games</button>
-			</nav>
+			<main class="right-column">
 
-			<section id="intro-tab" class="tab-content active">
-				<div class="intro-card">
-					<p>
-						<strong>
-							Engineering and Management (EMB) B.Sc. Student |
-							Aerospace &amp; Defense Enthusiast |
-							Python Programmer |
-							Data Analyst
-						</strong>
-					</p>
+				<nav class="tabs-nav">
+					<button class="tab-btn active" type="button" data-tab="intro-tab">Introduction</button>
+					<button class="tab-btn" type="button" data-tab="cv-tab">CV</button>
+					<button class="tab-btn" type="button" data-tab="games-tab">Games</button>
+				</nav>
 
-					<p>
-						I am currently studying Engineering and Management
-						(EMB) B.Sc. at Technische Hochschule Mannheim,
-						Germany. My academic path combines engineering,
-						management, mechatronics, data science, and
-						strategic decision-making.
-					</p>
+				<section id="intro-tab" class="tab-content active">
+					<div class="intro-card">
+						<p>
+							<strong>
+								Engineering and Management (EMB) B.Sc. Student |
+								Aerospace &amp; Defense Enthusiast |
+								Python Programmer |
+								Data Analyst
+							</strong>
+						</p>
 
-					<p>
-						My interests include aerospace systems, defense
-						technologies, simulation engineering, data analytics,
-						software development, and advanced technology
-						innovation.
-					</p>
+						<p>
+							I am currently studying Engineering and Management
+							(EMB) B.Sc. at Technische Hochschule Mannheim,
+							Germany. My academic path combines engineering,
+							management, mechatronics, data science, and
+							strategic decision-making.
+						</p>
 
-					<p>
-						Through my internship at GMV GmbH, I contributed to
-						ESA-related initiatives, including RNMD4SSC, working
-						with L3Harris Wescam MX systems and VR-Forces
-						simulation environments.
-					</p>
+						<p>
+							My interests include aerospace systems, defense
+							technologies, simulation engineering, data analytics,
+							software development, and advanced technology
+							innovation.
+						</p>
 
-					<div class="skills">
-						<strong>Skills</strong><br>
-						<span>Python</span>
-						<span>C</span>
-						<span>SQL</span>
-						<span>Data Analytics</span>
-						<span>Inventor</span>
-						<span>Engineering Management</span>
+						<p>
+							Through my internship at GMV GmbH, I contributed to
+							ESA-related initiatives, including RNMD4SSC, working
+							with L3Harris Wescam MX systems and VR-Forces
+							simulation environments.
+						</p>
+
+						<div class="skills">
+							<strong>Skills</strong><br>
+							<span>Python</span>
+							<span>C</span>
+							<span>SQL</span>
+							<span>Data Analytics</span>
+							<span>Inventor</span>
+							<span>Engineering Management</span>
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 
-			<section id="cv-tab" class="tab-content">
-				<div class="controls">
-					<button class="action-btn" id="zoom-in" type="button">➕ Zoom In</button>
-					<button class="action-btn" id="zoom-out" type="button">➖ Zoom Out</button>
-					<button class="action-btn" id="zoom-reset" type="button">↺ Reset</button>
+				<section id="cv-tab" class="tab-content">
+					<div class="controls">
+						<button class="button" id="zoom-in" type="button">➕ Zoom In</button>
+						<button class="button" id="zoom-out" type="button">➖ Zoom Out</button>
+						<button class="button" id="zoom-reset" type="button">↺ Reset</button>
 
-					<a class="action-btn download-cv"
-					   href="Documents/Prannay_CV_MA.pdf"
-					   download="Prannay_CV_MA.pdf">
-						Download CV
-					</a>
-				</div>
-
-				<div class="cv-viewer" id="cv-viewer">
-					<div id="cv-wrapper">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
+						<a class="button download-cv"
+						   href="Documents/Prannay_CV_MA.pdf"
+						   download="Prannay_CV_MA.pdf">
+							Download CV
+						</a>
 					</div>
-				</div>
-			</section>
 
-			<section id="games-tab" class="tab-content">
+					<div class="cv-viewer" id="cv-viewer">
+						<div id="cv-wrapper">
+							<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
+							<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
+						</div>
+					</div>
+				</section>
 
-				<div class="game-menu">
-					<button class="action-btn" type="button" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
-					<button class="action-btn" type="button" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
-				</div>
+				<section id="games-tab" class="tab-content">
 
-				<div id="tic-tac-toe" class="game-container active">
-					<h3>Tic Tac Toe: Challenge Mode</h3>
-					<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
+					<div class="game-menu">
+						<button class="button" type="button" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
+						<button class="button" type="button" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
+					</div>
 
-					<div id="ttt-board" class="ttt-board"></div>
+					<div id="tic-tac-toe" class="game-container active">
+						<h3>Tic Tac Toe: Challenge Mode</h3>
+						<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
 
-					<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
+						<div id="ttt-board" class="ttt-board"></div>
 
-					<button id="ttt-reset" class="action-btn" type="button">Restart Game</button>
-				</div>
+						<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
 
-				<div id="snake-ladder" class="game-container">
-					<h3>Snake &amp; Ladder: Hard Mode</h3>
-					<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
+						<button id="ttt-reset" class="button" type="button">Restart Game</button>
+					</div>
 
-					<div id="sl-board" class="sl-board"></div>
+					<div id="snake-ladder" class="game-container">
+						<h3>Snake &amp; Ladder: Hard Mode</h3>
+						<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
 
-					<button id="roll-btn" class="action-btn" type="button">Roll Dice 🎲</button>
-					<button id="sl-reset" class="action-btn" type="button">Restart</button>
+						<div id="sl-board" class="sl-board"></div>
 
-					<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
-				</div>
+						<button id="roll-btn" class="button" type="button">Roll Dice 🎲</button>
+						<button id="sl-reset" class="button" type="button">Restart</button>
 
-			</section>
-		</main>
+						<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
+					</div>
+				</section>
+
+			</main>
+		</div>
+
+		<footer id="footer">
+			© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief
+		</footer>
+
 	</div>
 
-	<footer id="footer">
-		© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief
-	</footer>
-
 	<script>
-		const tabs = document.querySelectorAll(".tab-btn");
-		const contents = document.querySelectorAll(".tab-content");
+		const tabButtons = document.querySelectorAll(".tab-btn");
+		const tabContents = document.querySelectorAll(".tab-content");
 
-		tabs.forEach(button => {
+		tabButtons.forEach(button => {
 			button.onclick = () => {
-				tabs.forEach(tab => tab.classList.remove("active"));
-				contents.forEach(content => content.classList.remove("active"));
+				tabButtons.forEach(tab => tab.classList.remove("active"));
+				tabContents.forEach(tab => tab.classList.remove("active"));
 
 				button.classList.add("active");
 				document.getElementById(button.dataset.tab).classList.add("active");
@@ -741,11 +728,11 @@
 
 		let zoom = 1;
 
-		const viewer = document.getElementById("cv-viewer");
-		const wrapper = document.getElementById("cv-wrapper");
+		const cvViewer = document.getElementById("cv-viewer");
+		const cvWrapper = document.getElementById("cv-wrapper");
 
 		function updateZoom() {
-			wrapper.style.setProperty("--z", zoom);
+			cvWrapper.style.setProperty("--zoom", zoom);
 		}
 
 		document.getElementById("zoom-in").onclick = () => {
@@ -761,7 +748,7 @@
 		document.getElementById("zoom-reset").onclick = () => {
 			zoom = 1;
 			updateZoom();
-			viewer.scrollTo(0, 0);
+			cvViewer.scrollTo(0, 0);
 		};
 
 		let dragging = false;
@@ -770,28 +757,28 @@
 		let startLeft = 0;
 		let startTop = 0;
 
-		viewer.addEventListener("pointerdown", event => {
+		cvViewer.addEventListener("pointerdown", event => {
 			dragging = true;
 			startX = event.clientX;
 			startY = event.clientY;
-			startLeft = viewer.scrollLeft;
-			startTop = viewer.scrollTop;
+			startLeft = cvViewer.scrollLeft;
+			startTop = cvViewer.scrollTop;
 
-			viewer.classList.add("dragging");
-			viewer.setPointerCapture(event.pointerId);
+			cvViewer.classList.add("dragging");
+			cvViewer.setPointerCapture(event.pointerId);
 		});
 
-		viewer.addEventListener("pointermove", event => {
+		cvViewer.addEventListener("pointermove", event => {
 			if (!dragging) return;
 
-			viewer.scrollLeft = startLeft - (event.clientX - startX);
-			viewer.scrollTop = startTop - (event.clientY - startY);
+			cvViewer.scrollLeft = startLeft - (event.clientX - startX);
+			cvViewer.scrollTop = startTop - (event.clientY - startY);
 		});
 
 		["pointerup", "pointercancel", "lostpointercapture"].forEach(eventName => {
-			viewer.addEventListener(eventName, () => {
+			cvViewer.addEventListener(eventName, () => {
 				dragging = false;
-				viewer.classList.remove("dragging");
+				cvViewer.classList.remove("dragging");
 			});
 		});
 
@@ -821,30 +808,30 @@
 			]
 		};
 
-		const lastPhrase = {
+		const previousPhrase = {
 			win: -1,
 			lose: -1,
 			draw: -1
 		};
 
-		function randomPhrase(type) {
+		function getPhrase(type) {
 			let index;
 
 			do {
 				index = Math.floor(Math.random() * phrases[type].length);
-			} while (index === lastPhrase[type]);
+			} while (index === previousPhrase[type]);
 
-			lastPhrase[type] = index;
+			previousPhrase[type] = index;
 			return phrases[type][index];
 		}
 
-		let board = Array(9).fill("");
-		let active = true;
+		let tttBoard = Array(9).fill("");
+		let tttActive = true;
 
-		const tttBoard = document.getElementById("ttt-board");
+		const tttBoardElement = document.getElementById("ttt-board");
 		const tttStatus = document.getElementById("ttt-status");
 
-		const winLines = [
+		const winningLines = [
 			[0, 1, 2],
 			[3, 4, 5],
 			[6, 7, 8],
@@ -855,57 +842,54 @@
 			[2, 4, 6]
 		];
 
-		function gameResult(currentBoard) {
-			for (const [a, b, c] of winLines) {
-				if (
-					currentBoard[a] &&
-					currentBoard[a] === currentBoard[b] &&
-					currentBoard[a] === currentBoard[c]
-				) {
-					return currentBoard[a];
+		function checkWinner(board) {
+			for (const [a, b, c] of winningLines) {
+				if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+					return board[a];
 				}
 			}
 
-			return currentBoard.includes("") ? null : "draw";
+			return board.includes("") ? null : "draw";
 		}
 
 		function drawTTT() {
-			tttBoard.innerHTML = "";
+			tttBoardElement.innerHTML = "";
 
-			board.forEach((value, index) => {
+			tttBoard.forEach((value, index) => {
 				const cell = document.createElement("button");
 
 				cell.type = "button";
 				cell.className = "ttt-cell";
 				cell.textContent = value;
 				cell.style.color = value === "X" ? "#fbbf24" : "#38bdf8";
+
 				cell.onclick = () => playerMove(index);
 
-				tttBoard.appendChild(cell);
+				tttBoardElement.appendChild(cell);
 			});
 		}
 
-		function botMove() {
-			const emptyCells = board
+		function chooseBotMove() {
+			const emptyCells = tttBoard
 				.map((value, index) => value === "" ? index : null)
 				.filter(index => index !== null);
 
 			for (const index of emptyCells) {
-				board[index] = "O";
+				tttBoard[index] = "O";
 
-				if (gameResult(board) === "O") {
-					board[index] = "";
+				if (checkWinner(tttBoard) === "O") {
+					tttBoard[index] = "";
 					return index;
 				}
 
-				board[index] = "";
+				tttBoard[index] = "";
 			}
 
 			for (const index of emptyCells) {
-				board[index] = "X";
+				tttBoard[index] = "X";
 
-				if (gameResult(board) === "X") {
-					board[index] = "";
+				if (checkWinner(tttBoard) === "X") {
+					tttBoard[index] = "";
 
 					if (Math.random() < 0.8) {
 						return index;
@@ -914,77 +898,77 @@
 					break;
 				}
 
-				board[index] = "";
+				tttBoard[index] = "";
 			}
 
-			const strongPositions = [4, 0, 2, 6, 8]
-				.filter(index => board[index] === "");
+			const goodPositions = [4, 0, 2, 6, 8]
+				.filter(index => tttBoard[index] === "");
 
-			if (strongPositions.length > 0 && Math.random() < 0.65) {
-				return strongPositions[Math.floor(Math.random() * strongPositions.length)];
+			if (goodPositions.length > 0 && Math.random() < 0.65) {
+				return goodPositions[Math.floor(Math.random() * goodPositions.length)];
 			}
 
 			return emptyCells[Math.floor(Math.random() * emptyCells.length)];
 		}
 
 		function playerMove(index) {
-			if (!active || board[index] !== "") return;
+			if (!tttActive || tttBoard[index] !== "") return;
 
-			board[index] = "X";
+			tttBoard[index] = "X";
 			drawTTT();
 
-			let result = gameResult(board);
+			let winner = checkWinner(tttBoard);
 
-			if (result === "X") {
-				tttStatus.textContent = randomPhrase("win");
-				active = false;
+			if (winner === "X") {
+				tttStatus.textContent = getPhrase("win");
+				tttActive = false;
 				return;
 			}
 
-			if (result === "draw") {
-				tttStatus.textContent = randomPhrase("draw");
-				active = false;
+			if (winner === "draw") {
+				tttStatus.textContent = getPhrase("draw");
+				tttActive = false;
 				return;
 			}
 
-			active = false;
+			tttActive = false;
 			tttStatus.textContent = "Bot is thinking... picture abhi baaki hai!";
 
 			setTimeout(() => {
-				board[botMove()] = "O";
+				tttBoard[chooseBotMove()] = "O";
 				drawTTT();
 
-				result = gameResult(board);
+				winner = checkWinner(tttBoard);
 
-				if (result === "O") {
-					tttStatus.textContent = randomPhrase("lose");
+				if (winner === "O") {
+					tttStatus.textContent = getPhrase("lose");
 					return;
 				}
 
-				if (result === "draw") {
-					tttStatus.textContent = randomPhrase("draw");
+				if (winner === "draw") {
+					tttStatus.textContent = getPhrase("draw");
 					return;
 				}
 
-				active = true;
+				tttActive = true;
 				tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
 			}, 450);
 		}
 
 		document.getElementById("ttt-reset").onclick = () => {
-			board = Array(9).fill("");
-			active = true;
+			tttBoard = Array(9).fill("");
+			tttActive = true;
 			tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
 			drawTTT();
 		};
 
-		let position = 0;
+		let slPosition = 0;
 
 		const slBoard = document.getElementById("sl-board");
 		const slStatus = document.getElementById("sl-status");
 		const rollButton = document.getElementById("roll-btn");
 
-		const moves = {
+		const slMoves = {
 			3: 22,
 			11: 26,
 			20: 38,
@@ -1016,7 +1000,7 @@
 						: row * 10 + (9 - col) + 1;
 
 					const cell = document.createElement("div");
-					const destination = moves[number];
+					const destination = slMoves[number];
 
 					cell.className = "sl-cell";
 
@@ -1026,10 +1010,10 @@
 
 					cell.innerHTML = `${number}${destination ? `<b>${destination > number ? "🪜" : "🐍"}</b>` : ""}`;
 
-					if (number === position) {
-						const player = document.createElement("div");
-						player.className = "sl-player";
-						cell.appendChild(player);
+					if (number === slPosition) {
+						const token = document.createElement("div");
+						token.className = "sl-player";
+						cell.appendChild(token);
 					}
 
 					slBoard.appendChild(cell);
@@ -1038,29 +1022,29 @@
 		}
 
 		rollButton.onclick = () => {
-			if (position >= 100) return;
+			if (slPosition >= 100) return;
 
 			const roll = Math.floor(Math.random() * 6) + 1;
 			let message = `You rolled ${roll}. `;
 
-			if (position + roll <= 100) {
-				position += roll;
+			if (slPosition + roll <= 100) {
+				slPosition += roll;
 
-				if (moves[position]) {
-					const destination = moves[position];
+				if (slMoves[slPosition]) {
+					const destination = slMoves[slPosition];
 
-					message += destination > position
+					message += destination > slPosition
 						? `Wah bhai wah! Ladder to ${destination}. 🪜`
 						: `Arre yaar! Snake to ${destination}. 🐍`;
 
-					position = destination;
+					slPosition = destination;
 				}
 			} else {
 				message += "Exact number needed. Picture abhi baaki hai!";
 			}
 
-			if (position === 100) {
-				message = randomPhrase("win");
+			if (slPosition === 100) {
+				message = getPhrase("win");
 				rollButton.disabled = true;
 			}
 
@@ -1069,7 +1053,7 @@
 		};
 
 		document.getElementById("sl-reset").onclick = () => {
-			position = 0;
+			slPosition = 0;
 			rollButton.disabled = false;
 			slStatus.textContent = "Roll the dice. Aaj kuch toofani karte hain!";
 			drawSnakeLadder();
@@ -1079,6 +1063,5 @@
 		drawSnakeLadder();
 	</script>
 
-	<script src="assets/js/main.js"></script>
 </body>
 </html>
