@@ -1,248 +1,174 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>EngineerinChief</title>
-	<link rel="icon" type="image/png" href="images/chieficon.png" />
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<style>
-		/* --- Layout Reset & Centering --- */
-		html, body {
-			height: 100% !important;
-			min-height: 100vh !important;
-			overflow-y: auto !important;
-			opacity: 1 !important;
-			background-color: #1e1e1e;
-			margin: 0;
-			padding: 0;
-		}
 
-		body.is-preload * {
-			animation: none !important;
-			transition: none !important;
+	<link rel="icon" type="image/png" href="images/chieficon.png">
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<style>
+		* { box-sizing: border-box; }
+
+		html, body {
+			min-height: 100vh;
+			margin: 0;
+			background: #1e1e1e;
 		}
 
 		body {
-			display: flex !important;
-			flex-direction: column !important;
-			align-items: center !important;
-			justify-content: center !important;
-			padding: 2rem 1.5rem !important;
-			box-sizing: border-box !important;
-		}
-
-		/* Main Glass Container */
-		.container {
-			display: grid !important;
-			grid-template-columns: 240px 1fr;
-			gap: 2.5rem;
-			max-width: 980px;
-			width: 100%;
-			margin: 0 auto;
-			align-items: start !important; 
-			background: rgba(15, 23, 42, 0.45);
-			backdrop-filter: blur(12px);
-			-webkit-backdrop-filter: blur(12px);
-			border: 1px solid rgba(255, 255, 255, 0.12);
-			border-radius: 16px;
-			padding: 2.5rem;
-			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-		}
-
-		/* Left Column Styling */
-		.left-column {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			justify-content: center;
+			padding: 2rem 1.5rem;
+			color: #e2e8f0;
+			font-family: "Times New Roman", serif;
+		}
+
+		.container {
+			display: grid;
+			grid-template-columns: 220px minmax(0, 1fr);
+			gap: 2.5rem;
+			width: 100%;
+			max-width: 980px;
+			padding: 2.5rem;
+			background: rgba(15, 23, 42, .55);
+			border: 1px solid rgba(255,255,255,.12);
+			border-radius: 16px;
+			box-shadow: 0 20px 40px rgba(0,0,0,.4);
+			backdrop-filter: blur(12px);
+		}
+
+		.left-column {
 			text-align: center;
 		}
 
 		.profile-pic {
 			width: 150px;
 			height: 150px;
-			border-radius: 50%;
 			object-fit: cover;
-			border: 3px solid rgba(255, 255, 255, 0.8);
-			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-			margin-bottom: 0.8rem;
+			border: 3px solid white;
+			border-radius: 50%;
+			box-shadow: 0 8px 24px rgba(0,0,0,.4);
 		}
 
-		.left-column h1 {
-			display: block !important;
-			font-size: 1.6rem !important;
-			margin: 0 0 1rem 0 !important;
-			color: #ffffff !important;
-			font-family: "Times New Roman", Times, serif !important;
+		h1 {
+			margin: .8rem 0 1rem;
+			color: white;
+			font-size: 1.6rem;
 		}
 
 		.social-handles-vertical {
-			list-style: none;
-			padding: 0;
-			margin: 0;
 			display: flex;
 			flex-direction: column;
 			gap: 8px;
-			width: 100%;
+			padding: 0;
+			margin: 0;
+			list-style: none;
 		}
 
-		.social-handles-vertical li a {
+		.social-handles-vertical a,
+		.cv-action-btn {
 			display: block;
-			padding: 6px 10px;
-			background: rgba(255, 255, 255, 0.06);
-			border: 1px solid rgba(255, 255, 255, 0.15);
-			border-radius: 8px;
-			color: #e2e8f0 !important;
+			padding: 8px 10px;
+			color: white !important;
 			text-decoration: none;
-			font-size: 0.85rem;
-			font-family: "Times New Roman", Times, serif !important;
-			transition: all 0.25s ease;
+			font-family: Arial, sans-serif;
+			font-size: .9rem;
+			cursor: pointer;
+			background: rgba(255,255,255,.08);
+			border: 1px solid rgba(255,255,255,.25);
+			border-radius: 7px;
+			transition: .2s;
 		}
 
-		.social-handles-vertical li a:hover {
-			background: rgba(255, 255, 255, 0.2);
-			border-color: rgba(255, 255, 255, 0.5);
-			color: #ffffff !important;
+		.social-handles-vertical a:hover,
+		.cv-action-btn:hover {
+			background: rgba(255,255,255,.22);
 		}
 
-		/* Right Column Styling */
 		.right-column {
-			text-align: left;
-			font-family: "Times New Roman", Times, serif !important;
-			color: #e2e8f0 !important;
-			margin-top: 10px; 
+			min-width: 0;
 		}
 
-		/* Tabs Navigation Styling */
 		.tabs-nav {
 			display: flex;
 			justify-content: space-between;
-			margin-bottom: 30px;
-			border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+			gap: 8px;
+			margin-bottom: 25px;
 			padding-bottom: 10px;
+			border-bottom: 1px solid rgba(255,255,255,.2);
 		}
 
 		.tab-btn {
-			background: none;
-			border: 2px solid transparent;
-			color: #ffffff;
-			font-size: 1.3rem;
+			padding: 6px 10px;
+			color: white;
 			font-family: Arial, sans-serif;
+			font-size: 1.05rem;
 			font-weight: bold;
 			cursor: pointer;
-			padding: 5px 10px;
-			transition: opacity 0.3s ease;
-		}
-
-		.tab-btn:hover {
-			opacity: 0.7;
+			background: transparent;
+			border: 2px solid transparent;
+			border-radius: 6px;
 		}
 
 		.tab-btn.active {
-			border: 2px solid #ffffff; 
-			border-radius: 6px;
+			border-color: white;
 		}
 
-		.tab-content {
+		.tab-content,
+		.game-container {
 			display: none;
-			animation: fadeIn 0.4s;
 		}
 
-		.tab-content.active {
+		.tab-content.active,
+		.game-container.active {
 			display: block;
 		}
 
-		@keyframes fadeIn {
-			from { opacity: 0; }
-			to { opacity: 1; }
-		}
-
-		.tab-content p {
-			margin-bottom: 1rem;
-			font-size: 0.95rem !important;
-		}
-
-		/* --- CV Custom Viewer Styles --- */
-		.cv-controls-wrapper {
+		.cv-controls,
+		.game-menu {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 15px;
 			flex-wrap: wrap;
-			gap: 10px;
-		}
-
-		.zoom-controls {
-			display: flex;
 			gap: 8px;
+			margin-bottom: 15px;
 		}
 
-		.cv-action-btn {
-			display: inline-block;
-			padding: 8px 16px;
-			background: rgba(255, 255, 255, 0.1);
-			color: #ffffff !important;
-			text-decoration: none;
-			border: 1px solid rgba(255, 255, 255, 0.3);
-			border-radius: 6px;
-			font-family: Arial, sans-serif;
-			font-size: 0.9rem;
-			cursor: pointer;
-			transition: background 0.3s ease;
-		}
-
-		.cv-action-btn:hover {
-			background: rgba(255, 255, 255, 0.25);
-		}
-
-		.cv-viewer-container {
-			width: 100%;
+		.cv-viewer {
 			height: 550px;
-			overflow: auto;
-			background: rgba(0, 0, 0, 0.2);
-			border: 1px solid rgba(255, 255, 255, 0.15);
-			border-radius: 8px;
 			padding: 20px;
-			box-sizing: border-box;
+			overflow: auto;
 			text-align: center;
+			background: rgba(0,0,0,.2);
+			border: 1px solid rgba(255,255,255,.15);
+			border-radius: 8px;
 		}
 
-		#cv-image-wrapper {
-			transition: transform 0.2s ease-in-out;
-			transform-origin: top center; 
+		#cv-wrapper {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: 20px;
+			transform-origin: top center;
+			transition: transform .2s;
 		}
 
 		.cv-image {
 			max-width: 100%;
 			height: auto;
-			box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-		}
-
-		/* --- Game Area Styles --- */
-		.game-menu {
-			display: flex;
-			gap: 15px;
-			margin-bottom: 20px;
+			box-shadow: 0 4px 15px rgba(0,0,0,.5);
 		}
 
 		.game-container {
-			display: none;
-			background: rgba(0,0,0,0.2);
 			padding: 20px;
-			border-radius: 8px;
-			border: 1px solid rgba(255,255,255,0.1);
 			text-align: center;
+			background: rgba(0,0,0,.2);
+			border: 1px solid rgba(255,255,255,.12);
+			border-radius: 8px;
 		}
 
-		.game-container.active {
-			display: block;
-		}
-
-		/* Tic Tac Toe */
 		.ttt-board {
 			display: grid;
 			grid-template-columns: repeat(3, 75px);
@@ -252,77 +178,60 @@
 		}
 
 		.ttt-cell {
-			width: 75px;
-			height: 75px;
-			background: rgba(255,255,255,0.1);
-			border: 2px solid rgba(255,255,255,0.3);
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			font-size: 2.2rem;
+			width: 75px;
+			height: 75px;
 			font-family: Arial, sans-serif;
+			font-size: 2.2rem;
 			cursor: pointer;
-			color: white;
-		}
-		
-		.ttt-cell:hover {
-			background: rgba(255,255,255,0.2);
+			background: rgba(255,255,255,.1);
+			border: 2px solid rgba(255,255,255,.3);
 		}
 
-		/* Snake & Ladder */
+		.ttt-cell:hover {
+			background: rgba(255,255,255,.2);
+		}
+
 		.sl-board {
 			display: grid;
 			grid-template-columns: repeat(10, 34px);
-			grid-template-rows: repeat(10, 34px);
 			gap: 2px;
 			justify-content: center;
 			margin: 15px auto;
+			padding: 2px;
 			background: #eee;
 			border: 2px solid #333;
-			padding: 2px;
 		}
 
 		.sl-cell {
-			background: #fff;
-			color: #333;
-			font-size: 9px;
-			font-family: Arial;
+			position: relative;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			position: relative;
+			height: 34px;
+			color: #333;
+			font-family: Arial, sans-serif;
+			font-size: 9px;
 			font-weight: bold;
+			background: white;
 		}
 
 		.sl-player {
+			position: absolute;
 			width: 12px;
 			height: 12px;
 			background: #ef4444;
 			border-radius: 50%;
-			position: absolute;
-			box-shadow: 0 0 5px rgba(0,0,0,0.5);
-			z-index: 10;
 		}
 
-		.sl-info {
-			color: white;
-			font-family: Arial, sans-serif;
-			margin-top: 10px;
-		}
-
-		/* --- Bottom Footer Completely Outside Layout Box --- */
 		#footer {
-			margin-top: 1.5rem !important;
-			text-align: center !important;
-			width: 100% !important;
-		}
-
-		#footer .copyright {
-			list-style: none;
-			padding: 0;
-			color: rgba(255, 255, 255, 0.6);
-			font-size: 0.85rem;
+			margin-top: 1.5rem;
+			color: rgba(255,255,255,.6);
 			font-family: Arial, sans-serif;
+			font-size: .85rem;
+			text-align: center;
 		}
 
 		@media (max-width: 768px) {
@@ -330,10 +239,17 @@
 				grid-template-columns: 1fr;
 				padding: 1.5rem;
 			}
+
 			.tabs-nav {
 				flex-direction: column;
-				align-items: center;
-				gap: 10px;
+			}
+
+			.sl-board {
+				grid-template-columns: repeat(10, 27px);
+			}
+
+			.sl-cell {
+				height: 27px;
 			}
 		}
 	</style>
@@ -341,13 +257,13 @@
 
 <body>
 
-	<!-- Main Glass Layout Container -->
 	<div class="container">
-		
-		<!-- Left Column -->
+
 		<div class="left-column">
-			<img src="images/Main_One.jpeg" alt="Prannay Nath" class="profile-pic" />
+			<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
+
 			<h1>Prannay Nath</h1>
+
 			<ul class="social-handles-vertical">
 				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python</a></li>
 				<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
@@ -358,287 +274,286 @@
 			</ul>
 		</div>
 
-		<!-- Right Column -->
 		<div class="right-column">
-			
-			<!-- Tabs Navigation -->
+
 			<div class="tabs-nav">
-				<button class="tab-btn active" onclick="openTab(event, 'intro-tab')">Introduction</button>
-				<button class="tab-btn" onclick="openTab(event, 'cv-tab')">CV</button>
-				<button class="tab-btn" onclick="openTab(event, 'games-tab')">Page Games</button>
+				<button class="tab-btn active" data-tab="intro-tab">Introduction</button>
+				<button class="tab-btn" data-tab="cv-tab">CV</button>
+				<button class="tab-btn" data-tab="games-tab">Page Games</button>
 			</div>
 
-			<!-- TAB 1: INTRODUCTION -->
 			<div id="intro-tab" class="tab-content active">
 				<p><strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+
 				<p>I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.</p>
+
 				<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
+
 				<p>My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.</p>
-				<p>My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through the integration of engineering, software development, and analytics.</p>
-				<div style="margin-top: 1.2rem; border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 0.8rem;">
-					<strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor
-				</div>
+
+				<p>My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through engineering, software development, and analytics.</p>
+
+				<p><strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor</p>
 			</div>
 
-			<!-- TAB 2: CV -->
 			<div id="cv-tab" class="tab-content">
-				<div class="cv-controls-wrapper">
-					<div class="zoom-controls">
-						<button class="cv-action-btn" onclick="zoomCV(0.2)">➕ Zoom In</button>
-						<button class="cv-action-btn" onclick="zoomCV(-0.2)">➖ Zoom Out</button>
-						<button class="cv-action-btn" onclick="resetZoom()">🔄 Reset</button>
-					</div>
-					<a href="Document/Prannay_CV_MA_De.pdf" download="Prannay_CV_MA_De.pdf" class="cv-action-btn">Download CV</a>
+				<div class="cv-controls">
+					<button class="cv-action-btn" id="zoom-in">➕ Zoom In</button>
+					<button class="cv-action-btn" id="zoom-out">➖ Zoom Out</button>
+					<button class="cv-action-btn" id="zoom-reset">🔄 Reset</button>
+
+					<a class="cv-action-btn" href="Documents/Prannay_CV_MA_De.pdf" download>
+						Download CV
+					</a>
 				</div>
-				<div class="cv-viewer-container">
-					<div id="cv-image-wrapper">
-						<img src="images/Prannay_CV_MA-1.png" alt="CV Page 1" class="cv-image">
-						<img src="images/Prannay_CV_MA-2.png" alt="CV Page 2" class="cv-image">
+
+				<div class="cv-viewer">
+					<div id="cv-wrapper">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
 					</div>
 				</div>
 			</div>
 
-			<!-- TAB 3: GAMES -->
 			<div id="games-tab" class="tab-content">
+
 				<div class="game-menu">
-					<button class="cv-action-btn" onclick="showGame('tic-tac-toe')">⭕ Tic Tac Toe</button>
-					<button class="cv-action-btn" onclick="showGame('snake-ladder')">🎲 Snake & Ladder</button>
+					<button class="cv-action-btn" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
+					<button class="cv-action-btn" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
 				</div>
 
-				<!-- Game 1: Tic Tac Toe (Player vs Bot) -->
 				<div id="tic-tac-toe" class="game-container active">
-					<h3 style="font-family: Arial; color: white; margin-top:0;">Tic Tac Toe (vs Bot)</h3>
-					<div class="ttt-board" id="ttt-board"></div>
-					<h4 id="ttt-status" style="font-family: Arial; color: white; margin: 10px 0;">Your Turn (X)</h4>
-					<button class="cv-action-btn" onclick="resetTTT()">Restart Game</button>
+					<h3>Tic Tac Toe (vs Bot)</h3>
+					<div id="ttt-board" class="ttt-board"></div>
+					<h4 id="ttt-status">Your Turn (X)</h4>
+					<button class="cv-action-btn" id="ttt-reset">Restart Game</button>
 				</div>
 
-				<!-- Game 2: Snake & Ladder -->
 				<div id="snake-ladder" class="game-container">
-					<h3 style="font-family: Arial; color: white; margin-top:0;">Snake & Ladder (Solo)</h3>
-					<div class="sl-board" id="sl-board"></div>
-					<div class="sl-info">
-						<button class="cv-action-btn" onclick="rollDice()" id="roll-btn">Roll Dice 🎲</button>
-						<button class="cv-action-btn" onclick="resetSL()">Restart</button>
-						<h4 id="sl-status" style="margin: 8px 0 0 0;">Roll to start!</h4>
-					</div>
+					<h3>Snake &amp; Ladder (Solo)</h3>
+					<div id="sl-board" class="sl-board"></div>
+					<button class="cv-action-btn" id="roll-btn">Roll Dice 🎲</button>
+					<button class="cv-action-btn" id="sl-reset">Restart</button>
+					<h4 id="sl-status">Roll to start!</h4>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
 
-	<!-- Bottom Copyright Footer (Completely Outside All Layout Boxes) -->
 	<footer id="footer">
-		<ul class="copyright">
-			<li>&copy; 2026 Prannay Nath. All Rights Reserved. | @engineerinchief</li>
-		</ul>
+		© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief
 	</footer>
 
-	<!-- Scripts -->
 	<script>
-		// --- 1. TAB LOGIC ---
-		function openTab(evt, tabName) {
-			let tabContents = document.getElementsByClassName("tab-content");
-			for (let i = 0; i < tabContents.length; i++) {
-				tabContents[i].classList.remove("active");
-			}
-			let tabBtns = document.getElementsByClassName("tab-btn");
-			for (let i = 0; i < tabBtns.length; i++) {
-				tabBtns[i].classList.remove("active");
-			}
-			document.getElementById(tabName).classList.add("active");
-			evt.currentTarget.classList.add("active");
+		const tabs = document.querySelectorAll(".tab-btn");
+		const contents = document.querySelectorAll(".tab-content");
+
+		tabs.forEach(button => {
+			button.onclick = () => {
+				tabs.forEach(tab => tab.classList.remove("active"));
+				contents.forEach(content => content.classList.remove("active"));
+
+				button.classList.add("active");
+				document.getElementById(button.dataset.tab).classList.add("active");
+			};
+		});
+
+		let zoom = 1;
+		const cv = document.getElementById("cv-wrapper");
+
+		function updateZoom() {
+			cv.style.transform = `scale(${zoom})`;
 		}
 
-		// --- 2. CV ZOOM LOGIC ---
-		let currentZoom = 1;
-		function zoomCV(step) {
-			currentZoom += step;
-			if (currentZoom > 2.5) currentZoom = 2.5;
-			if (currentZoom < 0.5) currentZoom = 0.5;
-			document.getElementById('cv-image-wrapper').style.transform = `scale(${currentZoom})`;
-		}
-		function resetZoom() {
-			currentZoom = 1;
-			document.getElementById('cv-image-wrapper').style.transform = `scale(1)`;
-		}
-
-		// --- 3. GAMES MENU LOGIC ---
-		function showGame(gameId) {
-			document.getElementById('tic-tac-toe').classList.remove('active');
-			document.getElementById('snake-ladder').classList.remove('active');
-			document.getElementById(gameId).classList.add('active');
-		}
-
-		// --- 4. TIC TAC TOE (PLAYER VS BOT) LOGIC ---
-		let tttBoard = ['', '', '', '', '', '', '', '', ''];
-		let tttGameActive = true;
-
-		function initTTT() {
-			const boardElement = document.getElementById('ttt-board');
-			boardElement.innerHTML = '';
-			for (let i = 0; i < 9; i++) {
-				const cell = document.createElement('div');
-				cell.classList.add('ttt-cell');
-				cell.addEventListener('click', () => handleTTTClick(i));
-				boardElement.appendChild(cell);
-			}
-		}
-
-		function handleTTTClick(index) {
-			if (tttBoard[index] !== '' || !tttGameActive) return;
-
-			// Player X Move
-			tttBoard[index] = 'X';
-			updateTTTUI();
-			
-			if (checkTTTWinCondition('X')) {
-				document.getElementById('ttt-status').innerText = "You Win! 🎉";
-				tttGameActive = false;
-				return;
-			}
-			
-			if (!tttBoard.includes('')) {
-				document.getElementById('ttt-status').innerText = "It's a Draw! 🤝";
-				tttGameActive = false;
-				return;
-			}
-
-			// Bot O Turn
-			document.getElementById('ttt-status').innerText = "Bot's Turn (O)...";
-			tttGameActive = false; 
-
-			setTimeout(() => {
-				let emptyCells = [];
-				tttBoard.forEach((val, idx) => {
-					if (val === '') emptyCells.push(idx);
-				});
-
-				if (emptyCells.length > 0) {
-					let randomIdx = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-					tttBoard[randomIdx] = 'O';
-					updateTTTUI();
-
-					if (checkTTTWinCondition('O')) {
-						document.getElementById('ttt-status').innerText = "Bot Wins! 🤖";
-						tttGameActive = false;
-						return;
-					}
-
-					if (!tttBoard.includes('')) {
-						document.getElementById('ttt-status').innerText = "It's a Draw! 🤝";
-						tttGameActive = false;
-						return;
-					}
-				}
-				
-				document.getElementById('ttt-status').innerText = "Your Turn (X)";
-				tttGameActive = true;
-			}, 400); 
-		}
-
-		function updateTTTUI() {
-			const cells = document.querySelectorAll('.ttt-cell');
-			cells.forEach((cell, idx) => {
-				cell.innerText = tttBoard[idx];
-				cell.style.color = tttBoard[idx] === 'X' ? '#ef4444' : '#3b82f6';
-			});
-		}
-
-		function checkTTTWinCondition(player) {
-			const wins = [
-				[0,1,2], [3,4,5], [6,7,8],
-				[0,3,6], [1,4,7], [2,5,8],
-				[0,4,8], [2,4,6]
-			];
-			return wins.some(cond => {
-				return tttBoard[cond[0]] === player && 
-					   tttBoard[cond[1]] === player && 
-					   tttBoard[cond[2]] === player;
-			});
-		}
-
-		function resetTTT() {
-			tttBoard = ['', '', '', '', '', '', '', '', ''];
-			tttGameActive = true;
-			document.getElementById('ttt-status').innerText = "Your Turn (X)";
-			initTTT();
-		}
-
-		// --- 5. SNAKE & LADDER LOGIC ---
-		let slPosition = 0;
-		const slBoard = document.getElementById('sl-board');
-		const slMoves = {
-			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100, 
-			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79  
+		document.getElementById("zoom-in").onclick = () => {
+			zoom = Math.min(zoom + 0.2, 2.5);
+			updateZoom();
 		};
 
-		function initSL() {
-			slBoard.innerHTML = '';
+		document.getElementById("zoom-out").onclick = () => {
+			zoom = Math.max(zoom - 0.2, 0.5);
+			updateZoom();
+		};
+
+		document.getElementById("zoom-reset").onclick = () => {
+			zoom = 1;
+			updateZoom();
+		};
+
+		document.querySelectorAll("[data-game]").forEach(button => {
+			button.onclick = () => {
+				document.querySelectorAll(".game-container").forEach(game => {
+					game.classList.remove("active");
+				});
+
+				document.getElementById(button.dataset.game).classList.add("active");
+			};
+		});
+
+		let board = Array(9).fill("");
+		let active = true;
+
+		const tttBoard = document.getElementById("ttt-board");
+		const tttStatus = document.getElementById("ttt-status");
+		const winLines = [
+			[0, 1, 2], [3, 4, 5], [6, 7, 8],
+			[0, 3, 6], [1, 4, 7], [2, 5, 8],
+			[0, 4, 8], [2, 4, 6]
+		];
+
+		function hasWon(player) {
+			return winLines.some(line => line.every(index => board[index] === player));
+		}
+
+		function drawTTT() {
+			tttBoard.innerHTML = "";
+
+			board.forEach((value, index) => {
+				const cell = document.createElement("div");
+				cell.className = "ttt-cell";
+				cell.textContent = value;
+				cell.style.color = value === "X" ? "#ef4444" : "#3b82f6";
+				cell.onclick = () => playTTT(index);
+				tttBoard.appendChild(cell);
+			});
+		}
+
+		function playTTT(index) {
+			if (!active || board[index]) return;
+
+			board[index] = "X";
+			drawTTT();
+
+			if (hasWon("X")) {
+				tttStatus.textContent = "You Win! 🎉";
+				active = false;
+				return;
+			}
+
+			if (!board.includes("")) {
+				tttStatus.textContent = "It's a Draw! 🤝";
+				active = false;
+				return;
+			}
+
+			active = false;
+			tttStatus.textContent = "Bot's Turn (O)...";
+
+			setTimeout(() => {
+				const empty = board
+					.map((value, index) => value === "" ? index : null)
+					.filter(index => index !== null);
+
+				if (empty.length) {
+					board[empty[Math.floor(Math.random() * empty.length)]] = "O";
+				}
+
+				drawTTT();
+
+				if (hasWon("O")) {
+					tttStatus.textContent = "Bot Wins! 🤖";
+					return;
+				}
+
+				if (!board.includes("")) {
+					tttStatus.textContent = "It's a Draw! 🤝";
+					return;
+				}
+
+				tttStatus.textContent = "Your Turn (X)";
+				active = true;
+			}, 400);
+		}
+
+		document.getElementById("ttt-reset").onclick = () => {
+			board = Array(9).fill("");
+			active = true;
+			tttStatus.textContent = "Your Turn (X)";
+			drawTTT();
+		};
+
+		let position = 0;
+
+		const slBoard = document.getElementById("sl-board");
+		const slStatus = document.getElementById("sl-status");
+		const rollButton = document.getElementById("roll-btn");
+
+		const moves = {
+			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100,
+			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79
+		};
+
+		function drawSL() {
+			slBoard.innerHTML = "";
+
 			for (let row = 9; row >= 0; row--) {
 				for (let col = 0; col < 10; col++) {
-					let num = (row % 2 === 0) ? (row * 10 + col + 1) : (row * 10 + (9 - col) + 1);
-					const cell = document.createElement('div');
-					cell.classList.add('sl-cell');
-					cell.id = 'cell-' + num;
-					cell.innerText = num;
-					if (slMoves[num]) {
-						cell.style.backgroundColor = slMoves[num] > num ? '#dcfce7' : '#fee2e2';
-						cell.innerHTML += slMoves[num] > num ? '<br>🪜' : '<br>🐍';
+					const number = row % 2 === 0
+						? row * 10 + col + 1
+						: row * 10 + (9 - col) + 1;
+
+					const cell = document.createElement("div");
+					cell.className = "sl-cell";
+					cell.textContent = number;
+
+					if (moves[number]) {
+						const ladder = moves[number] > number;
+						cell.style.background = ladder ? "#dcfce7" : "#fee2e2";
+						cell.innerHTML += ladder ? "<br>🪜" : "<br>🐍";
 					}
+
+					if (number === position) {
+						const player = document.createElement("div");
+						player.className = "sl-player";
+						cell.appendChild(player);
+					}
+
 					slBoard.appendChild(cell);
 				}
 			}
 		}
 
-		function updateSLPlayerPosition() {
-			const existing = document.querySelector('.sl-player');
-			if (existing) existing.remove();
-			if (slPosition > 0) {
-				const targetCell = document.getElementById('cell-' + slPosition);
-				if (targetCell) {
-					const token = document.createElement('div');
-					token.classList.add('sl-player');
-					targetCell.appendChild(token);
-				}
-			}
-		}
+		rollButton.onclick = () => {
+			if (position >= 100) return;
 
-		function rollDice() {
-			if (slPosition >= 100) return;
 			const roll = Math.floor(Math.random() * 6) + 1;
-			let statusMsg = `Rolled ${roll}! `;
-			
-			if (slPosition + roll <= 100) {
-				slPosition += roll;
-				if (slMoves[slPosition]) {
-					let isLadder = slMoves[slPosition] > slPosition;
-					statusMsg += isLadder ? "Climbed ladder! 🪜" : "Bit by snake! 🐍";
-					slPosition = slMoves[slPosition];
+			let message = `Rolled ${roll}! `;
+
+			if (position + roll <= 100) {
+				position += roll;
+
+				if (moves[position]) {
+					message += moves[position] > position
+						? "Climbed ladder! 🪜"
+						: "Bit by snake! 🐍";
+
+					position = moves[position];
 				}
+			} else {
+				message += "Need exact number for 100.";
 			}
-			updateSLPlayerPosition();
-			
-			if (slPosition === 100) {
-				statusMsg = "YOU WIN! 🎉🏆";
-				document.getElementById('roll-btn').disabled = true;
+
+			if (position === 100) {
+				message = "YOU WIN! 🎉🏆";
+				rollButton.disabled = true;
 			}
-			document.getElementById('sl-status').innerText = statusMsg;
-		}
 
-		function resetSL() {
-			slPosition = 0;
-			document.getElementById('sl-status').innerText = "Roll to start!";
-			document.getElementById('roll-btn').disabled = false;
-			updateSLPlayerPosition();
-		}
+			slStatus.textContent = message;
+			drawSL();
+		};
 
-		// Initialize Games on load
-		initTTT();
-		initSL();
+		document.getElementById("sl-reset").onclick = () => {
+			position = 0;
+			rollButton.disabled = false;
+			slStatus.textContent = "Roll to start!";
+			drawSL();
+		};
+
+		drawTTT();
+		drawSL();
 	</script>
-	<script src="assets/js/main.js"></script>
 
+	<script src="assets/js/main.js"></script>
 </body>
 </html>
