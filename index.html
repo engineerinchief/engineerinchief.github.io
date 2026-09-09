@@ -20,13 +20,11 @@
 	--purple:#a78bfa;
 	--red:#fb7185;
 
-	/* Layout dimensions */
 	--sidebar-width:210px;
 	--content-width:650px;
 	--profile-image-size:128px;
 	--link-height:42px;
 
-	/* Consistent spacing */
 	--space-1:6px;
 	--space-2:10px;
 	--space-3:14px;
@@ -96,9 +94,8 @@ a:focus-visible{
 		"links content";
 
 	/*
-		max-content fixes the overlapping problem.
-		The profile row expands naturally for:
-		image + title margin + title height.
+		max-content lets the profile row grow according to
+		the image and name. This prevents name overlap.
 	*/
 	grid-template-columns:
 		minmax(180px, var(--sidebar-width))
@@ -899,12 +896,15 @@ footer{
 </div>
 
 <script>
+/* =====================================================
+   TABS
+   ===================================================== */
+
 const tabs = document.querySelectorAll(".tab");
 const panels = document.querySelectorAll(".panel");
 
 tabs.forEach(tab => {
 	tab.addEventListener("click", () => {
-
 		tabs.forEach(button => {
 			button.classList.remove("active");
 			button.setAttribute("aria-selected", "false");
@@ -924,6 +924,10 @@ tabs.forEach(tab => {
 		selectedPanel.classList.add("active");
 	});
 });
+
+/* =====================================================
+   GAME SELECTOR
+   ===================================================== */
 
 const gameButtons = document.querySelectorAll(".game-select");
 const games = document.querySelectorAll(".game");
@@ -1016,6 +1020,76 @@ const lines = [
 	[2,4,6]
 ];
 
+/* =====================================================
+   HINDI MEME + SRK MOVIE MESSAGES
+   ===================================================== */
+
+const tttMessages = {
+	turn: [
+		"Your turn. Darr Ke Aage Jeet Hai! 🏆",
+		"Ab tera number hai. Aaj kuch toofani karte hain! ⚡",
+		"Chal beta, ab dekhte hain kitna dum hai! 💪",
+		"Game bajana hai toh khel, warna side ho ja! 😤",
+		"Jaldi kar bhai, mausam badal raha hai! 🌦️",
+		"Don ko pakadna mushkil hi nahi, namumkin hai... par move toh kar! 😎",
+		"Senorita, bade bade games mein aisi choti mistakes hoti rehti hain. ♟️",
+		"Main hoon na! Ab apni best move chalo. 🔥"
+	],
+
+	win: [
+		"Mogambo khush hua! You won! 🏆",
+		"Ruko zara, sabar karo... kya zabardast jeet hai! 🔥",
+		"Baap baap hota hai! You won! 😎",
+		"Naam yaad rakhna, champion! 🥇",
+		"Picture abhi baaki hai mere dost, par yeh round tumhara hai! 🏆",
+		"Don ka intezaar toh gyarah mulkon ki police karti hai... bot tumhari jeet ka karega! 😎",
+		"Om Shanti Om! Kya solid comeback maara hai! ✨",
+		"Baazigar style win! Haar ke jeetne wale ko hi baazigar kehte hain. 🏅"
+	],
+
+	loss: [
+		"Bhagg B*DK! Bot wins! 🤖",
+		"Picture abhi baaki hai mere dost. Bot wins! 🤖",
+		"Bot bola: Don ko harana mushkil hi nahi, namumkin hai! 😎",
+		"Rahul, naam toh suna hoga... bot jeet gaya! 🤖",
+		"Pushpa jhukega nahi... par tum haar gaye! 😤",
+		"Teja main hoon, mark idhar hai. Bot wins! 😂",
+		"Chennai Express nikal gayi, tum station par hi reh gaye! 🚂",
+		"Game over. Kal Ho Naa Ho, lekin next round zaroor hoga! 😄"
+	],
+
+	draw: [
+		"Na tum jeete, na bot jeeta. Yeh toh tie ho gaya! 🤝",
+		"Ek number ka draw! Dono ki izzat bach gayi. 😄",
+		"Match draw hai. Abhi toh party shuru hui hai! 🎉",
+		"Yeh kya hua? Game tie ho gaya, bhai! 🤝",
+		"Dono barabar nikle. Khel khatam, paisa hazam! 😎",
+		"Draw! Na idhar ke rahe, na udhar ke. 😂",
+		"Om Shanti Om... ek aur game, ek aur mauka! ✨",
+		"Senorita, game draw hua hai — dil chhota mat karo. 🤝"
+	],
+
+	thinking: [
+		"Bot soch raha hai... bada harami player hai! 🤖",
+		"Ruko zara, sabar karo... bot planning kar raha hai. 🧠",
+		"Bot ka dimaag garam ho raha hai... 🔥",
+		"System hang nahi hai, bot strategy bana raha hai! ⚙️",
+		"Bot bol raha hai: abhi maza aayega na bhidu! 😏",
+		"Ek minute... bot apni chaal chal raha hai. ♟️",
+		"Don apni next move plan kar raha hai... sambhal jao! 😎",
+		"Main hoon na... bot ka calculation chal raha hai. 🤖"
+	]
+};
+
+function randomMessage(type){
+	const messages = tttMessages[type];
+	return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function setTTTStatus(type){
+	tttStatus.textContent = randomMessage(type);
+}
+
 function winner(currentBoard){
 	for(const [a, b, c] of lines){
 		if(
@@ -1039,7 +1113,6 @@ function drawTTT(){
 		cell.className = "cell";
 		cell.type = "button";
 		cell.textContent = value;
-
 		cell.disabled = !playing || value !== "";
 
 		cell.setAttribute(
@@ -1088,11 +1161,13 @@ function botMove(){
 		board[index] = "";
 	}
 
-	/* Prefer centre and corners */
-	const good = [4, 0, 2, 6, 8].filter(index => board[index] === "");
+	/* Bot prefers centre and corners */
+	const goodMoves = [4, 0, 2, 6, 8].filter(index => {
+		return board[index] === "";
+	});
 
-	if(good.length && Math.random() < .75){
-		return good[Math.floor(Math.random() * good.length)];
+	if(goodMoves.length && Math.random() < .75){
+		return goodMoves[Math.floor(Math.random() * goodMoves.length)];
 	}
 
 	return empty[Math.floor(Math.random() * empty.length)];
@@ -1108,20 +1183,20 @@ function playMove(index){
 	if(result === "X"){
 		playing = false;
 		drawTTT();
-		tttStatus.textContent = "Mogambo khush hua! You won! 🏆";
+		setTTTStatus("win");
 		return;
 	}
 
 	if(result === "draw"){
 		playing = false;
 		drawTTT();
-		tttStatus.textContent = "It is a draw. 🤝";
+		setTTTStatus("draw");
 		return;
 	}
 
 	playing = false;
 	drawTTT();
-	tttStatus.textContent = "Bot is thinking...";
+	setTTTStatus("thinking");
 
 	setTimeout(() => {
 		const move = botMove();
@@ -1135,28 +1210,28 @@ function playMove(index){
 		if(result === "O"){
 			playing = false;
 			drawTTT();
-			tttStatus.textContent = "Bot wins! Picture abhi baaki hai. 🤖";
+			setTTTStatus("loss");
 			return;
 		}
 
 		if(result === "draw"){
 			playing = false;
 			drawTTT();
-			tttStatus.textContent = "It is a draw. 🤝";
+			setTTTStatus("draw");
 			return;
 		}
 
 		playing = true;
 		drawTTT();
-		tttStatus.textContent = "Your turn. Darr Ke Aage Jeet Hai!🏆";
+		setTTTStatus("turn");
 	}, 400);
 }
 
 document.getElementById("ttt-reset").addEventListener("click", () => {
 	board = Array(9).fill("");
 	playing = true;
-	tttStatus.textContent = "Your turn. Darr Ke Aage Jeet Hai!🏆";
 	drawTTT();
+	setTTTStatus("turn");
 });
 
 /* =====================================================
@@ -1203,7 +1278,6 @@ function drawSL(){
 				: row * 10 + (9 - col) + 1;
 
 			const destination = moves[number];
-
 			const square = document.createElement("div");
 
 			square.className = "sq";
@@ -1271,7 +1345,12 @@ document.getElementById("sl-reset").addEventListener("click", () => {
 	drawSL();
 });
 
+/* =====================================================
+   INITIAL PAGE STATE
+   ===================================================== */
+
 drawTTT();
+setTTTStatus("turn");
 drawSL();
 </script>
 
