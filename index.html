@@ -1,166 +1,1084 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EngineerinChief | Prannay Nath</title>
-<link rel="icon" type="image/png" href="images/chieficon.png">
-<link rel="stylesheet" href="assets/css/main.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="theme-color" content="#07111f">
+	<title>EngineerinChief | Prannay Nath</title>
 
-<style>
-:root{--bg:#07111f;--panel:#10243e;--text:#eef6ff;--muted:#b9c8db;--blue:#38bdf8;--gold:#fbbf24;--purple:#a78bfa;--red:#fb7185;--z:1}
-*{box-sizing:border-box}
-html,body{height:auto!important;min-height:100vh!important;margin:0}
-body{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;min-width:320px;padding:2rem 1.25rem!important;overflow-x:hidden!important;overflow-y:auto!important;color:var(--text);font-family:Arial,Helvetica,sans-serif!important;background:radial-gradient(circle at 12% 15%,#38bdf82b,transparent 30%),radial-gradient(circle at 88% 80%,#a78bfa2b,transparent 31%),linear-gradient(135deg,var(--bg),var(--panel),#111827)}
-body:before{content:"";position:fixed;inset:0 0 auto;z-index:-1;height:4px;background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));box-shadow:0 0 20px var(--gold)}
-button,a{-webkit-tap-highlight-color:transparent}
-button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.container{display:grid!important;grid-template-columns:220px minmax(0,1fr);gap:2rem;width:100%;max-width:1100px;height:auto!important;min-height:auto!important;flex:0 0 auto!important;margin:0 auto!important;padding:2rem;background:#0a1c32cf;border:1px solid #ffffff29;border-radius:22px;box-shadow:0 25px 60px #0008;backdrop-filter:blur(18px)}
-.left-column{display:flex;flex-direction:column;align-items:center;text-align:center}
-.profile-pic{width:140px;height:140px;object-fit:cover;border:3px solid var(--gold);border-radius:50%;box-shadow:0 0 0 7px #fbbf241f,0 12px 28px #0008}
-.left-column h1{margin:1rem 0 1.2rem!important;color:#fff!important;font-family:Georgia,"Times New Roman",serif!important;font-size:1.5rem!important}
-.social-handles-vertical{display:flex;flex-direction:column;gap:9px;width:100%;margin:0;padding:0;list-style:none}
-.social-handles-vertical a,.action-btn,.tab-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 13px;color:var(--text)!important;font:600 .78rem Arial,Helvetica,sans-serif!important;text-decoration:none;cursor:pointer;background:#ffffff11;border:1px solid #ffffff30;border-radius:9px;transition:.2s}
-.social-handles-vertical a{display:flex;width:100%}
-.social-handles-vertical a:hover,.action-btn:hover,.tab-btn:hover{transform:translateY(-2px);background:#38bdf82b;border-color:var(--blue);box-shadow:0 8px 18px #0005}
-.right-column{min-width:0}
-.tabs-nav{display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;padding:7px;margin-bottom:1.4rem;background:#0003;border:1px solid #ffffff1c;border-radius:12px}
-.tab-btn{flex:1;white-space:nowrap;background:transparent}
-.tab-btn.active{color:#182033!important;background:linear-gradient(135deg,var(--gold),#f59e0b);border-color:#fde68a;box-shadow:0 5px 14px #fbbf243b}
-.tab-content,.game-container{display:none!important;position:static!important;height:auto!important}
-.tab-content.active,.game-container.active{display:block!important}
-.intro-card,.game-container{padding:1.4rem;text-align:center;background:#ffffff0b;border:1px solid #ffffff1e;border-left:3px solid var(--gold);border-radius:14px}
-.intro-card p{max-width:700px;margin:0 auto .8rem!important;color:var(--muted);font-size:.81rem!important;line-height:1.65}
-.intro-card p:first-child{color:#fff;font-size:.85rem!important}
-.skills{margin-top:1rem;padding-top:.9rem;border-top:1px solid #ffffff24}.skills span{display:inline-block;margin:5px 3px 0;padding:4px 8px;color:#dff5ff;font-size:.68rem;background:#38bdf81f;border:1px solid #38bdf838;border-radius:99px}
-.controls,.game-menu{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:13px}.game-menu{justify-content:center}.download-cv{margin-left:auto}
-.cv-viewer{height:min(68vh,580px);min-height:330px;padding:14px;overflow:auto;text-align:center;cursor:grab;touch-action:pan-x pan-y;background:#0004;border:1px solid #ffffff24;border-radius:12px}.cv-viewer.dragging{cursor:grabbing;user-select:none}.cv-viewer.dragging img{pointer-events:none}
-#cv-wrapper{display:flex;flex-direction:column;align-items:center;width:calc(100% * var(--z));gap:16px;margin:auto;transition:width .2s}.cv-image{display:block;width:100%;height:auto;box-shadow:0 8px 20px #0008}
-.game-container{padding-bottom:2rem!important}.game-container h3{margin:0;color:var(--gold);font-size:1rem}.game-note,#ttt-status,#sl-status{display:block;width:100%;margin:1rem auto 0;color:var(--muted);font-size:.76rem;text-align:center}
-.ttt-board{display:grid;grid-template-columns:repeat(3,76px);gap:8px;justify-content:center;margin:1rem auto}.ttt-cell{width:76px;height:76px;font-size:2rem;font-weight:bold;cursor:pointer;background:#ffffff14;border:1px solid #ffffff38;border-radius:11px}.ttt-cell:hover{background:#38bdf826;border-color:var(--blue)}
-.sl-board{display:grid;grid-template-columns:repeat(10,45px);gap:3px;justify-content:center;margin:1rem auto;padding:5px;background:#06111e;border:2px solid #fbbf24a6;border-radius:12px}.sl-cell{position:relative;display:flex;align-items:center;justify-content:center;width:45px;height:45px;color:#152238;font-size:9px;font-weight:bold;background:#f1f5f9;border-radius:3px}.snake{background:linear-gradient(135deg,#fee2e2,#fca5a5)!important}.ladder{background:linear-gradient(135deg,#dcfce7,#86efac)!important}.sl-cell b{position:absolute;right:3px;bottom:2px;font-size:13px}.sl-player{position:absolute;width:15px;height:15px;background:var(--red);border:3px solid white;border-radius:50%;box-shadow:0 0 10px var(--red)}
-#footer{position:static!important;width:100%!important;height:auto!important;flex:0 0 auto!important;margin:1.5rem 0 0!important;padding:0!important;clear:both!important;color:#ffffffa8;font:normal .72rem Arial!important;text-align:center!important;background:transparent!important;border:0!important;transform:none!important}
-@media(max-width:768px){body{justify-content:flex-start!important;padding:1rem!important}.container{grid-template-columns:1fr;gap:1.5rem;padding:1.25rem}.tabs-nav{flex-direction:row!important;flex-wrap:nowrap!important;gap:4px;padding:5px}.tab-btn{min-width:0;min-height:40px;padding:8px 3px;font-size:.67rem!important}.download-cv{margin-left:0}.controls{justify-content:center}.cv-viewer{height:62vh;min-height:300px;padding:8px}.sl-board{grid-template-columns:repeat(10,30px);gap:2px}.sl-cell{width:30px;height:30px;font-size:7px}.sl-cell b{font-size:10px}.ttt-board{grid-template-columns:repeat(3,68px)}.ttt-cell{width:68px;height:68px}#footer{margin-top:1.25rem!important}}
-@media(max-width:380px){.container{padding:1rem}.tabs-nav{gap:3px;padding:4px}.tab-btn{min-height:36px;padding:7px 2px;font-size:.59rem!important}.sl-board{grid-template-columns:repeat(10,25px)}.sl-cell{width:25px;height:25px;font-size:6px}.ttt-board{grid-template-columns:repeat(3,62px)}.ttt-cell{width:62px;height:62px}}
-</style>
+	<link rel="icon" type="image/png" href="images/chieficon.png">
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<style>
+		:root{
+			--bg:#07111f;
+			--panel:#10243e;
+			--text:#eef6ff;
+			--muted:#b9c8db;
+			--blue:#38bdf8;
+			--gold:#fbbf24;
+			--purple:#a78bfa;
+			--red:#fb7185;
+			--z:1;
+		}
+
+		*{
+			box-sizing:border-box;
+		}
+
+		html,
+		body{
+			height:auto!important;
+			min-height:100vh!important;
+			margin:0;
+			padding:0;
+		}
+
+		body{
+			display:flex!important;
+			flex-direction:column!important;
+			align-items:center!important;
+			justify-content:center!important;
+			min-width:320px;
+			padding:2rem 1.25rem!important;
+			overflow-x:hidden!important;
+			overflow-y:auto!important;
+			color:var(--text);
+			font-family:Arial,Helvetica,sans-serif!important;
+			background:
+				radial-gradient(circle at 12% 15%,rgba(56,189,248,.17),transparent 30%),
+				radial-gradient(circle at 88% 80%,rgba(167,139,250,.17),transparent 31%),
+				linear-gradient(135deg,var(--bg),var(--panel),#111827);
+		}
+
+		body::before{
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:-1;
+			width:100%;
+			height:4px;
+			content:"";
+			background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));
+			box-shadow:0 0 20px var(--gold);
+		}
+
+		button,
+		a{
+			-webkit-tap-highlight-color:transparent;
+		}
+
+		button:focus-visible,
+		a:focus-visible{
+			outline:3px solid var(--gold);
+			outline-offset:3px;
+		}
+
+		.container{
+			display:grid!important;
+			grid-template-columns:220px minmax(0,1fr);
+			gap:2rem;
+			width:100%;
+			max-width:1100px;
+			height:auto!important;
+			min-height:auto!important;
+			flex:0 0 auto!important;
+			margin:0 auto!important;
+			padding:2rem;
+			background:rgba(10,28,50,.80);
+			border:1px solid rgba(255,255,255,.16);
+			border-radius:22px;
+			box-shadow:0 25px 60px rgba(0,0,0,.48);
+			backdrop-filter:blur(18px);
+			-webkit-backdrop-filter:blur(18px);
+		}
+
+		.left-column{
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			text-align:center;
+		}
+
+		.profile-pic{
+			width:140px;
+			height:140px;
+			object-fit:cover;
+			border:3px solid var(--gold);
+			border-radius:50%;
+			box-shadow:
+				0 0 0 7px rgba(251,191,36,.12),
+				0 12px 28px rgba(0,0,0,.5);
+		}
+
+		.left-column h1{
+			margin:1rem 0 1.2rem!important;
+			color:#fff!important;
+			font-family:Georgia,"Times New Roman",serif!important;
+			font-size:1.5rem!important;
+		}
+
+		.social-handles-vertical{
+			display:flex;
+			flex-direction:column;
+			width:100%;
+			gap:9px;
+			padding:0;
+			margin:0;
+			list-style:none;
+		}
+
+		.social-handles-vertical a,
+		.action-btn,
+		.tab-btn{
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			min-height:42px;
+			padding:10px 13px;
+			color:var(--text)!important;
+			font-family:Arial,Helvetica,sans-serif!important;
+			font-size:.78rem!important;
+			font-weight:600;
+			line-height:1;
+			text-decoration:none;
+			cursor:pointer;
+			background:rgba(255,255,255,.065);
+			border:1px solid rgba(255,255,255,.18);
+			border-radius:9px;
+			transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
+		}
+
+		.social-handles-vertical a{
+			display:flex;
+			width:100%;
+		}
+
+		.social-handles-vertical a:hover,
+		.action-btn:hover,
+		.tab-btn:hover{
+			transform:translateY(-2px);
+			color:#fff!important;
+			background:rgba(56,189,248,.17);
+			border-color:var(--blue);
+			box-shadow:0 8px 18px rgba(0,0,0,.3);
+		}
+
+		.right-column{
+			min-width:0;
+		}
+
+		.tabs-nav{
+			display:flex;
+			flex-direction:row;
+			flex-wrap:nowrap;
+			gap:8px;
+			padding:7px;
+			margin-bottom:1.4rem;
+			background:rgba(0,0,0,.2);
+			border:1px solid rgba(255,255,255,.11);
+			border-radius:12px;
+		}
+
+		.tab-btn{
+			flex:1;
+			white-space:nowrap;
+			background:transparent;
+		}
+
+		.tab-btn.active{
+			color:#182033!important;
+			background:linear-gradient(135deg,var(--gold),#f59e0b);
+			border-color:#fde68a;
+			box-shadow:0 5px 14px rgba(251,191,36,.25);
+		}
+
+		.tab-content,
+		.game-container{
+			display:none!important;
+			position:static!important;
+			height:auto!important;
+		}
+
+		.tab-content.active,
+		.game-container.active{
+			display:block!important;
+			animation:show .3s ease;
+		}
+
+		@keyframes show{
+			from{
+				opacity:0;
+				transform:translateY(6px);
+			}
+
+			to{
+				opacity:1;
+				transform:none;
+			}
+		}
+
+		.intro-card,
+		.game-container{
+			padding:1.4rem;
+			text-align:center;
+			background:rgba(255,255,255,.045);
+			border:1px solid rgba(255,255,255,.12);
+			border-left:3px solid var(--gold);
+			border-radius:14px;
+		}
+
+		.intro-card p{
+			max-width:700px;
+			margin:0 auto .8rem!important;
+			color:var(--muted);
+			font-size:.81rem!important;
+			line-height:1.65;
+		}
+
+		.intro-card p:first-child{
+			color:#fff;
+			font-size:.85rem!important;
+		}
+
+		.skills{
+			margin-top:1rem;
+			padding-top:.9rem;
+			border-top:1px solid rgba(255,255,255,.14);
+		}
+
+		.skills span{
+			display:inline-block;
+			padding:4px 8px;
+			margin:5px 3px 0;
+			color:#dff5ff;
+			font-size:.68rem;
+			background:rgba(56,189,248,.12);
+			border:1px solid rgba(56,189,248,.22);
+			border-radius:999px;
+		}
+
+		.controls,
+		.game-menu{
+			display:flex;
+			flex-wrap:wrap;
+			align-items:center;
+			gap:8px;
+			margin-bottom:13px;
+		}
+
+		.game-menu{
+			justify-content:center;
+		}
+
+		.download-cv{
+			margin-left:auto;
+		}
+
+		.cv-viewer{
+			height:min(68vh,580px);
+			min-height:330px;
+			padding:14px;
+			overflow:auto;
+			text-align:center;
+			cursor:grab;
+			touch-action:pan-x pan-y;
+			background:rgba(0,0,0,.24);
+			border:1px solid rgba(255,255,255,.14);
+			border-radius:12px;
+		}
+
+		.cv-viewer.dragging{
+			cursor:grabbing;
+			user-select:none;
+		}
+
+		.cv-viewer.dragging .cv-image{
+			pointer-events:none;
+		}
+
+		#cv-wrapper{
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			width:calc(100% * var(--z));
+			gap:16px;
+			margin:auto;
+			transition:width .2s ease;
+		}
+
+		.cv-image{
+			display:block;
+			width:100%;
+			height:auto;
+			box-shadow:0 8px 20px rgba(0,0,0,.5);
+		}
+
+		.game-container{
+			width:100%;
+			padding-bottom:2rem!important;
+		}
+
+		.game-container h3{
+			margin:0 0 .35rem;
+			color:var(--gold);
+			font-size:1rem;
+		}
+
+		.game-note,
+		#ttt-status,
+		#sl-status{
+			display:block;
+			clear:both;
+			width:100%;
+			margin:1rem auto 0;
+			color:var(--muted);
+			font-size:.76rem;
+			line-height:1.45;
+			text-align:center;
+		}
+
+		.ttt-board{
+			display:grid;
+			grid-template-columns:repeat(3,76px);
+			gap:8px;
+			justify-content:center;
+			margin:1rem auto;
+		}
+
+		.ttt-cell{
+			display:flex!important;
+			align-items:center!important;
+			justify-content:center!important;
+			width:76px;
+			height:76px;
+			padding:0!important;
+			line-height:1!important;
+			text-align:center!important;
+			font-size:2rem;
+			font-weight:bold;
+			cursor:pointer;
+			appearance:none;
+			-webkit-appearance:none;
+			background:rgba(255,255,255,.08);
+			border:1px solid rgba(255,255,255,.22);
+			border-radius:11px;
+			transition:.2s ease;
+		}
+
+		.ttt-cell:hover{
+			transform:scale(1.04);
+			background:rgba(56,189,248,.15);
+			border-color:var(--blue);
+		}
+
+		.sl-board{
+			display:grid;
+			grid-template-columns:repeat(10,minmax(0,1fr));
+			gap:3px;
+			justify-content:center;
+			width:min(100%,540px);
+			max-width:100%;
+			margin:1rem auto;
+			padding:5px;
+			overflow:hidden;
+			background:#06111e;
+			border:2px solid rgba(251,191,36,.65);
+			border-radius:12px;
+			box-shadow:inset 0 0 22px rgba(56,189,248,.14);
+		}
+
+		.sl-cell{
+			position:relative;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			width:100%;
+			min-width:0;
+			height:auto;
+			aspect-ratio:1 / 1;
+			color:#152238;
+			font-size:clamp(7px,1.8vw,10px);
+			font-weight:bold;
+			background:#f1f5f9;
+			border-radius:3px;
+		}
+
+		.sl-cell.snake{
+			color:#7f1d1d;
+			background:linear-gradient(135deg,#fee2e2,#fca5a5);
+		}
+
+		.sl-cell.ladder{
+			color:#14532d;
+			background:linear-gradient(135deg,#dcfce7,#86efac);
+		}
+
+		.sl-cell b{
+			position:absolute;
+			right:3px;
+			bottom:2px;
+			font-size:clamp(10px,2.6vw,16px);
+		}
+
+		.sl-player{
+			position:absolute;
+			width:clamp(11px,3vw,16px);
+			height:clamp(11px,3vw,16px);
+			background:var(--red);
+			border:3px solid white;
+			border-radius:50%;
+			box-shadow:0 0 10px var(--red);
+		}
+
+		#footer{
+			position:static!important;
+			width:100%!important;
+			height:auto!important;
+			min-height:auto!important;
+			flex:0 0 auto!important;
+			margin:1.5rem 0 0!important;
+			padding:0!important;
+			clear:both!important;
+			color:rgba(255,255,255,.65);
+			font-family:Arial,Helvetica,sans-serif!important;
+			font-size:.72rem!important;
+			text-align:center!important;
+			background:transparent!important;
+			border:0!important;
+			transform:none!important;
+		}
+
+		@media(max-width:768px){
+			body{
+				justify-content:flex-start!important;
+				padding:1rem!important;
+			}
+
+			.container{
+				grid-template-columns:1fr;
+				gap:1.5rem;
+				padding:1.25rem;
+			}
+
+			.tabs-nav{
+				display:flex!important;
+				flex-direction:row!important;
+				flex-wrap:nowrap!important;
+				gap:4px!important;
+				padding:5px!important;
+				overflow:hidden!important;
+			}
+
+			.tab-btn{
+				flex:1 1 0!important;
+				min-width:0!important;
+				min-height:40px!important;
+				padding:8px 3px!important;
+				font-size:.67rem!important;
+				white-space:nowrap!important;
+			}
+
+			.controls,
+			.game-menu{
+				justify-content:center!important;
+			}
+
+			.download-cv{
+				margin-left:0!important;
+			}
+
+			.cv-viewer{
+				height:62vh;
+				min-height:300px;
+				padding:8px;
+			}
+
+			.game-container{
+				padding:1.2rem .65rem 2rem!important;
+			}
+
+			.ttt-board{
+				grid-template-columns:repeat(3,72px)!important;
+				gap:8px!important;
+			}
+
+			.ttt-cell{
+				width:72px!important;
+				height:72px!important;
+				font-size:2rem!important;
+			}
+
+			.sl-board{
+				width:100%!important;
+				max-width:540px!important;
+				gap:2px!important;
+				padding:4px!important;
+			}
+
+			.sl-cell{
+				font-size:clamp(7px,2vw,10px)!important;
+			}
+
+			.sl-cell b{
+				right:2px!important;
+				bottom:1px!important;
+				font-size:clamp(9px,3vw,15px)!important;
+			}
+
+			#footer{
+				margin-top:1.25rem!important;
+				padding-bottom:.5rem!important;
+			}
+		}
+
+		@media(max-width:380px){
+			body{
+				padding:.7rem!important;
+			}
+
+			.container{
+				padding:1rem!important;
+			}
+
+			.tabs-nav{
+				gap:3px!important;
+				padding:4px!important;
+			}
+
+			.tab-btn{
+				min-height:36px!important;
+				padding:7px 2px!important;
+				font-size:.59rem!important;
+			}
+
+			.game-container{
+				padding:1rem .4rem 1.8rem!important;
+			}
+
+			.sl-board{
+				gap:1px!important;
+				padding:3px!important;
+			}
+
+			.sl-cell{
+				font-size:6px!important;
+			}
+
+			.sl-cell b{
+				right:1px!important;
+				bottom:0!important;
+				font-size:8px!important;
+			}
+
+			.ttt-board{
+				grid-template-columns:repeat(3,64px)!important;
+			}
+
+			.ttt-cell{
+				width:64px!important;
+				height:64px!important;
+				font-size:1.7rem!important;
+			}
+		}
+	</style>
 </head>
 
 <body>
-<div class="container">
-<aside class="left-column">
-	<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
-	<h1>Prannay Nath</h1>
-	<ul class="social-handles-vertical">
-		<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python Projects</a></li>
-		<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
-		<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
-		<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
-		<li><a href="https://x.com/ingenieurchef" target="_blank">X / Twitter</a></li>
-		<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
-	</ul>
-</aside>
 
-<main class="right-column">
-<nav class="tabs-nav">
-	<button class="tab-btn active" data-tab="intro-tab">Introduction</button>
-	<button class="tab-btn" data-tab="cv-tab">CV</button>
-	<button class="tab-btn" data-tab="games-tab">Games</button>
-</nav>
+	<div class="container">
 
-<section id="intro-tab" class="tab-content active">
-<div class="intro-card">
-	<p><strong>Engineering and Management (EMB) B.Sc. Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
-	<p>I am currently studying Engineering and Management (EMB) B.Sc. at Technische Hochschule Mannheim, Germany. My academic path combines engineering, management, mechatronics, data science, and strategic decision-making.</p>
-	<p>My interests include aerospace systems, defense technologies, simulation engineering, data analytics, software development, and advanced technology innovation.</p>
-	<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
-	<div class="skills"><strong>Skills</strong><br><span>Python</span><span>C</span><span>SQL</span><span>Data Analytics</span><span>Inventor</span><span>Engineering Management</span></div>
-</div>
-</section>
+		<aside class="left-column">
+			<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
 
-<section id="cv-tab" class="tab-content">
-<div class="controls">
-	<button class="action-btn" id="zoom-in">➕ Zoom In</button>
-	<button class="action-btn" id="zoom-out">➖ Zoom Out</button>
-	<button class="action-btn" id="zoom-reset">↺ Reset</button>
-	<a class="action-btn download-cv" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
-</div>
-<div class="cv-viewer" id="cv-viewer">
-	<div id="cv-wrapper">
-		<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
-		<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
+			<h1>Prannay Nath</h1>
+
+			<ul class="social-handles-vertical">
+				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python Projects</a></li>
+				<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
+				<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
+				<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
+				<li><a href="https://x.com/ingenieurchef" target="_blank">X / Twitter</a></li>
+				<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
+			</ul>
+		</aside>
+
+		<main class="right-column">
+
+			<nav class="tabs-nav">
+				<button class="tab-btn active" type="button" data-tab="intro-tab">Introduction</button>
+				<button class="tab-btn" type="button" data-tab="cv-tab">CV</button>
+				<button class="tab-btn" type="button" data-tab="games-tab">Games</button>
+			</nav>
+
+			<section id="intro-tab" class="tab-content active">
+				<div class="intro-card">
+					<p>
+						<strong>
+							Engineering and Management (EMB) B.Sc. Student |
+							Aerospace &amp; Defense Enthusiast |
+							Python Programmer |
+							Data Analyst
+						</strong>
+					</p>
+
+					<p>
+						I am currently studying Engineering and Management
+						(EMB) B.Sc. at Technische Hochschule Mannheim,
+						Germany. My academic path combines engineering,
+						management, mechatronics, data science, and
+						strategic decision-making.
+					</p>
+
+					<p>
+						My interests include aerospace systems, defense
+						technologies, simulation engineering, data analytics,
+						software development, and advanced technology
+						innovation.
+					</p>
+
+					<p>
+						Through my internship at GMV GmbH, I contributed to
+						ESA-related initiatives, including RNMD4SSC, working
+						with L3Harris Wescam MX systems and VR-Forces
+						simulation environments.
+					</p>
+
+					<div class="skills">
+						<strong>Skills</strong><br>
+						<span>Python</span>
+						<span>C</span>
+						<span>SQL</span>
+						<span>Data Analytics</span>
+						<span>Inventor</span>
+						<span>Engineering Management</span>
+					</div>
+				</div>
+			</section>
+
+			<section id="cv-tab" class="tab-content">
+				<div class="controls">
+					<button class="action-btn" id="zoom-in" type="button">➕ Zoom In</button>
+					<button class="action-btn" id="zoom-out" type="button">➖ Zoom Out</button>
+					<button class="action-btn" id="zoom-reset" type="button">↺ Reset</button>
+
+					<a class="action-btn download-cv"
+					   href="Documents/Prannay_CV_MA.pdf"
+					   download="Prannay_CV_MA.pdf">
+						Download CV
+					</a>
+				</div>
+
+				<div class="cv-viewer" id="cv-viewer">
+					<div id="cv-wrapper">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
+					</div>
+				</div>
+			</section>
+
+			<section id="games-tab" class="tab-content">
+
+				<div class="game-menu">
+					<button class="action-btn" type="button" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
+					<button class="action-btn" type="button" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
+				</div>
+
+				<div id="tic-tac-toe" class="game-container active">
+					<h3>Tic Tac Toe: Challenge Mode</h3>
+					<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
+
+					<div id="ttt-board" class="ttt-board"></div>
+
+					<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
+
+					<button id="ttt-reset" class="action-btn" type="button">Restart Game</button>
+				</div>
+
+				<div id="snake-ladder" class="game-container">
+					<h3>Snake &amp; Ladder: Hard Mode</h3>
+					<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
+
+					<div id="sl-board" class="sl-board"></div>
+
+					<button id="roll-btn" class="action-btn" type="button">Roll Dice 🎲</button>
+					<button id="sl-reset" class="action-btn" type="button">Restart</button>
+
+					<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
+				</div>
+
+			</section>
+		</main>
 	</div>
-</div>
-</section>
 
-<section id="games-tab" class="tab-content">
-<div class="game-menu">
-	<button class="action-btn" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
-	<button class="action-btn" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
-</div>
+	<footer id="footer">
+		© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief
+	</footer>
 
-<div id="tic-tac-toe" class="game-container active">
-	<h3>Tic Tac Toe: Challenge Mode</h3>
-	<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
-	<div id="ttt-board" class="ttt-board"></div>
-	<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
-	<button id="ttt-reset" class="action-btn">Restart Game</button>
-</div>
+	<script>
+		const tabs = document.querySelectorAll(".tab-btn");
+		const contents = document.querySelectorAll(".tab-content");
 
-<div id="snake-ladder" class="game-container">
-	<h3>Snake &amp; Ladder: Hard Mode</h3>
-	<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
-	<div id="sl-board" class="sl-board"></div>
-	<button id="roll-btn" class="action-btn">Roll Dice 🎲</button>
-	<button id="sl-reset" class="action-btn">Restart</button>
-	<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
-</div>
-</section>
-</main>
-</div>
+		tabs.forEach(button => {
+			button.onclick = () => {
+				tabs.forEach(tab => tab.classList.remove("active"));
+				contents.forEach(content => content.classList.remove("active"));
 
-<footer id="footer">© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief</footer>
+				button.classList.add("active");
+				document.getElementById(button.dataset.tab).classList.add("active");
+			};
+		});
 
-<script>
-const tabs=document.querySelectorAll(".tab-btn"),contents=document.querySelectorAll(".tab-content");
-tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.classList.remove("active"));contents.forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active")});
-document.querySelectorAll("[data-game]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".game-container").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.game).classList.add("active")});
+		document.querySelectorAll("[data-game]").forEach(button => {
+			button.onclick = () => {
+				document.querySelectorAll(".game-container").forEach(game => {
+					game.classList.remove("active");
+				});
 
-let zoom=1;const viewer=document.getElementById("cv-viewer"),wrapper=document.getElementById("cv-wrapper");
-const uz=()=>wrapper.style.setProperty("--z",zoom);
-document.getElementById("zoom-in").onclick=()=>{zoom=Math.min(2.5,zoom+.2);uz()};
-document.getElementById("zoom-out").onclick=()=>{zoom=Math.max(.6,zoom-.2);uz()};
-document.getElementById("zoom-reset").onclick=()=>{zoom=1;uz();viewer.scrollTo(0,0)};
+				document.getElementById(button.dataset.game).classList.add("active");
+			};
+		});
 
-let drag=false,sx,sy,sl,st;
-viewer.onpointerdown=e=>{drag=true;sx=e.clientX;sy=e.clientY;sl=viewer.scrollLeft;st=viewer.scrollTop;viewer.classList.add("dragging");viewer.setPointerCapture(e.pointerId)};
-viewer.onpointermove=e=>{if(drag){viewer.scrollLeft=sl-(e.clientX-sx);viewer.scrollTop=st-(e.clientY-sy)}};
-["pointerup","pointercancel","lostpointercapture"].forEach(x=>viewer.addEventListener(x,()=>{drag=false;viewer.classList.remove("dragging")}));
+		let zoom = 1;
 
-const phrases={
-win:["Mogambo khush hua! You won like a champion. 🏆🎉","Jeetega bhai jeetega... aur jeet gaya! 🔥🏆","Baap baap hota hai! Victory is yours. 😎🏆","Kya baat hai sirji! Absolute masterclass. 🎯🎉","Ek number! You played like a true champion. 💪🏆"],
-lose:["Bhai, kya kar raha hai tu? Bot wins! 🤖","Arre yaar! Bot ne game palat diya. 😭🤖","Picture abhi baaki hai mere dost. Try again! 🎬","System hang ho gaya kya? Bot takes this round. 🤖","Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"],
-draw:["All is well. It is a draw. 🤝","Takkkar ki thi! Nobody gives up. Draw. 🤝","Match tie ho gaya, but respect is real. 🤝","Dono players strong nikle. Draw! 💪","Game kehta hai: phir se khelo! It is a draw. 🔁"]
-};
-const last={win:-1,lose:-1,draw:-1};
-function phrase(t){let i;do{i=Math.floor(Math.random()*phrases[t].length)}while(i===last[t]);last[t]=i;return phrases[t][i]}
+		const viewer = document.getElementById("cv-viewer");
+		const wrapper = document.getElementById("cv-wrapper");
 
-let board=Array(9).fill(""),active=true;
-const tb=document.getElementById("ttt-board"),ts=document.getElementById("ttt-status");
-const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-function result(b){for(const[a,c,d]of lines)if(b[a]&&b[a]===b[c]&&b[a]===b[d])return b[a];return b.includes("")?null:"draw"}
-function draw(){tb.innerHTML="";board.forEach((v,i)=>{let c=document.createElement("button");c.className="ttt-cell";c.textContent=v;c.style.color=v==="X"?"#fbbf24":"#38bdf8";c.onclick=()=>play(i);tb.appendChild(c)})}
-function bot(){let e=board.map((v,i)=>v===""?i:null).filter(v=>v!==null);for(const i of e){board[i]="O";if(result(board)==="O"){board[i]="";return i}board[i]=""}for(const i of e){board[i]="X";if(result(board)==="X"){board[i]="";if(Math.random()<.8)return i;break}board[i]=""}let s=[4,0,2,6,8].filter(i=>board[i]==="");return s.length&&Math.random()<.65?s[Math.floor(Math.random()*s.length)]:e[Math.floor(Math.random()*e.length)]}
-function play(i){if(!active||board[i])return;board[i]="X";draw();let w=result(board);if(w==="X"){ts.textContent=phrase("win");active=false;return}if(w==="draw"){ts.textContent=phrase("draw");active=false;return}active=false;ts.textContent="Bot is thinking... picture abhi baaki hai!";setTimeout(()=>{board[bot()]="O";draw();w=result(board);if(w==="O"){ts.textContent=phrase("lose");return}if(w==="draw"){ts.textContent=phrase("draw");return}active=true;ts.textContent="Your turn. Jeetega bhai jeetega! 🏆"},450)}
-document.getElementById("ttt-reset").onclick=()=>{board=Array(9).fill("");active=true;ts.textContent="Your turn. Jeetega bhai jeetega! 🏆";draw()};
+		function updateZoom() {
+			wrapper.style.setProperty("--z", zoom);
+		}
 
-let pos=0;const sb=document.getElementById("sl-board"),ss=document.getElementById("sl-status"),rb=document.getElementById("roll-btn");
-const mv={3:22,11:26,20:38,36:44,51:67,17:6,29:8,41:19,47:25,54:34,62:18,66:45,73:52,79:39,87:24,92:70,95:56,98:60};
-function snake(){sb.innerHTML="";for(let r=9;r>=0;r--)for(let c=0;c<10;c++){let n=r%2===0?r*10+c+1:r*10+10-c,d=mv[n],x=document.createElement("div");x.className="sl-cell"+(d?(d>n?" ladder":" snake"):"");x.innerHTML=n+(d?`<b>${d>n?"🪜":"🐍"}</b>`:"");if(n===pos){let p=document.createElement("div");p.className="sl-player";x.appendChild(p)}sb.appendChild(x)}}
-rb.onclick=()=>{if(pos>=100)return;let r=Math.floor(Math.random()*6)+1,m=`You rolled ${r}. `;if(pos+r<=100){pos+=r;if(mv[pos]){let d=mv[pos];m+=d>pos?`Wah bhai wah! Ladder to ${d}. 🪜`:`Arre yaar! Snake to ${d}. 🐍`;pos=d}}else m+="Exact number needed. Picture abhi baaki hai!";if(pos===100){m=phrase("win");rb.disabled=true}ss.textContent=m;snake()};
-document.getElementById("sl-reset").onclick=()=>{pos=0;rb.disabled=false;ss.textContent="Roll the dice. Aaj kuch toofani karte hain!";snake()};
-draw();snake();
-</script>
+		document.getElementById("zoom-in").onclick = () => {
+			zoom = Math.min(zoom + 0.2, 2.5);
+			updateZoom();
+		};
 
-<script src="assets/js/main.js"></script>
+		document.getElementById("zoom-out").onclick = () => {
+			zoom = Math.max(zoom - 0.2, 0.6);
+			updateZoom();
+		};
+
+		document.getElementById("zoom-reset").onclick = () => {
+			zoom = 1;
+			updateZoom();
+			viewer.scrollTo(0, 0);
+		};
+
+		let dragging = false;
+		let startX = 0;
+		let startY = 0;
+		let startLeft = 0;
+		let startTop = 0;
+
+		viewer.addEventListener("pointerdown", event => {
+			dragging = true;
+			startX = event.clientX;
+			startY = event.clientY;
+			startLeft = viewer.scrollLeft;
+			startTop = viewer.scrollTop;
+
+			viewer.classList.add("dragging");
+			viewer.setPointerCapture(event.pointerId);
+		});
+
+		viewer.addEventListener("pointermove", event => {
+			if (!dragging) return;
+
+			viewer.scrollLeft = startLeft - (event.clientX - startX);
+			viewer.scrollTop = startTop - (event.clientY - startY);
+		});
+
+		["pointerup", "pointercancel", "lostpointercapture"].forEach(eventName => {
+			viewer.addEventListener(eventName, () => {
+				dragging = false;
+				viewer.classList.remove("dragging");
+			});
+		});
+
+		const phrases = {
+			win: [
+				"Mogambo khush hua! You won like a champion. 🏆🎉",
+				"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
+				"Baap baap hota hai! Victory is yours. 😎🏆",
+				"Kya baat hai sirji! Absolute masterclass. 🎯🎉",
+				"Ek number! You played like a true champion. 💪🏆"
+			],
+
+			lose: [
+				"Bhai, kya kar raha hai tu? Bot wins! 🤖",
+				"Arre yaar! Bot ne game palat diya. 😭🤖",
+				"Picture abhi baaki hai mere dost. Try again! 🎬",
+				"System hang ho gaya kya? Bot takes this round. 🤖",
+				"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"
+			],
+
+			draw: [
+				"All is well. It is a draw. 🤝",
+				"Takkkar ki thi! Nobody gives up. Draw. 🤝",
+				"Match tie ho gaya, but respect is real. 🤝",
+				"Dono players strong nikle. Draw! 💪",
+				"Game kehta hai: phir se khelo! It is a draw. 🔁"
+			]
+		};
+
+		const lastPhrase = {
+			win: -1,
+			lose: -1,
+			draw: -1
+		};
+
+		function randomPhrase(type) {
+			let index;
+
+			do {
+				index = Math.floor(Math.random() * phrases[type].length);
+			} while (index === lastPhrase[type]);
+
+			lastPhrase[type] = index;
+			return phrases[type][index];
+		}
+
+		let board = Array(9).fill("");
+		let active = true;
+
+		const tttBoard = document.getElementById("ttt-board");
+		const tttStatus = document.getElementById("ttt-status");
+
+		const winLines = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6]
+		];
+
+		function gameResult(currentBoard) {
+			for (const [a, b, c] of winLines) {
+				if (
+					currentBoard[a] &&
+					currentBoard[a] === currentBoard[b] &&
+					currentBoard[a] === currentBoard[c]
+				) {
+					return currentBoard[a];
+				}
+			}
+
+			return currentBoard.includes("") ? null : "draw";
+		}
+
+		function drawTTT() {
+			tttBoard.innerHTML = "";
+
+			board.forEach((value, index) => {
+				const cell = document.createElement("button");
+
+				cell.type = "button";
+				cell.className = "ttt-cell";
+				cell.textContent = value;
+				cell.style.color = value === "X" ? "#fbbf24" : "#38bdf8";
+				cell.onclick = () => playerMove(index);
+
+				tttBoard.appendChild(cell);
+			});
+		}
+
+		function botMove() {
+			const emptyCells = board
+				.map((value, index) => value === "" ? index : null)
+				.filter(index => index !== null);
+
+			for (const index of emptyCells) {
+				board[index] = "O";
+
+				if (gameResult(board) === "O") {
+					board[index] = "";
+					return index;
+				}
+
+				board[index] = "";
+			}
+
+			for (const index of emptyCells) {
+				board[index] = "X";
+
+				if (gameResult(board) === "X") {
+					board[index] = "";
+
+					if (Math.random() < 0.8) {
+						return index;
+					}
+
+					break;
+				}
+
+				board[index] = "";
+			}
+
+			const strongPositions = [4, 0, 2, 6, 8]
+				.filter(index => board[index] === "");
+
+			if (strongPositions.length > 0 && Math.random() < 0.65) {
+				return strongPositions[Math.floor(Math.random() * strongPositions.length)];
+			}
+
+			return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+		}
+
+		function playerMove(index) {
+			if (!active || board[index] !== "") return;
+
+			board[index] = "X";
+			drawTTT();
+
+			let result = gameResult(board);
+
+			if (result === "X") {
+				tttStatus.textContent = randomPhrase("win");
+				active = false;
+				return;
+			}
+
+			if (result === "draw") {
+				tttStatus.textContent = randomPhrase("draw");
+				active = false;
+				return;
+			}
+
+			active = false;
+			tttStatus.textContent = "Bot is thinking... picture abhi baaki hai!";
+
+			setTimeout(() => {
+				board[botMove()] = "O";
+				drawTTT();
+
+				result = gameResult(board);
+
+				if (result === "O") {
+					tttStatus.textContent = randomPhrase("lose");
+					return;
+				}
+
+				if (result === "draw") {
+					tttStatus.textContent = randomPhrase("draw");
+					return;
+				}
+
+				active = true;
+				tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
+			}, 450);
+		}
+
+		document.getElementById("ttt-reset").onclick = () => {
+			board = Array(9).fill("");
+			active = true;
+			tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
+			drawTTT();
+		};
+
+		let position = 0;
+
+		const slBoard = document.getElementById("sl-board");
+		const slStatus = document.getElementById("sl-status");
+		const rollButton = document.getElementById("roll-btn");
+
+		const moves = {
+			3: 22,
+			11: 26,
+			20: 38,
+			36: 44,
+			51: 67,
+
+			17: 6,
+			29: 8,
+			41: 19,
+			47: 25,
+			54: 34,
+			62: 18,
+			66: 45,
+			73: 52,
+			79: 39,
+			87: 24,
+			92: 70,
+			95: 56,
+			98: 60
+		};
+
+		function drawSnakeLadder() {
+			slBoard.innerHTML = "";
+
+			for (let row = 9; row >= 0; row--) {
+				for (let col = 0; col < 10; col++) {
+					const number = row % 2 === 0
+						? row * 10 + col + 1
+						: row * 10 + (9 - col) + 1;
+
+					const cell = document.createElement("div");
+					const destination = moves[number];
+
+					cell.className = "sl-cell";
+
+					if (destination) {
+						cell.classList.add(destination > number ? "ladder" : "snake");
+					}
+
+					cell.innerHTML = `${number}${destination ? `<b>${destination > number ? "🪜" : "🐍"}</b>` : ""}`;
+
+					if (number === position) {
+						const player = document.createElement("div");
+						player.className = "sl-player";
+						cell.appendChild(player);
+					}
+
+					slBoard.appendChild(cell);
+				}
+			}
+		}
+
+		rollButton.onclick = () => {
+			if (position >= 100) return;
+
+			const roll = Math.floor(Math.random() * 6) + 1;
+			let message = `You rolled ${roll}. `;
+
+			if (position + roll <= 100) {
+				position += roll;
+
+				if (moves[position]) {
+					const destination = moves[position];
+
+					message += destination > position
+						? `Wah bhai wah! Ladder to ${destination}. 🪜`
+						: `Arre yaar! Snake to ${destination}. 🐍`;
+
+					position = destination;
+				}
+			} else {
+				message += "Exact number needed. Picture abhi baaki hai!";
+			}
+
+			if (position === 100) {
+				message = randomPhrase("win");
+				rollButton.disabled = true;
+			}
+
+			slStatus.textContent = message;
+			drawSnakeLadder();
+		};
+
+		document.getElementById("sl-reset").onclick = () => {
+			position = 0;
+			rollButton.disabled = false;
+			slStatus.textContent = "Roll the dice. Aaj kuch toofani karte hain!";
+			drawSnakeLadder();
+		};
+
+		drawTTT();
+		drawSnakeLadder();
+	</script>
+
+	<script src="assets/js/main.js"></script>
 </body>
 </html>
