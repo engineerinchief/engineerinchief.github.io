@@ -2,47 +2,584 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
 <title>EngineerinChief | Prannay Nath</title>
 <link rel="icon" type="image/png" href="images/chieficon.png">
 
 <style>
-:root{--bg:#07111f;--panel:#10243e;--text:#eef6ff;--muted:#bdc9d8;--blue:#38bdf8;--gold:#fbbf24;--purple:#a78bfa;--red:#fb7185}
-*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{min-width:320px;min-height:100vh;padding:2rem 1.25rem;color:var(--text);font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 10% 15%,#38bdf829,transparent 30%),radial-gradient(circle at 90% 85%,#a78bfa29,transparent 32%),linear-gradient(135deg,var(--bg),var(--panel),#111827)}
-body:before{content:"";position:fixed;inset:0 0 auto;z-index:-1;height:4px;background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));box-shadow:0 0 18px var(--gold)}
-button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.site{width:min(1180px,100%);margin:auto}.container{display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-rows:auto 1fr;gap:1.5rem;padding:2rem;background:#0a1c32df;border:1px solid #ffffff24;border-radius:18px;box-shadow:0 24px 70px #0008;backdrop-filter:blur(18px)}
-.profile{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:center;text-align:center}.profile img{width:138px;height:138px;object-fit:cover;border:3px solid var(--gold);border-radius:50%;box-shadow:0 0 0 7px #fbbf241f,0 12px 28px #0008}.profile h1{margin:1rem 0 0;color:#fff;font-family:Georgia,"Times New Roman",serif;font-size:1.5rem}
-.tabs{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-self:start;gap:8px;padding:7px;background:#0003;border:1px solid #ffffff1c;border-radius:12px}.links{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-self:start;gap:9px;padding:0;margin:0;list-style:none}.content{grid-column:2;grid-row:2;min-width:0;align-self:start}
-.btn,.links a,.tab{display:inline-flex;align-items:center;justify-content:center;min-height:38px;height:38px;padding:8px 12px;color:var(--text);font:600 .76rem Arial,Helvetica,sans-serif;text-decoration:none;cursor:pointer;background:#ffffff0e;border:1px solid #ffffff29;border-radius:7px;transition:.2s}.links a{width:100%}.tab{width:100%;min-width:0;white-space:nowrap;background:transparent}.btn:hover,.links a:hover,.tab:hover{transform:translateY(-1px);color:#fff;background:#38bdf81f;border-color:var(--blue);box-shadow:0 6px 14px #0005}.tab.active{color:#142033;background:linear-gradient(135deg,var(--gold),#e9a91b);border-color:#fde68a;box-shadow:0 4px 10px #fbbf2433}.btn:disabled{cursor:not-allowed;opacity:.45;transform:none}
-.panel,.game{display:none}.panel.active,.game.active{display:block;animation:show .25s ease}@keyframes show{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}.card,.game{padding:1.5rem;text-align:center;background:#ffffff0a;border:1px solid #ffffff1c;border-left:3px solid var(--gold);border-radius:12px}.card p{max-width:720px;margin:0 auto .9rem;color:var(--muted);font-size:.84rem;line-height:1.7}.card p:first-child{color:#fff;font-size:.88rem}.skills{margin-top:1rem;padding-top:.9rem;border-top:1px solid #ffffff24}.skills span{display:inline-block;margin:5px 3px 0;padding:4px 8px;color:#dff5ff;font-size:.68rem;background:#38bdf81f;border:1px solid #38bdf838;border-radius:999px}
-.controls,.game-menu{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:13px}.game-menu{justify-content:center}.download{margin-left:auto}.viewer{height:min(68vh,580px);min-height:330px;padding:14px;overflow:auto;text-align:center;cursor:grab;touch-action:pan-x pan-y;background:#0004;border:1px solid #ffffff24;border-radius:12px}.viewer.drag{cursor:grabbing;user-select:none}.viewer.drag img{pointer-events:none}#cv-wrap{display:flex;flex-direction:column;align-items:center;width:100%;gap:16px;margin:auto;transition:width .2s}.cv-img{display:block;width:100%;height:auto;box-shadow:0 8px 20px #0008}
-.game{padding-bottom:2rem}.game h3{margin:0;color:var(--gold);font-size:1rem}.note,#status,#sl-status{width:100%;margin:.85rem auto 0;color:var(--muted);font-size:.78rem;line-height:1.45;text-align:center}.ttt{display:grid;grid-template-columns:repeat(3,70px);gap:8px;justify-content:center;margin:1rem auto}.cell{display:flex;align-items:center;justify-content:center;width:70px;height:70px;padding:0;font:700 1.85rem Arial;line-height:1;cursor:pointer;appearance:none;background:#ffffff17;border:1px solid #ffffff3d;border-radius:10px;transition:.2s}.cell:hover{transform:scale(1.04);background:#38bdf826;border-color:var(--blue)}
-.sl{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;width:min(100%,560px);margin:1rem auto;padding:5px;overflow:hidden;background:#06111e;border:2px solid #fbbf24a6;border-radius:12px;box-shadow:inset 0 0 22px #38bdf824}.sq{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;aspect-ratio:1;color:#152238;font-size:clamp(7px,1.5vw,10px);font-weight:bold;background:#f1f5f9;border-radius:3px}.snake{color:#7f1d1d;background:linear-gradient(135deg,#fee2e2,#fca5a5)}.ladder{color:#14532d;background:linear-gradient(135deg,#dcfce7,#86efac)}.sq b{position:absolute;right:3px;bottom:2px;font-size:clamp(10px,2.3vw,16px)}.player{position:absolute;width:clamp(11px,3vw,16px);height:clamp(11px,3vw,16px);background:var(--red);border:3px solid white;border-radius:50%;box-shadow:0 0 10px var(--red)}
-footer{width:100%;margin:1.5rem 0 0;color:#ffffffa8;font-size:.72rem;text-align:center}
-@media(max-width:920px){.container{grid-template-columns:180px minmax(0,1fr);padding:1.4rem}.profile img{width:120px;height:120px}}
-@media(max-width:760px){body{padding:1rem}.container{display:flex;flex-direction:column;gap:1.25rem;padding:1.2rem}.profile,.tabs,.links,.content{width:100%}.profile{order:1}.tabs{order:2;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:5px}.links{order:3}.content{order:4}.tab{min-height:38px;height:38px;padding:7px 3px;font-size:.66rem}.controls,.game-menu{justify-content:center}.download{margin-left:0}.viewer{height:62vh;min-height:300px;padding:8px}.ttt{grid-template-columns:repeat(3,72px)}.cell{width:72px;height:72px}.sl{width:100%;gap:2px;padding:4px}.sq{font-size:clamp(7px,2vw,10px)}}
-@media(max-width:380px){body{padding:.7rem}.container{padding:1rem}.tab{min-height:35px;height:35px;font-size:.58rem}.ttt{grid-template-columns:repeat(3,64px)}.cell{width:64px;height:64px;font-size:1.7rem}.sl{gap:1px;padding:3px}.sq{font-size:6px}.sq b{font-size:8px}}
+:root{
+	--bg:#07111f;
+	--panel:#10243e;
+	--card:#1a2d45;
+	--text:#eef6ff;
+	--muted:#bdc9d8;
+	--blue:#38bdf8;
+	--gold:#fbbf24;
+	--purple:#a78bfa;
+	--red:#fb7185;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+	min-height:100%;
+	margin:0;
+}
+
+body{
+	min-width:320px;
+	min-height:100vh;
+	padding:1.5rem;
+	color:var(--text);
+	font-family:Arial,Helvetica,sans-serif;
+	background:
+		radial-gradient(circle at 10% 15%,rgba(56,189,248,.15),transparent 30%),
+		radial-gradient(circle at 90% 85%,rgba(167,139,250,.15),transparent 32%),
+		linear-gradient(135deg,var(--bg),var(--panel),#111827);
+}
+
+body::before{
+	content:"";
+	position:fixed;
+	inset:0 0 auto;
+	z-index:-1;
+	height:4px;
+	background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));
+	box-shadow:0 0 18px var(--gold);
+}
+
+button,a{
+	-webkit-tap-highlight-color:transparent;
+}
+
+button:focus-visible,
+a:focus-visible{
+	outline:3px solid var(--gold);
+	outline-offset:3px;
+}
+
+.site{
+	width:min(1160px,100%);
+	margin:0 auto;
+}
+
+.container{
+	display:grid;
+	grid-template-columns:210px minmax(0,1fr);
+	grid-template-rows:auto auto 1fr;
+	gap:1.5rem;
+	padding:1.7rem;
+	background:rgba(10,28,50,.84);
+	border:1px solid rgba(255,255,255,.15);
+	border-radius:18px;
+	box-shadow:0 25px 60px rgba(0,0,0,.45);
+	backdrop-filter:blur(18px);
+	-webkit-backdrop-filter:blur(18px);
+}
+
+/* Professional top navigation */
+.top-nav{
+	grid-column:1 / -1;
+	grid-row:1;
+	display:flex;
+	justify-content:center;
+	gap:10px;
+	padding-bottom:1rem;
+	border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.nav-btn,
+.button,
+.social-links a{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	min-height:39px;
+	padding:8px 16px;
+	color:var(--text);
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:.76rem;
+	font-weight:600;
+	line-height:1;
+	text-decoration:none;
+	cursor:pointer;
+	background:rgba(255,255,255,.06);
+	border:1px solid rgba(255,255,255,.18);
+	border-radius:7px;
+	transition:.2s ease;
+}
+
+.nav-btn{
+	min-width:125px;
+}
+
+.nav-btn:hover,
+.button:hover,
+.social-links a:hover{
+	transform:translateY(-1px);
+	color:#fff;
+	background:rgba(56,189,248,.16);
+	border-color:var(--blue);
+	box-shadow:0 6px 14px rgba(0,0,0,.26);
+}
+
+.nav-btn.active{
+	color:#182033;
+	background:linear-gradient(135deg,var(--gold),#f59e0b);
+	border-color:#fde68a;
+	box-shadow:0 4px 11px rgba(251,191,36,.24);
+}
+
+.profile{
+	grid-column:1;
+	grid-row:2;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	text-align:center;
+}
+
+.profile img{
+	width:132px;
+	height:132px;
+	object-fit:cover;
+	border:3px solid var(--gold);
+	border-radius:50%;
+	box-shadow:
+		0 0 0 7px rgba(251,191,36,.12),
+		0 12px 28px rgba(0,0,0,.5);
+}
+
+.profile h1{
+	margin:1rem 0 0;
+	color:#fff;
+	font-family:Georgia,"Times New Roman",serif;
+	font-size:1.5rem;
+}
+
+/* Empty spacer keeps content aligned with first link */
+.desktop-spacer{
+	grid-column:2;
+	grid-row:2;
+	min-height:132px;
+}
+
+.social-links{
+	grid-column:1;
+	grid-row:3;
+	display:flex;
+	flex-direction:column;
+	align-self:start;
+	gap:9px;
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+.social-links a{
+	width:100%;
+}
+
+.content{
+	grid-column:2;
+	grid-row:3;
+	min-width:0;
+	align-self:start;
+}
+
+.tab-panel,
+.game{
+	display:none;
+}
+
+.tab-panel.active,
+.game.active{
+	display:block;
+	animation:show .25s ease;
+}
+
+@keyframes show{
+	from{
+		opacity:0;
+		transform:translateY(6px);
+	}
+	to{
+		opacity:1;
+		transform:none;
+	}
+}
+
+.card,
+.game{
+	width:100%;
+	padding:1.45rem;
+	text-align:center;
+	background:rgba(255,255,255,.05);
+	border:1px solid rgba(255,255,255,.12);
+	border-left:3px solid var(--gold);
+	border-radius:12px;
+}
+
+.card p{
+	max-width:720px;
+	margin:0 auto .85rem;
+	color:var(--muted);
+	font-size:.82rem;
+	line-height:1.65;
+}
+
+.card p:first-child{
+	color:#fff;
+	font-size:.86rem;
+}
+
+.skills{
+	margin-top:1rem;
+	padding-top:.9rem;
+	border-top:1px solid rgba(255,255,255,.14);
+}
+
+.skills span{
+	display:inline-block;
+	margin:5px 3px 0;
+	padding:4px 8px;
+	color:#dff5ff;
+	font-size:.68rem;
+	background:rgba(56,189,248,.12);
+	border:1px solid rgba(56,189,248,.22);
+	border-radius:999px;
+}
+
+.controls,
+.game-menu{
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+	gap:8px;
+	margin-bottom:13px;
+}
+
+.game-menu{
+	justify-content:center;
+}
+
+.download{
+	margin-left:auto;
+}
+
+.viewer{
+	height:min(68vh,580px);
+	min-height:330px;
+	padding:14px;
+	overflow:auto;
+	text-align:center;
+	cursor:grab;
+	touch-action:pan-x pan-y;
+	background:rgba(0,0,0,.24);
+	border:1px solid rgba(255,255,255,.14);
+	border-radius:12px;
+}
+
+.viewer.drag{
+	cursor:grabbing;
+	user-select:none;
+}
+
+.viewer.drag img{
+	pointer-events:none;
+}
+
+#cv-wrap{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	width:100%;
+	gap:16px;
+	margin:auto;
+	transition:width .2s ease;
+}
+
+.cv-img{
+	display:block;
+	width:100%;
+	height:auto;
+	box-shadow:0 8px 20px rgba(0,0,0,.55);
+}
+
+.game{
+	padding-bottom:2rem;
+}
+
+.game h3{
+	margin:0 0 .45rem;
+	color:var(--gold);
+	font-size:1rem;
+}
+
+.note,
+#status,
+#sl-status{
+	width:100%;
+	margin:.8rem auto 0;
+	color:var(--muted);
+	font-size:.77rem;
+	line-height:1.45;
+	text-align:center;
+}
+
+.ttt{
+	display:grid;
+	grid-template-columns:repeat(3,72px);
+	gap:8px;
+	justify-content:center;
+	margin:1rem auto;
+}
+
+.cell{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:72px;
+	height:72px;
+	padding:0;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:1.9rem;
+	font-weight:bold;
+	line-height:1;
+	text-align:center;
+	cursor:pointer;
+	appearance:none;
+	-webkit-appearance:none;
+	background:rgba(255,255,255,.09);
+	border:1px solid rgba(255,255,255,.24);
+	border-radius:10px;
+	transition:.2s ease;
+}
+
+.cell:hover{
+	transform:scale(1.04);
+	background:rgba(56,189,248,.16);
+	border-color:var(--blue);
+}
+
+.sl{
+	display:grid;
+	grid-template-columns:repeat(10,minmax(0,1fr));
+	gap:3px;
+	width:min(100%,560px);
+	margin:1rem auto;
+	padding:5px;
+	overflow:hidden;
+	background:#06111e;
+	border:2px solid rgba(251,191,36,.65);
+	border-radius:12px;
+	box-shadow:inset 0 0 22px rgba(56,189,248,.14);
+}
+
+.sq{
+	position:relative;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	min-width:0;
+	aspect-ratio:1 / 1;
+	color:#152238;
+	font-size:clamp(7px,1.5vw,10px);
+	font-weight:bold;
+	background:#f1f5f9;
+	border-radius:3px;
+}
+
+.snake{
+	color:#7f1d1d;
+	background:linear-gradient(135deg,#fee2e2,#fca5a5);
+}
+
+.ladder{
+	color:#14532d;
+	background:linear-gradient(135deg,#dcfce7,#86efac);
+}
+
+.sq b{
+	position:absolute;
+	right:3px;
+	bottom:2px;
+	font-size:clamp(10px,2.3vw,16px);
+}
+
+.player{
+	position:absolute;
+	width:clamp(11px,3vw,16px);
+	height:clamp(11px,3vw,16px);
+	background:var(--red);
+	border:3px solid white;
+	border-radius:50%;
+	box-shadow:0 0 10px var(--red);
+}
+
+.button:disabled{
+	cursor:not-allowed;
+	opacity:.45;
+	transform:none;
+	box-shadow:none;
+}
+
+footer{
+	width:100%;
+	margin:1.35rem 0 0;
+	color:rgba(255,255,255,.66);
+	font-size:.72rem;
+	text-align:center;
+}
+
+@media(max-width:800px){
+	body{
+		padding:1rem;
+	}
+
+	.container{
+		display:flex;
+		flex-direction:column;
+		gap:1.25rem;
+		padding:1.2rem;
+	}
+
+	.top-nav{
+		order:1;
+		width:100%;
+		gap:4px;
+		padding-bottom:1rem;
+	}
+
+	.nav-btn{
+		flex:1;
+		min-width:0;
+		padding:7px 3px;
+		font-size:.67rem;
+	}
+
+	.profile{
+		order:2;
+		width:100%;
+	}
+
+	.desktop-spacer{
+		display:none;
+	}
+
+	.social-links{
+		order:3;
+		width:100%;
+	}
+
+	.content{
+		order:4;
+		width:100%;
+	}
+
+	.controls,
+	.game-menu{
+		justify-content:center;
+	}
+
+	.download{
+		margin-left:0;
+	}
+
+	.viewer{
+		height:62vh;
+		min-height:300px;
+		padding:8px;
+	}
+
+	.ttt{
+		grid-template-columns:repeat(3,70px);
+	}
+
+	.cell{
+		width:70px;
+		height:70px;
+	}
+
+	.sl{
+		width:100%;
+		gap:2px;
+		padding:4px;
+	}
+
+	.sq{
+		font-size:clamp(7px,2vw,10px);
+	}
+
+	.sq b{
+		right:2px;
+		bottom:1px;
+		font-size:clamp(9px,3vw,15px);
+	}
+}
+
+@media(max-width:380px){
+	body{
+		padding:.7rem;
+	}
+
+	.container{
+		padding:1rem;
+	}
+
+	.nav-btn{
+		min-height:35px;
+		height:35px;
+		font-size:.58rem;
+	}
+
+	.ttt{
+		grid-template-columns:repeat(3,62px);
+	}
+
+	.cell{
+		width:62px;
+		height:62px;
+		font-size:1.65rem;
+	}
+
+	.sl{
+		gap:1px;
+		padding:3px;
+	}
+
+	.sq{
+		font-size:6px;
+	}
+
+	.sq b{
+		font-size:8px;
+	}
+}
 </style>
 </head>
 
 <body>
+
 <div class="site">
+
 	<div class="container">
+
+		<nav class="top-nav">
+			<button class="nav-btn active" type="button" onclick="openTab('intro')">Introduction</button>
+			<button class="nav-btn" type="button" onclick="openTab('cv')">CV</button>
+			<button class="nav-btn" type="button" onclick="openTab('games')">Games</button>
+		</nav>
 
 		<section class="profile">
 			<img src="images/Main_One.jpeg" alt="Prannay Nath">
 			<h1>Prannay Nath</h1>
 		</section>
 
-		<nav class="tabs">
-			<button class="tab active" type="button" data-tab="intro">Introduction</button>
-			<button class="tab" type="button" data-tab="cv">CV</button>
-			<button class="tab" type="button" data-tab="games">Games</button>
-		</nav>
+		<div class="desktop-spacer"></div>
 
-		<ul class="links">
+		<ul class="social-links">
 			<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener noreferrer">Python Projects</a></li>
 			<li><a href="https://github.com/engineerinchief" target="_blank" rel="noopener noreferrer">GitHub</a></li>
 			<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -53,11 +590,14 @@ footer{width:100%;margin:1.5rem 0 0;color:#ffffffa8;font-size:.72rem;text-align:
 
 		<main class="content">
 
-			<section id="intro" class="panel active">
+			<section id="intro" class="tab-panel active">
 				<div class="card">
 					<p><strong>Engineering and Management (EMB) B.Sc. Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+
 					<p>I am currently studying Engineering and Management (EMB) B.Sc. at Technische Hochschule Mannheim, Germany. My academic path combines engineering, management, mechatronics, data science, and strategic decision-making.</p>
+
 					<p>My interests include aerospace systems, defense technologies, simulation engineering, data analytics, software development, and advanced technology innovation.</p>
+
 					<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
 
 					<div class="skills">
@@ -72,12 +612,12 @@ footer{width:100%;margin:1.5rem 0 0;color:#ffffffa8;font-size:.72rem;text-align:
 				</div>
 			</section>
 
-			<section id="cv" class="panel">
+			<section id="cv" class="tab-panel">
 				<div class="controls">
-					<button class="btn" id="zin" type="button">➕ Zoom In</button>
-					<button class="btn" id="zout" type="button">➖ Zoom Out</button>
-					<button class="btn" id="zreset" type="button">↺ Reset</button>
-					<a class="btn download" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
+					<button class="button" type="button" onclick="zoomCV(0.2)">➕ Zoom In</button>
+					<button class="button" type="button" onclick="zoomCV(-0.2)">➖ Zoom Out</button>
+					<button class="button" type="button" onclick="resetCV()">↺ Reset</button>
+					<a class="button download" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
 				</div>
 
 				<div id="viewer" class="viewer">
@@ -88,10 +628,11 @@ footer{width:100%;margin:1.5rem 0 0;color:#ffffffa8;font-size:.72rem;text-align:
 				</div>
 			</section>
 
-			<section id="games" class="panel">
+			<section id="games" class="tab-panel">
+
 				<div class="game-menu">
-					<button class="btn" type="button" data-game="ttt-game">⭕ Tic Tac Toe</button>
-					<button class="btn" type="button" data-game="sl-game">🎲 Snake &amp; Ladder</button>
+					<button class="button" type="button" onclick="showGame('ttt-game')">⭕ Tic Tac Toe</button>
+					<button class="button" type="button" onclick="showGame('sl-game')">🎲 Snake &amp; Ladder</button>
 				</div>
 
 				<div id="ttt-game" class="game active">
@@ -99,166 +640,312 @@ footer{width:100%;margin:1.5rem 0 0;color:#ffffffa8;font-size:.72rem;text-align:
 					<p class="note">You are X. The bot is strategic but still beatable.</p>
 					<div id="ttt" class="ttt"></div>
 					<p id="status">Your turn. Jeetega bhai jeetega! 🏆</p>
-					<button id="ttt-reset" class="btn" type="button">Restart Game</button>
+					<button class="button" type="button" onclick="resetTTT()">Restart Game</button>
 				</div>
 
 				<div id="sl-game" class="game">
 					<h3>Snake &amp; Ladder: Hard Mode</h3>
 					<p class="note">Few ladders, many snakes, and exact roll required for 100.</p>
 					<div id="sl" class="sl"></div>
-					<button id="roll" class="btn" type="button">Roll Dice 🎲</button>
-					<button id="sl-reset" class="btn" type="button">Restart</button>
+					<button class="button" id="roll" type="button" onclick="rollDice()">Roll Dice 🎲</button>
+					<button class="button" type="button" onclick="resetSL()">Restart</button>
 					<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
 				</div>
+
 			</section>
 
 		</main>
+
 	</div>
 
-	<footer>© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief</footer>
+	<footer>
+		© 2026 Prannay Nath. All Rights Reserved. | @engineerinchief
+	</footer>
+
 </div>
 
 <script>
-const tabs=document.querySelectorAll(".tab"),panels=document.querySelectorAll(".panel");
-tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.classList.remove("active"));panels.forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active")});
+function openTab(tabId){
+	document.querySelectorAll(".tab-panel").forEach(panel=>{
+		panel.classList.remove("active");
+	});
 
-document.querySelectorAll("[data-game]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".game").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.game).classList.add("active")});
+	document.querySelectorAll(".nav-btn").forEach(button=>{
+		button.classList.remove("active");
+	});
 
-let zoom=1;
-const view=document.getElementById("viewer"),wrap=document.getElementById("cv-wrap");
-function setZoom(){wrap.style.width=(zoom*100)+"%"}
-document.getElementById("zin").onclick=()=>{zoom=Math.min(2.5,zoom+.2);setZoom()};
-document.getElementById("zout").onclick=()=>{zoom=Math.max(.6,zoom-.2);setZoom()};
-document.getElementById("zreset").onclick=()=>{zoom=1;setZoom();view.scrollTo(0,0)};
+	document.getElementById(tabId).classList.add("active");
 
-let drag=false,sx,sy,sl,st;
-view.onpointerdown=e=>{drag=true;sx=e.clientX;sy=e.clientY;sl=view.scrollLeft;st=view.scrollTop;view.classList.add("drag");if(view.setPointerCapture)view.setPointerCapture(e.pointerId)};
-view.onpointermove=e=>{if(drag){view.scrollLeft=sl-(e.clientX-sx);view.scrollTop=st-(e.clientY-sy)}};
-["pointerup","pointercancel","lostpointercapture"].forEach(x=>view.addEventListener(x,()=>{drag=false;view.classList.remove("drag")}));
+	const buttons=document.querySelectorAll(".nav-btn");
 
-const messages={
-win:["Mogambo khush hua! You won like a champion. 🏆🎉","Jeetega bhai jeetega... aur jeet gaya! 🔥🏆","Baap baap hota hai! Victory is yours. 😎🏆","Kya baat hai sirji! Absolute masterclass. 🎯🎉","Ek number! You played like a true champion. 💪🏆"],
-lose:["Bhai, kya kar raha hai tu? Bot wins! 🤖","Arre yaar! Bot ne game palat diya. 😭🤖","Picture abhi baaki hai mere dost. Try again! 🎬","System hang ho gaya kya? Bot takes this round. 🤖","Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"],
-draw:["All is well. It is a draw. 🤝","Takkkar ki thi! Nobody gives up. Draw. 🤝","Match tie ho gaya, but respect is real. 🤝","Dono players strong nikle. Draw! 💪","Game kehta hai: phir se khelo! It is a draw. 🔁"]
-};
-const last={win:-1,lose:-1,draw:-1};
-function phrase(t){let i;do{i=Math.floor(Math.random()*messages[t].length)}while(i===last[t]);last[t]=i;return messages[t][i]}
+	if(tabId==="intro") buttons[0].classList.add("active");
+	if(tabId==="cv") buttons[1].classList.add("active");
+	if(tabId==="games") buttons[2].classList.add("active");
+}
 
-let board=Array(9).fill(""),active=true;
-const ttt=document.getElementById("ttt"),status=document.getElementById("status");
-const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function showGame(gameId){
+	document.querySelectorAll(".game").forEach(game=>{
+		game.classList.remove("active");
+	});
 
-function winner(b){
-	for(const[a,c,d]of lines){
-		if(b[a]&&b[a]===b[c]&&b[a]===b[d])return b[a];
+	document.getElementById(gameId).classList.add("active");
+}
+
+let cvZoom=1;
+const viewer=document.getElementById("viewer");
+const cvWrap=document.getElementById("cv-wrap");
+
+function updateCVZoom(){
+	cvWrap.style.width=(cvZoom*100)+"%";
+}
+
+function zoomCV(value){
+	cvZoom=Math.max(.6,Math.min(2.5,cvZoom+value));
+	updateCVZoom();
+}
+
+function resetCV(){
+	cvZoom=1;
+	updateCVZoom();
+	viewer.scrollTo(0,0);
+}
+
+let dragging=false;
+let startX=0;
+let startY=0;
+let startLeft=0;
+let startTop=0;
+
+viewer.addEventListener("pointerdown",event=>{
+	dragging=true;
+	startX=event.clientX;
+	startY=event.clientY;
+	startLeft=viewer.scrollLeft;
+	startTop=viewer.scrollTop;
+
+	viewer.classList.add("drag");
+
+	if(viewer.setPointerCapture){
+		viewer.setPointerCapture(event.pointerId);
 	}
-	return b.includes("")?null:"draw";
+});
+
+viewer.addEventListener("pointermove",event=>{
+	if(!dragging)return;
+
+	viewer.scrollLeft=startLeft-(event.clientX-startX);
+	viewer.scrollTop=startTop-(event.clientY-startY);
+});
+
+["pointerup","pointercancel","lostpointercapture"].forEach(eventName=>{
+	viewer.addEventListener(eventName,()=>{
+		dragging=false;
+		viewer.classList.remove("drag");
+	});
+});
+
+const gamePhrases={
+	win:[
+		"Mogambo khush hua! You won like a champion. 🏆🎉",
+		"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
+		"Baap baap hota hai! Victory is yours. 😎🏆",
+		"Kya baat hai sirji! Absolute masterclass. 🎯🎉",
+		"Ek number! You played like a true champion. 💪🏆"
+	],
+	lose:[
+		"Bhai, kya kar raha hai tu? Bot wins! 🤖",
+		"Arre yaar! Bot ne game palat diya. 😭🤖",
+		"Picture abhi baaki hai mere dost. Try again! 🎬",
+		"System hang ho gaya kya? Bot takes this round. 🤖",
+		"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"
+	],
+	draw:[
+		"All is well. It is a draw. 🤝",
+		"Takkkar ki thi! Nobody gives up. Draw. 🤝",
+		"Match tie ho gaya, but respect is real. 🤝",
+		"Dono players strong nikle. Draw! 💪",
+		"Game kehta hai: phir se khelo! It is a draw. 🔁"
+	]
+};
+
+const previousPhrase={
+	win:-1,
+	lose:-1,
+	draw:-1
+};
+
+function getPhrase(type){
+	let index;
+
+	do{
+		index=Math.floor(Math.random()*gamePhrases[type].length);
+	}while(index===previousPhrase[type]);
+
+	previousPhrase[type]=index;
+	return gamePhrases[type][index];
+}
+
+let tttBoard=Array(9).fill("");
+let tttActive=true;
+
+const ttt=document.getElementById("ttt");
+const tttStatus=document.getElementById("status");
+
+const winningLines=[
+	[0,1,2],[3,4,5],[6,7,8],
+	[0,3,6],[1,4,7],[2,5,8],
+	[0,4,8],[2,4,6]
+];
+
+function checkWinner(board){
+	for(const [a,b,c] of winningLines){
+		if(board[a]&&board[a]===board[b]&&board[a]===board[c]){
+			return board[a];
+		}
+	}
+
+	return board.includes("")?null:"draw";
 }
 
 function drawTTT(){
 	ttt.innerHTML="";
-	board.forEach((v,i)=>{
-		const c=document.createElement("button");
-		c.type="button";
-		c.className="cell";
-		c.textContent=v;
-		c.style.color=v==="X"?"#fbbf24":"#38bdf8";
-		c.onclick=()=>play(i);
-		ttt.appendChild(c);
+
+	tttBoard.forEach((value,index)=>{
+		const cell=document.createElement("button");
+
+		cell.type="button";
+		cell.className="cell";
+		cell.textContent=value;
+		cell.style.color=value==="X"?"#fbbf24":"#38bdf8";
+		cell.onclick=()=>playerMove(index);
+
+		ttt.appendChild(cell);
 	});
 }
 
-function bot(){
-	const empty=board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+function chooseBotMove(){
+	const empty=tttBoard
+		.map((value,index)=>value===""?index:null)
+		.filter(index=>index!==null);
 
-	for(const i of empty){
-		board[i]="O";
-		if(winner(board)==="O"){
-			board[i]="";
-			return i;
+	for(const index of empty){
+		tttBoard[index]="O";
+
+		if(checkWinner(tttBoard)==="O"){
+			tttBoard[index]="";
+			return index;
 		}
-		board[i]="";
+
+		tttBoard[index]="";
 	}
 
-	for(const i of empty){
-		board[i]="X";
-		if(winner(board)==="X"){
-			board[i]="";
-			if(Math.random()<.88)return i;
+	for(const index of empty){
+		tttBoard[index]="X";
+
+		if(checkWinner(tttBoard)==="X"){
+			tttBoard[index]="";
+
+			if(Math.random()<.88){
+				return index;
+			}
+
 			break;
 		}
-		board[i]="";
+
+		tttBoard[index]="";
 	}
 
-	const strategic=[4,0,2,6,8].filter(i=>board[i]==="");
+	const strong=[4,0,2,6,8].filter(index=>tttBoard[index]==="");
 
-	if(strategic.length&&Math.random()<.78){
-		return strategic[Math.floor(Math.random()*strategic.length)];
+	if(strong.length&&Math.random()<.78){
+		return strong[Math.floor(Math.random()*strong.length)];
 	}
 
 	return empty[Math.floor(Math.random()*empty.length)];
 }
 
-function play(i){
-	if(!active||board[i])return;
+function playerMove(index){
+	if(!tttActive||tttBoard[index]!=="")return;
 
-	board[i]="X";
+	tttBoard[index]="X";
 	drawTTT();
 
-	let w=winner(board);
+	let winner=checkWinner(tttBoard);
 
-	if(w==="X"){
-		status.textContent=phrase("win");
-		active=false;
+	if(winner==="X"){
+		tttStatus.textContent=getPhrase("win");
+		tttActive=false;
 		return;
 	}
 
-	if(w==="draw"){
-		status.textContent=phrase("draw");
-		active=false;
+	if(winner==="draw"){
+		tttStatus.textContent=getPhrase("draw");
+		tttActive=false;
 		return;
 	}
 
-	active=false;
-	status.textContent="Bot is thinking... picture abhi baaki hai!";
+	tttActive=false;
+	tttStatus.textContent="Bot is thinking... picture abhi baaki hai!";
 
 	setTimeout(()=>{
-		board[bot()]="O";
+		const move=chooseBotMove();
+
+		if(move!==undefined){
+			tttBoard[move]="O";
+		}
+
 		drawTTT();
-		w=winner(board);
+		winner=checkWinner(tttBoard);
 
-		if(w==="O"){
-			status.textContent=phrase("lose");
+		if(winner==="O"){
+			tttStatus.textContent=getPhrase("lose");
 			return;
 		}
 
-		if(w==="draw"){
-			status.textContent=phrase("draw");
+		if(winner==="draw"){
+			tttStatus.textContent=getPhrase("draw");
 			return;
 		}
 
-		active=true;
-		status.textContent="Your turn. Jeetega bhai jeetega! 🏆";
+		tttActive=true;
+		tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
 	},450);
 }
 
-document.getElementById("ttt-reset").onclick=()=>{
-	board=Array(9).fill("");
-	active=true;
-	status.textContent="Your turn. Jeetega bhai jeetega! 🏆";
+function resetTTT(){
+	tttBoard=Array(9).fill("");
+	tttActive=true;
+	tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
 	drawTTT();
-};
+}
 
-let pos=0;
+let slPosition=0;
+
 const sl=document.getElementById("sl");
 const slStatus=document.getElementById("sl-status");
-const roll=document.getElementById("roll");
+const rollButton=document.getElementById("roll");
 
-const moves={
-	3:22,8:26,20:38,36:44,
-	14:4,17:6,29:8,41:19,47:25,
-	54:34,62:18,66:45,73:52,79:39,
-	84:42,87:24,92:70,95:56,98:35
+const slMoves={
+	3:22,
+	8:26,
+	20:38,
+	36:44,
+
+	14:4,
+	17:6,
+	29:8,
+	41:19,
+	47:25,
+	54:34,
+	62:18,
+	66:45,
+	73:52,
+	79:39,
+	84:42,
+	87:24,
+	92:70,
+	95:56,
+	98:35
 };
 
 function drawSL(){
@@ -266,17 +953,25 @@ function drawSL(){
 
 	for(let row=9;row>=0;row--){
 		for(let col=0;col<10;col++){
-			const n=row%2===0?row*10+col+1:row*10+10-col;
-			const d=moves[n];
+			const number=row%2===0
+				?row*10+col+1
+				:row*10+(9-col)+1;
+
+			const destination=slMoves[number];
 			const cell=document.createElement("div");
 
-			cell.className="sq"+(d?(d>n?" ladder":" snake"):"");
-			cell.innerHTML=n+(d?`<b>${d>n?"🪜":"🐍"}</b>`:"");
+			cell.className="sq";
 
-			if(n===pos){
-				const player=document.createElement("div");
-				player.className="player";
-				cell.appendChild(player);
+			if(destination){
+				cell.classList.add(destination>number?"ladder":"snake");
+			}
+
+			cell.innerHTML=`${number}${destination?`<b>${destination>number?"🪜":"🐍"}</b>`:""}`;
+
+			if(number===slPosition){
+				const token=document.createElement("div");
+				token.className="player";
+				cell.appendChild(token);
 			}
 
 			sl.appendChild(cell);
@@ -284,43 +979,43 @@ function drawSL(){
 	}
 }
 
-roll.onclick=()=>{
-	if(pos>=100)return;
+function rollDice(){
+	if(slPosition>=100)return;
 
-	const dice=Math.floor(Math.random()*6)+1;
-	let message=`You rolled ${dice}. `;
+	const roll=Math.floor(Math.random()*6)+1;
+	let message=`You rolled ${roll}. `;
 
-	if(pos+dice<=100){
-		pos+=dice;
+	if(slPosition+roll<=100){
+		slPosition+=roll;
 
-		if(moves[pos]){
-			const destination=moves[pos];
+		if(slMoves[slPosition]){
+			const destination=slMoves[slPosition];
 
-			message+=destination>pos
+			message+=destination>slPosition
 				?`Wah bhai wah! Ladder to ${destination}. 🪜`
 				:`Arre yaar! Snake to ${destination}. 🐍`;
 
-			pos=destination;
+			slPosition=destination;
 		}
 	}else{
 		message+="Exact number needed. Picture abhi baaki hai!";
 	}
 
-	if(pos===100){
-		message=phrase("win");
-		roll.disabled=true;
+	if(slPosition===100){
+		message=getPhrase("win");
+		rollButton.disabled=true;
 	}
 
 	slStatus.textContent=message;
 	drawSL();
-};
+}
 
-document.getElementById("sl-reset").onclick=()=>{
-	pos=0;
-	roll.disabled=false;
+function resetSL(){
+	slPosition=0;
+	rollButton.disabled=false;
 	slStatus.textContent="Roll the dice. Aaj kuch toofani karte hain!";
 	drawSL();
-};
+}
 
 drawTTT();
 drawSL();
