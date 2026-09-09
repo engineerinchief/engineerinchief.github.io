@@ -9,11 +9,13 @@
 	<style>
 		/* --- Layout Reset & Centering --- */
 		html, body {
-			height: auto !important;
+			height: 100% !important;
 			min-height: 100vh !important;
 			overflow-y: auto !important;
 			opacity: 1 !important;
 			background-color: #1e1e1e;
+			margin: 0;
+			padding: 0;
 		}
 
 		body.is-preload * {
@@ -25,8 +27,8 @@
 			display: flex !important;
 			flex-direction: column !important;
 			align-items: center !important;
-			justify-content: flex-start !important;
-			padding: 3rem 1.5rem !important;
+			justify-content: center !important;
+			padding: 2rem 1.5rem !important;
 			box-sizing: border-box !important;
 		}
 
@@ -308,9 +310,9 @@
 			margin-top: 10px;
 		}
 
-		/* --- Bottom Footer Outside Container --- */
+		/* --- Bottom Footer Completely Outside Layout Box --- */
 		#footer {
-			margin-top: 2rem !important;
+			margin-top: 1.5rem !important;
 			text-align: center !important;
 			width: 100% !important;
 		}
@@ -339,6 +341,7 @@
 
 <body>
 
+	<!-- Main Glass Layout Container -->
 	<div class="container">
 		
 		<!-- Left Column -->
@@ -425,7 +428,7 @@
 		</div>
 	</div>
 
-	<!-- Bottom Copyright Footer (Completely Outside Container) -->
+	<!-- Bottom Copyright Footer (Completely Outside All Layout Boxes) -->
 	<footer id="footer">
 		<ul class="copyright">
 			<li>&copy; 2026 Prannay Nath. All Rights Reserved. | @engineerinchief</li>
@@ -478,7 +481,6 @@
 			for (let i = 0; i < 9; i++) {
 				const cell = document.createElement('div');
 				cell.classList.add('ttt-cell');
-				cell.dataset.index = i;
 				cell.addEventListener('click', () => handleTTTClick(i));
 				boardElement.appendChild(cell);
 			}
@@ -503,9 +505,9 @@
 				return;
 			}
 
-			// Bot O Turn (Auto move)
+			// Bot O Turn
 			document.getElementById('ttt-status').innerText = "Bot's Turn (O)...";
-			tttGameActive = false; // Block user clicking during bot turn
+			tttGameActive = false; 
 
 			setTimeout(() => {
 				let emptyCells = [];
@@ -514,7 +516,6 @@
 				});
 
 				if (emptyCells.length > 0) {
-					// Pick a random available slot so it never repeats the same occupied space
 					let randomIdx = emptyCells[Math.floor(Math.random() * emptyCells.length)];
 					tttBoard[randomIdx] = 'O';
 					updateTTTUI();
@@ -532,11 +533,9 @@
 					}
 				}
 				
-				if (tttGameActive !== false) {
-					document.getElementById('ttt-status').innerText = "Your Turn (X)";
-					tttGameActive = true;
-				}
-			}, 400); // Small natural delay for the bot
+				document.getElementById('ttt-status').innerText = "Your Turn (X)";
+				tttGameActive = true;
+			}, 400); 
 		}
 
 		function updateTTTUI() {
@@ -571,8 +570,8 @@
 		let slPosition = 0;
 		const slBoard = document.getElementById('sl-board');
 		const slMoves = {
-			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100, // Ladders
-			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79  // Snakes
+			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100, 
+			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79  
 		};
 
 		function initSL() {
@@ -614,7 +613,8 @@
 			if (slPosition + roll <= 100) {
 				slPosition += roll;
 				if (slMoves[slPosition]) {
-					statusMsg += slMoves[slPosition] > num ? "Climbed ladder! 🪜" : "Bit by snake! 🐍";
+					let isLadder = slMoves[slPosition] > slPosition;
+					statusMsg += isLadder ? "Climbed ladder! 🪜" : "Bit by snake! 🐍";
 					slPosition = slMoves[slPosition];
 				}
 			}
@@ -634,7 +634,7 @@
 			updateSLPlayerPosition();
 		}
 
-		// Initialize Games
+		// Initialize Games on load
 		initTTT();
 		initSL();
 	</script>
