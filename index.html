@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
+<meta name="description" content="Portfolio of Prannay Nath — Engineering and Management student, Python programmer, and data analyst.">
 <title>EngineerinChief</title>
 <link rel="icon" href="images/chieficon.png">
 
@@ -19,11 +20,19 @@
 	--purple:#a78bfa;
 	--red:#fb7185;
 
-	/* Professional desktop measurements */
+	/* Layout dimensions */
 	--sidebar-width:210px;
 	--content-width:650px;
-	--column-gap:24px;
+	--profile-image-size:128px;
 	--link-height:42px;
+
+	/* Consistent spacing */
+	--space-1:6px;
+	--space-2:10px;
+	--space-3:14px;
+	--space-4:18px;
+	--space-5:24px;
+	--space-6:32px;
 }
 
 *{
@@ -41,11 +50,11 @@ body{
 	min-height:100vh;
 	padding:2rem 1.25rem;
 	color:var(--text);
-	font-family:Arial,Helvetica,sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
 	background:
-		radial-gradient(circle at 10% 15%,rgba(56,189,248,.16),transparent 30%),
-		radial-gradient(circle at 90% 85%,rgba(167,139,250,.16),transparent 32%),
-		linear-gradient(135deg,var(--bg),var(--panel),#111827);
+		radial-gradient(circle at 10% 15%, rgba(56,189,248,.16), transparent 30%),
+		radial-gradient(circle at 90% 85%, rgba(167,139,250,.16), transparent 32%),
+		linear-gradient(135deg, var(--bg), var(--panel), #111827);
 }
 
 body::before{
@@ -56,7 +65,7 @@ body::before{
 	width:100%;
 	height:4px;
 	content:"";
-	background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));
+	background:linear-gradient(90deg, var(--blue), var(--gold), var(--purple));
 	box-shadow:0 0 18px var(--gold);
 }
 
@@ -72,18 +81,39 @@ a:focus-visible{
 }
 
 .site{
-	width:min(940px,100%);
+	width:min(940px, 100%);
 	margin:0 auto;
 }
 
+/* =====================================================
+   MAIN LAYOUT
+   ===================================================== */
+
 .layout{
 	display:grid;
-	grid-template-columns:var(--sidebar-width) var(--content-width);
-	grid-template-rows:142px auto;
-	column-gap:var(--column-gap);
-	row-gap:14px;
+	grid-template-areas:
+		"profile tabs"
+		"links content";
+
+	/*
+		max-content fixes the overlapping problem.
+		The profile row expands naturally for:
+		image + title margin + title height.
+	*/
+	grid-template-columns:
+		minmax(180px, var(--sidebar-width))
+		minmax(0, var(--content-width));
+
+	grid-template-rows:
+		max-content
+		minmax(0, 1fr);
+
+	column-gap:var(--space-5);
+	row-gap:var(--space-4);
 	justify-content:center;
-	padding:1.6rem;
+	align-items:start;
+
+	padding:var(--space-5);
 	background:rgba(10,28,50,.84);
 	border:1px solid rgba(255,255,255,.16);
 	border-radius:20px;
@@ -93,18 +123,20 @@ a:focus-visible{
 }
 
 /* =====================================================
-   LEFT TOP: PHOTO AND NAME
+   PROFILE
    ===================================================== */
 
 .profile{
-	grid-column:1;
-	grid-row:1;
+	grid-area:profile;
+	width:100%;
 	text-align:center;
 }
 
 .profile img{
-	width:128px;
-	height:128px;
+	display:block;
+	width:var(--profile-image-size);
+	height:var(--profile-image-size);
+	margin-inline:auto;
 	object-fit:cover;
 	border:3px solid var(--gold);
 	border-radius:50%;
@@ -114,25 +146,28 @@ a:focus-visible{
 }
 
 .profile h1{
-	margin:.85rem 0 0;
+	max-width:100%;
+	margin:var(--space-3) auto 0;
 	color:#fff;
-	font-family:Georgia,"Times New Roman",serif;
-	font-size:1.45rem;
+	font-family:Georgia, "Times New Roman", serif;
+	font-size:clamp(1.25rem, 2.4vw, 1.45rem);
+	line-height:1.15;
+	letter-spacing:-.02em;
+	overflow-wrap:anywhere;
 }
 
 /* =====================================================
-   RIGHT TOP: TABS
+   TABS
    ===================================================== */
 
 .tabs{
-	grid-column:2;
-	grid-row:1;
+	grid-area:tabs;
 	display:grid;
-	grid-template-columns:repeat(3,1fr);
+	grid-template-columns:repeat(3, minmax(0, 1fr));
 	align-self:center;
-	gap:7px;
+	gap:var(--space-1);
 	width:100%;
-	padding:6px;
+	padding:var(--space-1);
 	background:rgba(0,0,0,.2);
 	border:1px solid rgba(255,255,255,.12);
 	border-radius:12px;
@@ -142,14 +177,16 @@ a:focus-visible{
 	height:40px;
 	padding:7px 10px;
 	color:var(--text);
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:.76rem;
-	font-weight:600;
+	font:600 .76rem/1 Arial, Helvetica, sans-serif;
 	cursor:pointer;
 	background:transparent;
 	border:1px solid transparent;
 	border-radius:8px;
-	transition:.2s ease;
+	transition:
+		background .2s ease,
+		border-color .2s ease,
+		color .2s ease,
+		box-shadow .2s ease;
 }
 
 .tab:hover{
@@ -160,21 +197,21 @@ a:focus-visible{
 
 .tab.active{
 	color:#172033;
-	background:linear-gradient(135deg,var(--gold),#f59e0b);
+	background:linear-gradient(135deg, var(--gold), #f59e0b);
 	border-color:#fde68a;
 	box-shadow:0 4px 11px rgba(251,191,36,.24);
 }
 
 /* =====================================================
-   LEFT BOTTOM: LINKS
+   SIDEBAR LINKS
    ===================================================== */
 
 .links{
-	grid-column:1;
-	grid-row:2;
+	grid-area:links;
 	display:flex;
 	flex-direction:column;
-	gap:9px;
+	gap:var(--space-2);
+	width:100%;
 	padding:0;
 	margin:0;
 	list-style:none;
@@ -192,16 +229,18 @@ a:focus-visible{
 	min-height:var(--link-height);
 	padding:8px 12px;
 	color:var(--text);
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:.76rem;
-	font-weight:600;
-	line-height:1;
+	font:600 .76rem/1 Arial, Helvetica, sans-serif;
 	text-decoration:none;
 	cursor:pointer;
 	background:rgba(255,255,255,.07);
 	border:1px solid rgba(255,255,255,.2);
 	border-radius:8px;
-	transition:.2s ease;
+	transition:
+		transform .2s ease,
+		background .2s ease,
+		border-color .2s ease,
+		box-shadow .2s ease,
+		color .2s ease;
 }
 
 .links a:hover,
@@ -221,12 +260,11 @@ a:focus-visible{
 }
 
 /* =====================================================
-   RIGHT BOTTOM: DIALOG CONTENT
+   CONTENT PANELS
    ===================================================== */
 
 .content{
-	grid-column:2;
-	grid-row:2;
+	grid-area:content;
 	width:100%;
 	min-width:0;
 }
@@ -253,14 +291,10 @@ a:focus-visible{
 	}
 }
 
-/*
-	The first dialog line aligns with Python Projects.
-	Card top and first link top share the same grid row.
-*/
 .dialog{
 	width:100%;
 	min-height:var(--link-height);
-	padding:11px 18px 22px;
+	padding:11px var(--space-4) 22px;
 	text-align:left;
 	background:rgba(255,255,255,.055);
 	border:1px solid rgba(255,255,255,.14);
@@ -270,7 +304,7 @@ a:focus-visible{
 }
 
 .dialog-title{
-	margin:0 0 14px;
+	margin:0 0 var(--space-3);
 	color:#fff;
 	font-size:.85rem;
 	font-weight:700;
@@ -397,7 +431,7 @@ a:focus-visible{
 
 .ttt{
 	display:grid;
-	grid-template-columns:repeat(3,72px);
+	grid-template-columns:repeat(3, 72px);
 	justify-content:center;
 	gap:8px;
 	margin:16px auto;
@@ -407,17 +441,20 @@ a:focus-visible{
 	width:72px;
 	height:72px;
 	color:#fff;
-	font-family:Arial,Helvetica,sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
 	font-size:1.9rem;
 	font-weight:bold;
 	cursor:pointer;
 	background:rgba(255,255,255,.09);
 	border:1px solid rgba(255,255,255,.24);
 	border-radius:10px;
-	transition:.2s ease;
+	transition:
+		transform .2s ease,
+		background .2s ease,
+		border-color .2s ease;
 }
 
-.cell:hover{
+.cell:hover:not(:disabled){
 	transform:scale(1.04);
 	background:rgba(56,189,248,.16);
 	border-color:var(--blue);
@@ -425,9 +462,9 @@ a:focus-visible{
 
 .sl{
 	display:grid;
-	grid-template-columns:repeat(10,minmax(0,1fr));
+	grid-template-columns:repeat(10, minmax(0, 1fr));
 	gap:3px;
-	width:min(100%,530px);
+	width:min(100%, 530px);
 	margin:16px auto;
 	padding:5px;
 	background:#06111e;
@@ -442,25 +479,25 @@ a:focus-visible{
 	justify-content:center;
 	aspect-ratio:1;
 	color:#152238;
-	font-size:clamp(7px,1.5vw,10px);
+	font-size:clamp(7px, 1.5vw, 10px);
 	font-weight:bold;
 	background:#f1f5f9;
 	border-radius:3px;
 }
 
 .snake{
-	background:linear-gradient(135deg,#fee2e2,#fca5a5);
+	background:linear-gradient(135deg, #fee2e2, #fca5a5);
 }
 
 .ladder{
-	background:linear-gradient(135deg,#dcfce7,#86efac);
+	background:linear-gradient(135deg, #dcfce7, #86efac);
 }
 
 .sq b{
 	position:absolute;
 	right:2px;
 	bottom:1px;
-	font-size:clamp(9px,2.2vw,15px);
+	font-size:clamp(9px, 2.2vw, 15px);
 }
 
 .player{
@@ -490,14 +527,21 @@ footer{
 	}
 
 	.site{
-		width:min(700px,100%);
+		width:min(700px, 100%);
 	}
 
 	.layout{
 		display:flex;
 		flex-direction:column;
-		gap:18px;
-		padding:1.2rem;
+		gap:var(--space-4);
+		padding:var(--space-4);
+	}
+
+	.profile,
+	.tabs,
+	.links,
+	.content{
+		width:100%;
 	}
 
 	.profile{
@@ -506,17 +550,14 @@ footer{
 
 	.tabs{
 		order:2;
-		width:100%;
 	}
 
 	.links{
 		order:3;
-		width:100%;
 	}
 
 	.content{
 		order:4;
-		width:100%;
 	}
 
 	.tab{
@@ -538,7 +579,7 @@ footer{
 	}
 
 	.dialog{
-		padding:11px 14px 20px;
+		padding:11px var(--space-3) 20px;
 	}
 }
 
@@ -558,7 +599,7 @@ footer{
 	}
 
 	.ttt{
-		grid-template-columns:repeat(3,62px);
+		grid-template-columns:repeat(3, 62px);
 	}
 
 	.cell{
@@ -580,30 +621,109 @@ footer{
 
 	<div class="layout">
 
-		<section class="profile">
+		<section class="profile" aria-label="Profile">
 			<img src="images/Main_One.jpeg" alt="Prannay Nath">
 			<h1>Prannay Nath</h1>
 		</section>
 
-		<nav class="tabs">
-			<button class="tab active" type="button" data-tab="intro">Introduction</button>
-			<button class="tab" type="button" data-tab="cv">CV</button>
-			<button class="tab" type="button" data-tab="games">Games</button>
+		<nav class="tabs" aria-label="Portfolio sections" role="tablist">
+			<button
+				class="tab active"
+				id="intro-tab"
+				type="button"
+				role="tab"
+				aria-selected="true"
+				aria-controls="intro"
+				data-tab="intro">
+				Introduction
+			</button>
+
+			<button
+				class="tab"
+				id="cv-tab"
+				type="button"
+				role="tab"
+				aria-selected="false"
+				aria-controls="cv"
+				data-tab="cv">
+				CV
+			</button>
+
+			<button
+				class="tab"
+				id="games-tab"
+				type="button"
+				role="tab"
+				aria-selected="false"
+				aria-controls="games"
+				data-tab="games">
+				Games
+			</button>
 		</nav>
 
-		<ul class="links">
-			<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python Projects</a></li>
-			<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
-			<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
-			<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
-			<li><a href="https://x.com/ingenieurchef" target="_blank">X / Twitter</a></li>
-			<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
+		<ul class="links" aria-label="External links">
+			<li>
+				<a
+					href="https://github.com/engineerinchief/Python-Programme"
+					target="_blank"
+					rel="noopener noreferrer">
+					Python Projects
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="https://github.com/engineerinchief"
+					target="_blank"
+					rel="noopener noreferrer">
+					GitHub
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="https://www.linkedin.com/in/engineerinchief"
+					target="_blank"
+					rel="noopener noreferrer">
+					LinkedIn
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="https://instagram.com/engineerinchief"
+					target="_blank"
+					rel="noopener noreferrer">
+					Instagram
+				</a>
+			</li>
+
+			<li>
+				<a
+					href="https://x.com/ingenieurchef"
+					target="_blank"
+					rel="noopener noreferrer">
+					X / Twitter
+				</a>
+			</li>
+
+			<li>
+				<a href="mailto:prannay.nath@outlook.co.nz">
+					Email Me
+				</a>
+			</li>
 		</ul>
 
 		<main class="content">
 
-			<section id="intro" class="panel active">
+			<section
+				id="intro"
+				class="panel active"
+				role="tabpanel"
+				aria-labelledby="intro-tab">
+
 				<div class="dialog">
+
 					<p class="dialog-title">
 						Engineering and Management (EMB) B.Sc. Student |
 						Aerospace &amp; Defense Enthusiast |
@@ -639,67 +759,117 @@ footer{
 						<span class="skill">Inventor</span>
 						<span class="skill">Engineering Management</span>
 					</div>
+
 				</div>
 			</section>
 
-			<section id="cv" class="panel">
+			<section
+				id="cv"
+				class="panel"
+				role="tabpanel"
+				aria-labelledby="cv-tab"
+				hidden>
 
 				<div class="cv-controls">
-					<button class="button" id="zoom-in" type="button">➕ Zoom In</button>
-					<button class="button" id="zoom-out" type="button">➖ Zoom Out</button>
-					<button class="button" id="zoom-reset" type="button">↺ Reset</button>
+					<button class="button" id="zoom-in" type="button">
+						➕ Zoom In
+					</button>
 
-					<a class="button download"
-					   href="Documents/Prannay_CV_MA.pdf"
-					   download>
+					<button class="button" id="zoom-out" type="button">
+						➖ Zoom Out
+					</button>
+
+					<button class="button" id="zoom-reset" type="button">
+						↺ Reset
+					</button>
+
+					<a
+						class="button download"
+						href="Documents/Prannay_CV_MA.pdf"
+						download>
 						Download CV
 					</a>
 				</div>
 
-				<div class="viewer" id="viewer">
+				<div class="viewer" id="viewer" aria-label="CV document viewer">
 					<div id="cv-wrap">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
+						<img
+							class="cv-image"
+							src="Documents/Prannay_CV_MA-1.png"
+							alt="Prannay Nath CV, page 1">
+
+						<img
+							class="cv-image"
+							src="Documents/Prannay_CV_MA-2.png"
+							alt="Prannay Nath CV, page 2">
 					</div>
 				</div>
 
 			</section>
 
-			<section id="games" class="panel">
+			<section
+				id="games"
+				class="panel"
+				role="tabpanel"
+				aria-labelledby="games-tab"
+				hidden>
 
-				<div class="game-menu">
-					<button class="button game-select" type="button" data-game="ttt-game">
+				<div class="game-menu" aria-label="Game selection">
+					<button
+						class="button game-select"
+						type="button"
+						data-game="ttt-game">
 						⭕ Tic Tac Toe
 					</button>
 
-					<button class="button game-select" type="button" data-game="sl-game">
+					<button
+						class="button game-select"
+						type="button"
+						data-game="sl-game">
 						🎲 Snake &amp; Ladder
 					</button>
 				</div>
 
 				<div id="ttt-game" class="game active">
 					<div class="dialog">
-						<h3>Tic Tac Toe: Hard Mode</h3>
-						<p class="note">You are X. The bot is strategic but still beatable.</p>
 
-						<div id="ttt" class="ttt"></div>
+						<h3>Tic Tac Toe: Hard Mode</h3>
+
+						<p class="note">
+							You are X. The bot is strategic but still beatable.
+						</p>
+
+						<div
+							id="ttt"
+							class="ttt"
+							aria-label="Tic Tac Toe board">
+						</div>
 
 						<button class="button" id="ttt-reset" type="button">
 							Restart Game
 						</button>
 
-						<p class="status" id="ttt-status">
+						<p class="status" id="ttt-status" aria-live="polite">
 							Your turn. Jeetega bhai jeetega! 🏆
 						</p>
+
 					</div>
 				</div>
 
 				<div id="sl-game" class="game">
 					<div class="dialog">
-						<h3>Snake &amp; Ladder: Hard Mode</h3>
-						<p class="note">Few ladders, many snakes, and an exact roll is needed for 100.</p>
 
-						<div id="sl" class="sl"></div>
+						<h3>Snake &amp; Ladder: Hard Mode</h3>
+
+						<p class="note">
+							Few ladders, many snakes, and an exact roll is needed for 100.
+						</p>
+
+						<div
+							id="sl"
+							class="sl"
+							aria-label="Snake and Ladder board">
+						</div>
 
 						<button class="button" id="roll" type="button">
 							Roll Dice 🎲
@@ -709,9 +879,10 @@ footer{
 							Restart
 						</button>
 
-						<p class="status" id="sl-status">
+						<p class="status" id="sl-status" aria-live="polite">
 							Roll the dice. Aaj kuch toofani karte hain!
 						</p>
+
 					</div>
 				</div>
 
@@ -728,119 +899,159 @@ footer{
 </div>
 
 <script>
-const tabs=document.querySelectorAll(".tab");
-const panels=document.querySelectorAll(".panel");
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".panel");
 
-tabs.forEach(tab=>{
-	tab.addEventListener("click",()=>{
-		tabs.forEach(button=>button.classList.remove("active"));
-		panels.forEach(panel=>panel.classList.remove("active"));
+tabs.forEach(tab => {
+	tab.addEventListener("click", () => {
+
+		tabs.forEach(button => {
+			button.classList.remove("active");
+			button.setAttribute("aria-selected", "false");
+		});
+
+		panels.forEach(panel => {
+			panel.classList.remove("active");
+			panel.hidden = true;
+		});
 
 		tab.classList.add("active");
-		document.getElementById(tab.dataset.tab).classList.add("active");
+		tab.setAttribute("aria-selected", "true");
+
+		const selectedPanel = document.getElementById(tab.dataset.tab);
+
+		selectedPanel.hidden = false;
+		selectedPanel.classList.add("active");
 	});
 });
 
-const gameButtons=document.querySelectorAll(".game-select");
-const games=document.querySelectorAll(".game");
+const gameButtons = document.querySelectorAll(".game-select");
+const games = document.querySelectorAll(".game");
 
-gameButtons.forEach(button=>{
-	button.addEventListener("click",()=>{
-		games.forEach(game=>game.classList.remove("active"));
+gameButtons.forEach(button => {
+	button.addEventListener("click", () => {
+		games.forEach(game => game.classList.remove("active"));
 		document.getElementById(button.dataset.game).classList.add("active");
 	});
 });
 
-let zoom=1;
+/* =====================================================
+   CV ZOOM AND DRAG
+   ===================================================== */
 
-const viewer=document.getElementById("viewer");
-const cvWrap=document.getElementById("cv-wrap");
+let zoom = 1;
+
+const viewer = document.getElementById("viewer");
+const cvWrap = document.getElementById("cv-wrap");
 
 function updateZoom(){
-	cvWrap.style.width=(zoom*100)+"%";
+	cvWrap.style.width = `${zoom * 100}%`;
 }
 
-document.getElementById("zoom-in").addEventListener("click",()=>{
-	zoom=Math.min(2.5,zoom+.2);
+document.getElementById("zoom-in").addEventListener("click", () => {
+	zoom = Math.min(2.5, zoom + .2);
 	updateZoom();
 });
 
-document.getElementById("zoom-out").addEventListener("click",()=>{
-	zoom=Math.max(.6,zoom-.2);
+document.getElementById("zoom-out").addEventListener("click", () => {
+	zoom = Math.max(.6, zoom - .2);
 	updateZoom();
 });
 
-document.getElementById("zoom-reset").addEventListener("click",()=>{
-	zoom=1;
+document.getElementById("zoom-reset").addEventListener("click", () => {
+	zoom = 1;
 	updateZoom();
-	viewer.scrollTo(0,0);
+	viewer.scrollTo(0, 0);
 });
 
-let dragging=false;
-let startX=0;
-let startY=0;
-let startLeft=0;
-let startTop=0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+let startLeft = 0;
+let startTop = 0;
 
-viewer.addEventListener("pointerdown",event=>{
-	dragging=true;
-	startX=event.clientX;
-	startY=event.clientY;
-	startLeft=viewer.scrollLeft;
-	startTop=viewer.scrollTop;
+viewer.addEventListener("pointerdown", event => {
+	dragging = true;
+	startX = event.clientX;
+	startY = event.clientY;
+	startLeft = viewer.scrollLeft;
+	startTop = viewer.scrollTop;
 
 	viewer.classList.add("dragging");
 	viewer.setPointerCapture(event.pointerId);
 });
 
-viewer.addEventListener("pointermove",event=>{
-	if(!dragging)return;
+viewer.addEventListener("pointermove", event => {
+	if(!dragging) return;
 
-	viewer.scrollLeft=startLeft-(event.clientX-startX);
-	viewer.scrollTop=startTop-(event.clientY-startY);
+	viewer.scrollLeft = startLeft - (event.clientX - startX);
+	viewer.scrollTop = startTop - (event.clientY - startY);
 });
 
-["pointerup","pointercancel","lostpointercapture"].forEach(eventName=>{
-	viewer.addEventListener(eventName,()=>{
-		dragging=false;
+["pointerup", "pointercancel", "lostpointercapture"].forEach(eventName => {
+	viewer.addEventListener(eventName, () => {
+		dragging = false;
 		viewer.classList.remove("dragging");
 	});
 });
 
-const ttt=document.getElementById("ttt");
-const tttStatus=document.getElementById("ttt-status");
+/* =====================================================
+   TIC TAC TOE
+   ===================================================== */
 
-let board=Array(9).fill("");
-let playing=true;
+const ttt = document.getElementById("ttt");
+const tttStatus = document.getElementById("ttt-status");
 
-const lines=[
-	[0,1,2],[3,4,5],[6,7,8],
-	[0,3,6],[1,4,7],[2,5,8],
-	[0,4,8],[2,4,6]
+let board = Array(9).fill("");
+let playing = true;
+
+const lines = [
+	[0,1,2],
+	[3,4,5],
+	[6,7,8],
+	[0,3,6],
+	[1,4,7],
+	[2,5,8],
+	[0,4,8],
+	[2,4,6]
 ];
 
 function winner(currentBoard){
-	for(const [a,b,c] of lines){
-		if(currentBoard[a]&&currentBoard[a]===currentBoard[b]&&currentBoard[a]===currentBoard[c]){
+	for(const [a, b, c] of lines){
+		if(
+			currentBoard[a] &&
+			currentBoard[a] === currentBoard[b] &&
+			currentBoard[a] === currentBoard[c]
+		){
 			return currentBoard[a];
 		}
 	}
 
-	return currentBoard.includes("")?null:"draw";
+	return currentBoard.includes("") ? null : "draw";
 }
 
 function drawTTT(){
-	ttt.innerHTML="";
+	ttt.innerHTML = "";
 
-	board.forEach((value,index)=>{
-		const cell=document.createElement("button");
+	board.forEach((value, index) => {
+		const cell = document.createElement("button");
 
-		cell.className="cell";
-		cell.type="button";
-		cell.textContent=value;
-		cell.style.color=value==="X"?"#fbbf24":"#38bdf8";
+		cell.className = "cell";
+		cell.type = "button";
+		cell.textContent = value;
 
-		cell.addEventListener("click",()=>{
+		cell.disabled = !playing || value !== "";
+
+		cell.setAttribute(
+			"aria-label",
+			value
+				? `Cell ${index + 1}: ${value}`
+				: `Cell ${index + 1}: empty`
+		);
+
+		cell.style.color = value === "X" ? "#fbbf24" : "#38bdf8";
+
+		cell.addEventListener("click", () => {
 			playMove(index);
 		});
 
@@ -849,99 +1060,116 @@ function drawTTT(){
 }
 
 function botMove(){
-	const empty=board
-		.map((value,index)=>value===""?index:null)
-		.filter(index=>index!==null);
+	const empty = board
+		.map((value, index) => value === "" ? index : null)
+		.filter(index => index !== null);
 
+	/* Bot wins if possible */
 	for(const index of empty){
-		board[index]="O";
+		board[index] = "O";
 
-		if(winner(board)==="O"){
-			board[index]="";
+		if(winner(board) === "O"){
+			board[index] = "";
 			return index;
 		}
 
-		board[index]="";
+		board[index] = "";
 	}
 
+	/* Bot blocks player if needed */
 	for(const index of empty){
-		board[index]="X";
+		board[index] = "X";
 
-		if(winner(board)==="X"){
-			board[index]="";
+		if(winner(board) === "X"){
+			board[index] = "";
 			return index;
 		}
 
-		board[index]="";
+		board[index] = "";
 	}
 
-	const good=[4,0,2,6,8].filter(index=>board[index]==="");
+	/* Prefer centre and corners */
+	const good = [4, 0, 2, 6, 8].filter(index => board[index] === "");
 
-	if(good.length&&Math.random()<.75){
-		return good[Math.floor(Math.random()*good.length)];
+	if(good.length && Math.random() < .75){
+		return good[Math.floor(Math.random() * good.length)];
 	}
 
-	return empty[Math.floor(Math.random()*empty.length)];
+	return empty[Math.floor(Math.random() * empty.length)];
 }
 
 function playMove(index){
-	if(!playing||board[index]!=="")return;
+	if(!playing || board[index] !== "") return;
 
-	board[index]="X";
-	drawTTT();
+	board[index] = "X";
 
-	let result=winner(board);
+	let result = winner(board);
 
-	if(result==="X"){
-		tttStatus.textContent="Mogambo khush hua! You won! 🏆";
-		playing=false;
-		return;
-	}
-
-	if(result==="draw"){
-		tttStatus.textContent="It is a draw. 🤝";
-		playing=false;
-		return;
-	}
-
-	playing=false;
-	tttStatus.textContent="Bot is thinking...";
-
-	setTimeout(()=>{
-		board[botMove()]="O";
+	if(result === "X"){
+		playing = false;
 		drawTTT();
+		tttStatus.textContent = "Mogambo khush hua! You won! 🏆";
+		return;
+	}
 
-		result=winner(board);
+	if(result === "draw"){
+		playing = false;
+		drawTTT();
+		tttStatus.textContent = "It is a draw. 🤝";
+		return;
+	}
 
-		if(result==="O"){
-			tttStatus.textContent="Bot wins! Picture abhi baaki hai. 🤖";
+	playing = false;
+	drawTTT();
+	tttStatus.textContent = "Bot is thinking...";
+
+	setTimeout(() => {
+		const move = botMove();
+
+		if(move !== undefined){
+			board[move] = "O";
+		}
+
+		result = winner(board);
+
+		if(result === "O"){
+			playing = false;
+			drawTTT();
+			tttStatus.textContent = "Bot wins! Picture abhi baaki hai. 🤖";
 			return;
 		}
 
-		if(result==="draw"){
-			tttStatus.textContent="It is a draw. 🤝";
+		if(result === "draw"){
+			playing = false;
+			drawTTT();
+			tttStatus.textContent = "It is a draw. 🤝";
 			return;
 		}
 
-		playing=true;
-		tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
-	},400);
+		playing = true;
+		drawTTT();
+		tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
+	}, 400);
 }
 
-document.getElementById("ttt-reset").addEventListener("click",()=>{
-	board=Array(9).fill("");
-	playing=true;
-	tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
+document.getElementById("ttt-reset").addEventListener("click", () => {
+	board = Array(9).fill("");
+	playing = true;
+	tttStatus.textContent = "Your turn. Jeetega bhai jeetega! 🏆";
 	drawTTT();
 });
 
-const sl=document.getElementById("sl");
-const slStatus=document.getElementById("sl-status");
-const roll=document.getElementById("roll");
+/* =====================================================
+   SNAKE AND LADDER
+   ===================================================== */
 
-let position=0;
+const sl = document.getElementById("sl");
+const slStatus = document.getElementById("sl-status");
+const roll = document.getElementById("roll");
 
-const moves={
+let position = 0;
+
+const moves = {
 	3:22,
 	8:26,
 	20:38,
@@ -965,30 +1193,39 @@ const moves={
 };
 
 function drawSL(){
-	sl.innerHTML="";
+	sl.innerHTML = "";
 
-	for(let row=9;row>=0;row--){
-		for(let col=0;col<10;col++){
-			const number=row%2===0
-				?row*10+col+1
-				:row*10+(9-col)+1;
+	for(let row = 9; row >= 0; row--){
+		for(let col = 0; col < 10; col++){
 
-			const destination=moves[number];
-			const square=document.createElement("div");
+			const number = row % 2 === 0
+				? row * 10 + col + 1
+				: row * 10 + (9 - col) + 1;
 
-			square.className="sq";
+			const destination = moves[number];
+
+			const square = document.createElement("div");
+
+			square.className = "sq";
 
 			if(destination){
-				square.classList.add(destination>number?"ladder":"snake");
+				square.classList.add(
+					destination > number ? "ladder" : "snake"
+				);
 			}
 
-			square.innerHTML=number+(destination
-				?`<b>${destination>number?"🪜":"🐍"}</b>`
-				:"");
+			square.innerHTML = number + (
+				destination
+					? `<b>${destination > number ? "🪜" : "🐍"}</b>`
+					: ""
+			);
 
-			if(number===position){
-				const player=document.createElement("div");
-				player.className="player";
+			if(number === position){
+				const player = document.createElement("div");
+
+				player.className = "player";
+				player.setAttribute("aria-label", "Player position");
+
 				square.appendChild(player);
 			}
 
@@ -997,39 +1234,40 @@ function drawSL(){
 	}
 }
 
-roll.addEventListener("click",()=>{
-	const dice=Math.floor(Math.random()*6)+1;
-	let message=`You rolled ${dice}. `;
+roll.addEventListener("click", () => {
+	const dice = Math.floor(Math.random() * 6) + 1;
 
-	if(position+dice<=100){
-		position+=dice;
+	let message = `You rolled ${dice}. `;
+
+	if(position + dice <= 100){
+		position += dice;
 
 		if(moves[position]){
-			const destination=moves[position];
+			const destination = moves[position];
 
-			message+=destination>position
-				?`Ladder to ${destination}! 🪜`
-				:`Snake to ${destination}! 🐍`;
+			message += destination > position
+				? `Ladder to ${destination}! 🪜`
+				: `Snake to ${destination}! 🐍`;
 
-			position=destination;
+			position = destination;
 		}
 	}else{
-		message+="Exact number needed.";
+		message += "Exact number needed.";
 	}
 
-	if(position===100){
-		message="Mogambo khush hua! You won! 🏆";
-		roll.disabled=true;
+	if(position === 100){
+		message = "Mogambo khush hua! You won! 🏆";
+		roll.disabled = true;
 	}
 
-	slStatus.textContent=message;
+	slStatus.textContent = message;
 	drawSL();
 });
 
-document.getElementById("sl-reset").addEventListener("click",()=>{
-	position=0;
-	roll.disabled=false;
-	slStatus.textContent="Roll the dice. Aaj kuch toofani karte hain!";
+document.getElementById("sl-reset").addEventListener("click", () => {
+	position = 0;
+	roll.disabled = false;
+	slStatus.textContent = "Roll the dice. Aaj kuch toofani karte hain!";
 	drawSL();
 });
 
