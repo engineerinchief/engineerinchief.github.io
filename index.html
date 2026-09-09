@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
-<title>EngineerinChief | Prannay Nath</title>
+<title>EngineerinChief</title>
+<link rel="icon" href="images/chieficon.png">
 
 <style>
 :root{
-	--background:#07111f;
-	--background-two:#10243e;
-	--dialog:#142b47;
+	--bg:#07111f;
+	--panel:#10243e;
+	--card:#1b2d45;
 	--text:#eef6ff;
 	--muted:#bdc9d8;
 	--blue:#38bdf8;
@@ -18,12 +19,11 @@
 	--purple:#a78bfa;
 	--red:#fb7185;
 
-	/* Main layout measurements */
+	/* Professional desktop measurements */
 	--sidebar-width:210px;
-	--dialog-width:650px;
+	--content-width:650px;
+	--column-gap:24px;
 	--link-height:42px;
-	--dialog-padding-top:11px;
-	--dialog-padding-side:18px;
 }
 
 *{
@@ -32,8 +32,8 @@
 
 html,
 body{
-	margin:0;
 	min-height:100%;
+	margin:0;
 }
 
 body{
@@ -43,9 +43,9 @@ body{
 	color:var(--text);
 	font-family:Arial,Helvetica,sans-serif;
 	background:
-		radial-gradient(circle at 10% 15%,rgba(56,189,248,.15),transparent 30%),
-		radial-gradient(circle at 90% 85%,rgba(167,139,250,.14),transparent 32%),
-		linear-gradient(135deg,var(--background),var(--background-two),#111827);
+		radial-gradient(circle at 10% 15%,rgba(56,189,248,.16),transparent 30%),
+		radial-gradient(circle at 90% 85%,rgba(167,139,250,.16),transparent 32%),
+		linear-gradient(135deg,var(--bg),var(--panel),#111827);
 }
 
 body::before{
@@ -72,18 +72,18 @@ a:focus-visible{
 }
 
 .site{
-	width:min(1080px,100%);
-	margin:auto;
+	width:min(940px,100%);
+	margin:0 auto;
 }
 
-.container{
+.layout{
 	display:grid;
-	grid-template-columns:var(--sidebar-width) minmax(0,1fr);
-	grid-template-rows:auto 1fr;
-	column-gap:1.5rem;
-	row-gap:1.5rem;
-	width:100%;
-	padding:1.75rem;
+	grid-template-columns:var(--sidebar-width) var(--content-width);
+	grid-template-rows:142px auto;
+	column-gap:var(--column-gap);
+	row-gap:14px;
+	justify-content:center;
+	padding:1.6rem;
 	background:rgba(10,28,50,.84);
 	border:1px solid rgba(255,255,255,.16);
 	border-radius:20px;
@@ -92,22 +92,19 @@ a:focus-visible{
 	-webkit-backdrop-filter:blur(18px);
 }
 
-/* =========================================================
-   PHOTO AND NAME
-   ========================================================= */
+/* =====================================================
+   LEFT TOP: PHOTO AND NAME
+   ===================================================== */
 
 .profile{
 	grid-column:1;
 	grid-row:1;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
 	text-align:center;
 }
 
-.profile-image{
-	width:138px;
-	height:138px;
+.profile img{
+	width:128px;
+	height:128px;
 	object-fit:cover;
 	border:3px solid var(--gold);
 	border-radius:50%;
@@ -117,25 +114,24 @@ a:focus-visible{
 }
 
 .profile h1{
-	margin:1rem 0 0;
+	margin:.85rem 0 0;
 	color:#fff;
 	font-family:Georgia,"Times New Roman",serif;
-	font-size:1.5rem;
+	font-size:1.45rem;
 }
 
-/* =========================================================
-   TOP TABS
-   ========================================================= */
+/* =====================================================
+   RIGHT TOP: TABS
+   ===================================================== */
 
 .tabs{
 	grid-column:2;
 	grid-row:1;
 	display:grid;
-	grid-template-columns:repeat(3,minmax(0,1fr));
+	grid-template-columns:repeat(3,1fr);
 	align-self:center;
 	gap:7px;
-	width:min(100%,var(--dialog-width));
-	margin:auto;
+	width:100%;
 	padding:6px;
 	background:rgba(0,0,0,.2);
 	border:1px solid rgba(255,255,255,.12);
@@ -143,18 +139,12 @@ a:focus-visible{
 }
 
 .tab{
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	width:100%;
-	min-width:0;
 	height:40px;
 	padding:7px 10px;
 	color:var(--text);
 	font-family:Arial,Helvetica,sans-serif;
 	font-size:.76rem;
 	font-weight:600;
-	white-space:nowrap;
 	cursor:pointer;
 	background:transparent;
 	border:1px solid transparent;
@@ -165,7 +155,7 @@ a:focus-visible{
 .tab:hover{
 	color:#fff;
 	background:rgba(56,189,248,.16);
-	border-color:rgba(56,189,248,.45);
+	border-color:rgba(56,189,248,.5);
 }
 
 .tab.active{
@@ -175,16 +165,15 @@ a:focus-visible{
 	box-shadow:0 4px 11px rgba(251,191,36,.24);
 }
 
-/* =========================================================
-   LEFT LINKS
-   ========================================================= */
+/* =====================================================
+   LEFT BOTTOM: LINKS
+   ===================================================== */
 
 .links{
 	grid-column:1;
 	grid-row:2;
 	display:flex;
 	flex-direction:column;
-	align-self:start;
 	gap:9px;
 	padding:0;
 	margin:0;
@@ -195,148 +184,16 @@ a:focus-visible{
 	width:100%;
 }
 
-.links a{
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	width:100%;
-	height:var(--link-height);
-	padding:8px 10px;
-	color:var(--text);
-	font-size:.76rem;
-	font-weight:600;
-	line-height:1;
-	text-align:center;
-	text-decoration:none;
-	background:rgba(255,255,255,.07);
-	border:1px solid rgba(255,255,255,.2);
-	border-radius:8px;
-	transition:.2s ease;
-}
-
-.links a:hover{
-	transform:translateY(-1px);
-	color:#fff;
-	background:rgba(56,189,248,.18);
-	border-color:var(--blue);
-	box-shadow:0 6px 14px rgba(0,0,0,.28);
-}
-
-/* =========================================================
-   RIGHT CONTENT AREA
-   ========================================================= */
-
-.content{
-	grid-column:2;
-	grid-row:2;
-	display:flex;
-	justify-content:center;
-	align-self:start;
-	min-width:0;
-}
-
-/*
-	The panel begins on exactly the same horizontal line
-	as the first sidebar link.
-*/
-.panel{
-	display:none;
-	width:min(100%,var(--dialog-width));
-}
-
-.panel.active{
-	display:block;
-	animation:appear .22s ease;
-}
-
-@keyframes appear{
-	from{
-		opacity:0;
-		transform:translateY(5px);
-	}
-
-	to{
-		opacity:1;
-		transform:translateY(0);
-	}
-}
-
-/*
-	All normal dialogs use the same width.
-	The small top padding makes their first text line align
-	visually with the text inside the first link button.
-*/
-.dialog{
-	width:100%;
-	min-height:var(--link-height);
-	padding:
-		var(--dialog-padding-top)
-		var(--dialog-padding-side)
-		1.35rem;
-	background:rgba(255,255,255,.055);
-	border:1px solid rgba(255,255,255,.14);
-	border-left:3px solid var(--gold);
-	border-radius:12px;
-	box-shadow:0 14px 32px rgba(0,0,0,.2);
-}
-
-.dialog-title{
-	margin:0 0 .8rem;
-	color:#fff;
-	font-size:.87rem;
-	font-weight:700;
-	line-height:1.45;
-}
-
-.dialog p{
-	margin:0 0 .82rem;
-	color:var(--muted);
-	font-size:.81rem;
-	line-height:1.65;
-}
-
-.dialog p:last-child{
-	margin-bottom:0;
-}
-
-.skills{
-	padding-top:.8rem;
-	margin-top:.95rem;
-	border-top:1px solid rgba(255,255,255,.14);
-}
-
-.skills-title{
-	display:block;
-	margin-bottom:.35rem;
-	color:#fff;
-	font-size:.78rem;
-	font-weight:bold;
-}
-
-.skill{
-	display:inline-block;
-	margin:4px 2px 0;
-	padding:4px 8px;
-	color:#dff5ff;
-	font-size:.67rem;
-	background:rgba(56,189,248,.12);
-	border:1px solid rgba(56,189,248,.22);
-	border-radius:999px;
-}
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
+.links a,
 .button{
-	display:inline-flex;
+	display:flex;
 	align-items:center;
 	justify-content:center;
-	min-height:39px;
+	min-height:var(--link-height);
 	padding:8px 12px;
 	color:var(--text);
 	font-family:Arial,Helvetica,sans-serif;
-	font-size:.75rem;
+	font-size:.76rem;
 	font-weight:600;
 	line-height:1;
 	text-decoration:none;
@@ -347,6 +204,7 @@ a:focus-visible{
 	transition:.2s ease;
 }
 
+.links a:hover,
 .button:hover{
 	transform:translateY(-1px);
 	color:#fff;
@@ -362,24 +220,113 @@ a:focus-visible{
 	box-shadow:none;
 }
 
-/* =========================================================
-   CV
-   ========================================================= */
+/* =====================================================
+   RIGHT BOTTOM: DIALOG CONTENT
+   ===================================================== */
 
-.cv-controls{
+.content{
+	grid-column:2;
+	grid-row:2;
+	width:100%;
+	min-width:0;
+}
+
+.panel{
+	display:none;
+	width:100%;
+}
+
+.panel.active{
+	display:block;
+	animation:show .22s ease;
+}
+
+@keyframes show{
+	from{
+		opacity:0;
+		transform:translateY(5px);
+	}
+
+	to{
+		opacity:1;
+		transform:translateY(0);
+	}
+}
+
+/*
+	The first dialog line aligns with Python Projects.
+	Card top and first link top share the same grid row.
+*/
+.dialog{
+	width:100%;
+	min-height:var(--link-height);
+	padding:11px 18px 22px;
+	text-align:left;
+	background:rgba(255,255,255,.055);
+	border:1px solid rgba(255,255,255,.14);
+	border-left:3px solid var(--gold);
+	border-radius:12px;
+	box-shadow:0 14px 32px rgba(0,0,0,.2);
+}
+
+.dialog-title{
+	margin:0 0 14px;
+	color:#fff;
+	font-size:.85rem;
+	font-weight:700;
+	line-height:1.45;
+}
+
+.dialog p{
+	margin:0 0 13px;
+	color:var(--muted);
+	font-size:.81rem;
+	line-height:1.65;
+}
+
+.skills{
+	margin-top:16px;
+	padding-top:12px;
+	border-top:1px solid rgba(255,255,255,.14);
+}
+
+.skills-title{
+	display:block;
+	margin-bottom:5px;
+	color:#fff;
+	font-size:.78rem;
+	font-weight:700;
+}
+
+.skill{
+	display:inline-block;
+	margin:4px 2px 0;
+	padding:4px 8px;
+	color:#dff5ff;
+	font-size:.67rem;
+	background:rgba(56,189,248,.12);
+	border:1px solid rgba(56,189,248,.22);
+	border-radius:999px;
+}
+
+/* =====================================================
+   CV
+   ===================================================== */
+
+.cv-controls,
+.game-menu{
 	display:flex;
 	flex-wrap:wrap;
 	align-items:center;
 	gap:8px;
-	width:100%;
 	margin-bottom:10px;
 }
 
-.cv-download{
+.download{
 	margin-left:auto;
 }
 
-.cv-viewer{
+.viewer{
 	width:100%;
 	height:520px;
 	padding:10px;
@@ -391,12 +338,12 @@ a:focus-visible{
 	border-radius:12px;
 }
 
-.cv-viewer.dragging{
+.viewer.dragging{
 	cursor:grabbing;
 	user-select:none;
 }
 
-.cv-viewer.dragging img{
+.viewer.dragging img{
 	pointer-events:none;
 }
 
@@ -404,8 +351,8 @@ a:focus-visible{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	width:100%;
 	gap:12px;
+	width:100%;
 	margin:auto;
 	transition:width .2s ease;
 }
@@ -417,59 +364,49 @@ a:focus-visible{
 	box-shadow:0 8px 20px rgba(0,0,0,.55);
 }
 
-/* =========================================================
+/* =====================================================
    GAMES
-   ========================================================= */
-
-.game-choice{
-	display:flex;
-	flex-wrap:wrap;
-	justify-content:center;
-	gap:8px;
-	margin-bottom:10px;
-}
+   ===================================================== */
 
 .game{
 	display:none;
-	width:100%;
 }
 
 .game.active{
 	display:block;
 }
 
+.game .dialog{
+	text-align:center;
+}
+
 .game h3{
-	margin:0 0 .45rem;
+	margin:0 0 7px;
 	color:var(--gold);
 	font-size:1rem;
 }
 
 .note,
-.game-status{
-	margin:.7rem auto 0;
+.status{
+	margin:9px 0 0;
 	color:var(--muted);
 	font-size:.77rem;
 	line-height:1.45;
 	text-align:center;
 }
 
-/* Tic Tac Toe */
-
 .ttt{
 	display:grid;
 	grid-template-columns:repeat(3,72px);
-	gap:8px;
 	justify-content:center;
-	margin:1rem auto;
+	gap:8px;
+	margin:16px auto;
 }
 
 .cell{
-	display:flex;
-	align-items:center;
-	justify-content:center;
 	width:72px;
 	height:72px;
-	padding:0;
+	color:#fff;
 	font-family:Arial,Helvetica,sans-serif;
 	font-size:1.9rem;
 	font-weight:bold;
@@ -486,20 +423,16 @@ a:focus-visible{
 	border-color:var(--blue);
 }
 
-/* Snake and Ladder */
-
 .sl{
 	display:grid;
 	grid-template-columns:repeat(10,minmax(0,1fr));
 	gap:3px;
 	width:min(100%,530px);
-	margin:1rem auto;
+	margin:16px auto;
 	padding:5px;
-	overflow:hidden;
 	background:#06111e;
 	border:2px solid rgba(251,191,36,.65);
 	border-radius:12px;
-	box-shadow:inset 0 0 22px rgba(56,189,248,.14);
 }
 
 .sq{
@@ -507,8 +440,7 @@ a:focus-visible{
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	min-width:0;
-	aspect-ratio:1 / 1;
+	aspect-ratio:1;
 	color:#152238;
 	font-size:clamp(7px,1.5vw,10px);
 	font-weight:bold;
@@ -517,26 +449,24 @@ a:focus-visible{
 }
 
 .snake{
-	color:#7f1d1d;
 	background:linear-gradient(135deg,#fee2e2,#fca5a5);
 }
 
 .ladder{
-	color:#14532d;
 	background:linear-gradient(135deg,#dcfce7,#86efac);
 }
 
 .sq b{
 	position:absolute;
-	right:3px;
-	bottom:2px;
-	font-size:clamp(10px,2.3vw,16px);
+	right:2px;
+	bottom:1px;
+	font-size:clamp(9px,2.2vw,15px);
 }
 
 .player{
 	position:absolute;
-	width:clamp(11px,3vw,16px);
-	height:clamp(11px,3vw,16px);
+	width:15px;
+	height:15px;
 	background:var(--red);
 	border:3px solid #fff;
 	border-radius:50%;
@@ -544,25 +474,29 @@ a:focus-visible{
 }
 
 footer{
-	margin:1.5rem 0 0;
-	color:rgba(255,255,255,.66);
+	margin:1.4rem 0 0;
+	color:rgba(255,255,255,.65);
 	font-size:.72rem;
 	text-align:center;
 }
 
-/* =========================================================
+/* =====================================================
    MOBILE
-   ========================================================= */
+   ===================================================== */
 
-@media(max-width:820px){
+@media(max-width:850px){
 	body{
 		padding:1rem;
 	}
 
-	.container{
+	.site{
+		width:min(700px,100%);
+	}
+
+	.layout{
 		display:flex;
 		flex-direction:column;
-		gap:1.2rem;
+		gap:18px;
 		padding:1.2rem;
 	}
 
@@ -573,9 +507,6 @@ footer{
 	.tabs{
 		order:2;
 		width:100%;
-		grid-template-columns:repeat(3,minmax(0,1fr));
-		gap:4px;
-		padding:5px;
 	}
 
 	.links{
@@ -589,42 +520,25 @@ footer{
 	}
 
 	.tab{
-		height:38px;
-		padding:7px 3px;
-		font-size:.65rem;
+		font-size:.66rem;
 	}
 
-	.dialog{
-		padding:11px 14px 1.25rem;
-	}
-
-	.cv-controls{
+	.cv-controls,
+	.game-menu{
 		justify-content:center;
 	}
 
-	.cv-download{
+	.download{
 		margin-left:0;
 	}
 
-	.cv-viewer{
+	.viewer{
 		height:62vh;
 		min-height:300px;
-		padding:8px;
 	}
 
-	.ttt{
-		grid-template-columns:repeat(3,70px);
-	}
-
-	.cell{
-		width:70px;
-		height:70px;
-	}
-
-	.sl{
-		width:100%;
-		gap:2px;
-		padding:4px;
+	.dialog{
+		padding:11px 14px 20px;
 	}
 }
 
@@ -633,14 +547,14 @@ footer{
 		padding:.7rem;
 	}
 
-	.container{
+	.layout{
 		padding:1rem;
 	}
 
 	.tab{
-		height:35px;
+		height:36px;
 		padding:6px 2px;
-		font-size:.57rem;
+		font-size:.58rem;
 	}
 
 	.ttt{
@@ -650,7 +564,6 @@ footer{
 	.cell{
 		width:62px;
 		height:62px;
-		font-size:1.65rem;
 	}
 
 	.sl{
@@ -665,63 +578,26 @@ footer{
 
 <div class="site">
 
-	<div class="container">
+	<div class="layout">
 
 		<section class="profile">
-			<img class="profile-image" src="images/Main_One.jpeg" alt="Prannay Nath">
+			<img src="images/Main_One.jpeg" alt="Prannay Nath">
 			<h1>Prannay Nath</h1>
 		</section>
 
-		<nav class="tabs" aria-label="Website sections">
-			<button class="tab active" type="button" data-tab="intro" aria-selected="true">
-				Introduction
-			</button>
-
-			<button class="tab" type="button" data-tab="cv" aria-selected="false">
-				CV
-			</button>
-
-			<button class="tab" type="button" data-tab="games" aria-selected="false">
-				Games
-			</button>
+		<nav class="tabs">
+			<button class="tab active" type="button" data-tab="intro">Introduction</button>
+			<button class="tab" type="button" data-tab="cv">CV</button>
+			<button class="tab" type="button" data-tab="games">Games</button>
 		</nav>
 
 		<ul class="links">
-			<li>
-				<a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener noreferrer">
-					Python Projects
-				</a>
-			</li>
-
-			<li>
-				<a href="https://github.com/engineerinchief" target="_blank" rel="noopener noreferrer">
-					GitHub
-				</a>
-			</li>
-
-			<li>
-				<a href="https://www.linkedin.com/in/engineerinchief" target="_blank" rel="noopener noreferrer">
-					LinkedIn
-				</a>
-			</li>
-
-			<li>
-				<a href="https://instagram.com/engineerinchief" target="_blank" rel="noopener noreferrer">
-					Instagram
-				</a>
-			</li>
-
-			<li>
-				<a href="https://x.com/ingenieurchef" target="_blank" rel="noopener noreferrer">
-					X / Twitter
-				</a>
-			</li>
-
-			<li>
-				<a href="mailto:prannay.nath@outlook.co.nz">
-					Email Me
-				</a>
-			</li>
+			<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank">Python Projects</a></li>
+			<li><a href="https://github.com/engineerinchief" target="_blank">GitHub</a></li>
+			<li><a href="https://www.linkedin.com/in/engineerinchief" target="_blank">LinkedIn</a></li>
+			<li><a href="https://instagram.com/engineerinchief" target="_blank">Instagram</a></li>
+			<li><a href="https://x.com/ingenieurchef" target="_blank">X / Twitter</a></li>
+			<li><a href="mailto:prannay.nath@outlook.co.nz">Email Me</a></li>
 		</ul>
 
 		<main class="content">
@@ -767,30 +643,32 @@ footer{
 			</section>
 
 			<section id="cv" class="panel">
+
 				<div class="cv-controls">
 					<button class="button" id="zoom-in" type="button">➕ Zoom In</button>
 					<button class="button" id="zoom-out" type="button">➖ Zoom Out</button>
-					<button class="button" id="reset-cv" type="button">↺ Reset</button>
+					<button class="button" id="zoom-reset" type="button">↺ Reset</button>
 
-					<a class="button cv-download"
+					<a class="button download"
 					   href="Documents/Prannay_CV_MA.pdf"
-					   download="Prannay_CV_MA.pdf">
+					   download>
 						Download CV
 					</a>
 				</div>
 
-				<div id="viewer" class="cv-viewer">
+				<div class="viewer" id="viewer">
 					<div id="cv-wrap">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV page 1">
-						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV page 2">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
+						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
 					</div>
 				</div>
+
 			</section>
 
 			<section id="games" class="panel">
 
-				<div class="game-choice">
-					<button class="button game-select active-game" type="button" data-game="ttt-game">
+				<div class="game-menu">
+					<button class="button game-select" type="button" data-game="ttt-game">
 						⭕ Tic Tac Toe
 					</button>
 
@@ -799,38 +677,42 @@ footer{
 					</button>
 				</div>
 
-				<div id="ttt-game" class="dialog game active">
-					<h3>Tic Tac Toe: Hard Mode</h3>
-					<p class="note">You are X. The bot is strategic, but still beatable.</p>
+				<div id="ttt-game" class="game active">
+					<div class="dialog">
+						<h3>Tic Tac Toe: Hard Mode</h3>
+						<p class="note">You are X. The bot is strategic but still beatable.</p>
 
-					<div id="ttt" class="ttt"></div>
+						<div id="ttt" class="ttt"></div>
 
-					<p id="ttt-status" class="game-status">
-						Your turn. Jeetega bhai jeetega! 🏆
-					</p>
+						<button class="button" id="ttt-reset" type="button">
+							Restart Game
+						</button>
 
-					<button id="restart-ttt" class="button" type="button">
-						Restart Game
-					</button>
+						<p class="status" id="ttt-status">
+							Your turn. Jeetega bhai jeetega! 🏆
+						</p>
+					</div>
 				</div>
 
-				<div id="sl-game" class="dialog game">
-					<h3>Snake &amp; Ladder: Hard Mode</h3>
-					<p class="note">Few ladders, many snakes, and an exact roll is needed for 100.</p>
+				<div id="sl-game" class="game">
+					<div class="dialog">
+						<h3>Snake &amp; Ladder: Hard Mode</h3>
+						<p class="note">Few ladders, many snakes, and an exact roll is needed for 100.</p>
 
-					<div id="sl" class="sl"></div>
+						<div id="sl" class="sl"></div>
 
-					<button id="roll" class="button" type="button">
-						Roll Dice 🎲
-					</button>
+						<button class="button" id="roll" type="button">
+							Roll Dice 🎲
+						</button>
 
-					<button id="restart-sl" class="button" type="button">
-						Restart
-					</button>
+						<button class="button" id="sl-reset" type="button">
+							Restart
+						</button>
 
-					<p id="sl-status" class="game-status">
-						Roll the dice. Aaj kuch toofani karte hain!
-					</p>
+						<p class="status" id="sl-status">
+							Roll the dice. Aaj kuch toofani karte hain!
+						</p>
+					</div>
 				</div>
 
 			</section>
@@ -846,64 +728,51 @@ footer{
 </div>
 
 <script>
-/* =========================================================
-   MAIN TABS
-   ========================================================= */
-
 const tabs=document.querySelectorAll(".tab");
 const panels=document.querySelectorAll(".panel");
 
 tabs.forEach(tab=>{
 	tab.addEventListener("click",()=>{
-		const targetId=tab.dataset.tab;
-		const targetPanel=document.getElementById(targetId);
-
-		if(!targetPanel)return;
-
-		tabs.forEach(item=>{
-			item.classList.remove("active");
-			item.setAttribute("aria-selected","false");
-		});
-
-		panels.forEach(panel=>{
-			panel.classList.remove("active");
-		});
+		tabs.forEach(button=>button.classList.remove("active"));
+		panels.forEach(panel=>panel.classList.remove("active"));
 
 		tab.classList.add("active");
-		tab.setAttribute("aria-selected","true");
-		targetPanel.classList.add("active");
+		document.getElementById(tab.dataset.tab).classList.add("active");
 	});
 });
 
-/* =========================================================
-   CV ZOOM AND DRAG
-   ========================================================= */
+const gameButtons=document.querySelectorAll(".game-select");
+const games=document.querySelectorAll(".game");
 
-let cvZoom=1;
+gameButtons.forEach(button=>{
+	button.addEventListener("click",()=>{
+		games.forEach(game=>game.classList.remove("active"));
+		document.getElementById(button.dataset.game).classList.add("active");
+	});
+});
+
+let zoom=1;
 
 const viewer=document.getElementById("viewer");
 const cvWrap=document.getElementById("cv-wrap");
-const zoomIn=document.getElementById("zoom-in");
-const zoomOut=document.getElementById("zoom-out");
-const resetCv=document.getElementById("reset-cv");
 
-function updateCVZoom(){
-	cvWrap.style.width=(cvZoom*100)+"%";
+function updateZoom(){
+	cvWrap.style.width=(zoom*100)+"%";
 }
 
-zoomIn.addEventListener("click",()=>{
-	cvZoom=Math.min(2.5,cvZoom+.2);
-	updateCVZoom();
+document.getElementById("zoom-in").addEventListener("click",()=>{
+	zoom=Math.min(2.5,zoom+.2);
+	updateZoom();
 });
 
-zoomOut.addEventListener("click",()=>{
-	cvZoom=Math.max(.6,cvZoom-.2);
-	updateCVZoom();
+document.getElementById("zoom-out").addEventListener("click",()=>{
+	zoom=Math.max(.6,zoom-.2);
+	updateZoom();
 });
 
-resetCv.addEventListener("click",()=>{
-	cvZoom=1;
-	updateCVZoom();
+document.getElementById("zoom-reset").addEventListener("click",()=>{
+	zoom=1;
+	updateZoom();
 	viewer.scrollTo(0,0);
 });
 
@@ -921,10 +790,7 @@ viewer.addEventListener("pointerdown",event=>{
 	startTop=viewer.scrollTop;
 
 	viewer.classList.add("dragging");
-
-	if(viewer.setPointerCapture){
-		viewer.setPointerCapture(event.pointerId);
-	}
+	viewer.setPointerCapture(event.pointerId);
 });
 
 viewer.addEventListener("pointermove",event=>{
@@ -941,233 +807,139 @@ viewer.addEventListener("pointermove",event=>{
 	});
 });
 
-/* =========================================================
-   GAME SWITCHER
-   ========================================================= */
-
-const gameButtons=document.querySelectorAll(".game-select");
-const games=document.querySelectorAll(".game");
-
-gameButtons.forEach(button=>{
-	button.addEventListener("click",()=>{
-		const gameId=button.dataset.game;
-		const selectedGame=document.getElementById(gameId);
-
-		if(!selectedGame)return;
-
-		gameButtons.forEach(item=>{
-			item.classList.remove("active-game");
-		});
-
-		games.forEach(game=>{
-			game.classList.remove("active");
-		});
-
-		button.classList.add("active-game");
-		selectedGame.classList.add("active");
-	});
-});
-
-/* =========================================================
-   TIC TAC TOE
-   ========================================================= */
-
-const messages={
-	win:[
-		"Mogambo khush hua! You won like a champion. 🏆🎉",
-		"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
-		"Baap baap hota hai! Victory is yours. 😎🏆",
-		"Kya baat hai sirji! Absolute masterclass. 🎯🎉",
-		"Ek number! You played like a true champion. 💪🏆"
-	],
-	lose:[
-		"Bhai, kya kar raha hai tu? Bot wins! 🤖",
-		"Arre yaar! Bot ne game palat diya. 😭🤖",
-		"Picture abhi baaki hai mere dost. Try again! 🎬",
-		"System hang ho gaya kya? Bot takes this round. 🤖",
-		"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"
-	],
-	draw:[
-		"All is well. It is a draw. 🤝",
-		"Takkkar ki thi! Nobody gives up. Draw. 🤝",
-		"Match tie ho gaya, but respect is real. 🤝",
-		"Dono players strong nikle. Draw! 💪",
-		"Game kehta hai: phir se khelo! It is a draw. 🔁"
-	]
-};
-
-const lastMessage={
-	win:-1,
-	lose:-1,
-	draw:-1
-};
-
-function randomMessage(type){
-	let index;
-
-	do{
-		index=Math.floor(Math.random()*messages[type].length);
-	}while(index===lastMessage[type]);
-
-	lastMessage[type]=index;
-	return messages[type][index];
-}
-
 const ttt=document.getElementById("ttt");
 const tttStatus=document.getElementById("ttt-status");
-const restartTtt=document.getElementById("restart-ttt");
 
-let tttBoard=Array(9).fill("");
-let tttActive=true;
+let board=Array(9).fill("");
+let playing=true;
 
-const winLines=[
-	[0,1,2],
-	[3,4,5],
-	[6,7,8],
-	[0,3,6],
-	[1,4,7],
-	[2,5,8],
-	[0,4,8],
-	[2,4,6]
+const lines=[
+	[0,1,2],[3,4,5],[6,7,8],
+	[0,3,6],[1,4,7],[2,5,8],
+	[0,4,8],[2,4,6]
 ];
 
-function checkWinner(board){
-	for(const [a,b,c] of winLines){
-		if(board[a]&&board[a]===board[b]&&board[a]===board[c]){
-			return board[a];
+function winner(currentBoard){
+	for(const [a,b,c] of lines){
+		if(currentBoard[a]&&currentBoard[a]===currentBoard[b]&&currentBoard[a]===currentBoard[c]){
+			return currentBoard[a];
 		}
 	}
 
-	return board.includes("")?null:"draw";
+	return currentBoard.includes("")?null:"draw";
 }
 
 function drawTTT(){
 	ttt.innerHTML="";
 
-	tttBoard.forEach((value,index)=>{
+	board.forEach((value,index)=>{
 		const cell=document.createElement("button");
 
-		cell.type="button";
 		cell.className="cell";
+		cell.type="button";
 		cell.textContent=value;
 		cell.style.color=value==="X"?"#fbbf24":"#38bdf8";
 
 		cell.addEventListener("click",()=>{
-			playerMove(index);
+			playMove(index);
 		});
 
 		ttt.appendChild(cell);
 	});
 }
 
-function chooseBotMove(){
-	const empty=tttBoard
+function botMove(){
+	const empty=board
 		.map((value,index)=>value===""?index:null)
 		.filter(index=>index!==null);
 
 	for(const index of empty){
-		tttBoard[index]="O";
+		board[index]="O";
 
-		if(checkWinner(tttBoard)==="O"){
-			tttBoard[index]="";
+		if(winner(board)==="O"){
+			board[index]="";
 			return index;
 		}
 
-		tttBoard[index]="";
+		board[index]="";
 	}
 
 	for(const index of empty){
-		tttBoard[index]="X";
+		board[index]="X";
 
-		if(checkWinner(tttBoard)==="X"){
-			tttBoard[index]="";
-
-			if(Math.random()<.88){
-				return index;
-			}
-
-			break;
+		if(winner(board)==="X"){
+			board[index]="";
+			return index;
 		}
 
-		tttBoard[index]="";
+		board[index]="";
 	}
 
-	const strongMoves=[4,0,2,6,8].filter(index=>tttBoard[index]==="");
+	const good=[4,0,2,6,8].filter(index=>board[index]==="");
 
-	if(strongMoves.length&&Math.random()<.78){
-		return strongMoves[Math.floor(Math.random()*strongMoves.length)];
+	if(good.length&&Math.random()<.75){
+		return good[Math.floor(Math.random()*good.length)];
 	}
 
 	return empty[Math.floor(Math.random()*empty.length)];
 }
 
-function playerMove(index){
-	if(!tttActive||tttBoard[index]!=="")return;
+function playMove(index){
+	if(!playing||board[index]!=="")return;
 
-	tttBoard[index]="X";
+	board[index]="X";
 	drawTTT();
 
-	let winner=checkWinner(tttBoard);
+	let result=winner(board);
 
-	if(winner==="X"){
-		tttStatus.textContent=randomMessage("win");
-		tttActive=false;
+	if(result==="X"){
+		tttStatus.textContent="Mogambo khush hua! You won! 🏆";
+		playing=false;
 		return;
 	}
 
-	if(winner==="draw"){
-		tttStatus.textContent=randomMessage("draw");
-		tttActive=false;
+	if(result==="draw"){
+		tttStatus.textContent="It is a draw. 🤝";
+		playing=false;
 		return;
 	}
 
-	tttActive=false;
-	tttStatus.textContent="Bot is thinking... picture abhi baaki hai!";
+	playing=false;
+	tttStatus.textContent="Bot is thinking...";
 
 	setTimeout(()=>{
-		const botChoice=chooseBotMove();
-
-		if(botChoice!==undefined){
-			tttBoard[botChoice]="O";
-		}
-
+		board[botMove()]="O";
 		drawTTT();
-		winner=checkWinner(tttBoard);
 
-		if(winner==="O"){
-			tttStatus.textContent=randomMessage("lose");
+		result=winner(board);
+
+		if(result==="O"){
+			tttStatus.textContent="Bot wins! Picture abhi baaki hai. 🤖";
 			return;
 		}
 
-		if(winner==="draw"){
-			tttStatus.textContent=randomMessage("draw");
+		if(result==="draw"){
+			tttStatus.textContent="It is a draw. 🤝";
 			return;
 		}
 
-		tttActive=true;
+		playing=true;
 		tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
-	},450);
+	},400);
 }
 
-function resetTTT(){
-	tttBoard=Array(9).fill("");
-	tttActive=true;
+document.getElementById("ttt-reset").addEventListener("click",()=>{
+	board=Array(9).fill("");
+	playing=true;
 	tttStatus.textContent="Your turn. Jeetega bhai jeetega! 🏆";
 	drawTTT();
-}
-
-restartTtt.addEventListener("click",resetTTT);
-
-/* =========================================================
-   SNAKE AND LADDER
-   ========================================================= */
+});
 
 const sl=document.getElementById("sl");
 const slStatus=document.getElementById("sl-status");
-const rollButton=document.getElementById("roll");
-const restartSl=document.getElementById("restart-sl");
+const roll=document.getElementById("roll");
 
-let slPosition=0;
+let position=0;
 
 const moves={
 	3:22,
@@ -1202,70 +974,64 @@ function drawSL(){
 				:row*10+(9-col)+1;
 
 			const destination=moves[number];
-			const cell=document.createElement("div");
+			const square=document.createElement("div");
 
-			cell.className="sq";
+			square.className="sq";
 
 			if(destination){
-				cell.classList.add(destination>number?"ladder":"snake");
+				square.classList.add(destination>number?"ladder":"snake");
 			}
 
-			cell.innerHTML=`
-				${number}
-				${destination?`<b>${destination>number?"🪜":"🐍"}</b>`:""}
-			`;
+			square.innerHTML=number+(destination
+				?`<b>${destination>number?"🪜":"🐍"}</b>`
+				:"");
 
-			if(number===slPosition){
+			if(number===position){
 				const player=document.createElement("div");
 				player.className="player";
-				cell.appendChild(player);
+				square.appendChild(player);
 			}
 
-			sl.appendChild(cell);
+			sl.appendChild(square);
 		}
 	}
 }
 
-function rollDice(){
-	if(slPosition>=100)return;
+roll.addEventListener("click",()=>{
+	const dice=Math.floor(Math.random()*6)+1;
+	let message=`You rolled ${dice}. `;
 
-	const roll=Math.floor(Math.random()*6)+1;
-	let message=`You rolled ${roll}. `;
+	if(position+dice<=100){
+		position+=dice;
 
-	if(slPosition+roll<=100){
-		slPosition+=roll;
+		if(moves[position]){
+			const destination=moves[position];
 
-		if(moves[slPosition]){
-			const destination=moves[slPosition];
+			message+=destination>position
+				?`Ladder to ${destination}! 🪜`
+				:`Snake to ${destination}! 🐍`;
 
-			message+=destination>slPosition
-				?`Wah bhai wah! Ladder to ${destination}. 🪜`
-				:`Arre yaar! Snake to ${destination}. 🐍`;
-
-			slPosition=destination;
+			position=destination;
 		}
 	}else{
-		message+="Exact number needed. Picture abhi baaki hai!";
+		message+="Exact number needed.";
 	}
 
-	if(slPosition===100){
-		message=randomMessage("win");
-		rollButton.disabled=true;
+	if(position===100){
+		message="Mogambo khush hua! You won! 🏆";
+		roll.disabled=true;
 	}
 
 	slStatus.textContent=message;
 	drawSL();
-}
+});
 
-function resetSL(){
-	slPosition=0;
-	rollButton.disabled=false;
+document.getElementById("sl-reset").addEventListener("click",()=>{
+	position=0;
+	roll.disabled=false;
 	slStatus.textContent="Roll the dice. Aaj kuch toofani karte hain!";
 	drawSL();
-}
-
-rollButton.addEventListener("click",rollDice);
-restartSl.addEventListener("click",resetSL);
+});
 
 drawTTT();
 drawSL();
