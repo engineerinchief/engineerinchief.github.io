@@ -7,12 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<style>
-		/* Layout Reset & Centering */
+		/* --- Layout Reset & Centering --- */
 		html, body {
 			height: auto !important;
 			min-height: 100vh !important;
 			overflow-y: auto !important;
 			opacity: 1 !important;
+			background-color: #2b2b2b; /* Fallback dark bg */
 		}
 
 		body.is-preload * {
@@ -37,7 +38,7 @@
 			max-width: 980px;
 			width: 100%;
 			margin: 0 auto;
-			align-items: start !important; /* Align top edges */
+			align-items: start !important; 
 			background: rgba(15, 23, 42, 0.45);
 			backdrop-filter: blur(12px);
 			-webkit-backdrop-filter: blur(12px);
@@ -67,13 +68,10 @@
 
 		.left-column h1 {
 			display: block !important;
-			visibility: visible !important;
-			opacity: 1 !important;
 			font-size: 1.6rem !important;
 			margin: 0 0 1rem 0 !important;
 			color: #ffffff !important;
 			font-family: "Times New Roman", Times, serif !important;
-			letter-spacing: 0.5px;
 		}
 
 		.social-handles-vertical {
@@ -103,103 +101,218 @@
 			background: rgba(255, 255, 255, 0.2);
 			border-color: rgba(255, 255, 255, 0.5);
 			color: #ffffff !important;
-			transform: translateY(-1px);
 		}
 
 		/* Right Column Styling */
 		.right-column {
 			text-align: left;
 			font-family: "Times New Roman", Times, serif !important;
-			font-size: 0.95rem !important;
-			line-height: 1.7 !important;
 			color: #e2e8f0 !important;
 			margin-top: 10px; 
 		}
 
-        /* Tabs Navigation Styling */
-        .tabs-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding-bottom: 10px;
-        }
+		/* Tabs Navigation Styling */
+		.tabs-nav {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 40px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+			padding-bottom: 10px;
+		}
 
-        .tab-btn {
-            background: none;
-            border: none;
-            color: #ef4444; /* Red color matching your mockup */
-            font-size: 1.4rem;
-            font-family: Arial, sans-serif;
-            cursor: pointer;
-            padding: 5px 10px;
-            transition: opacity 0.3s ease, text-shadow 0.3s ease;
-        }
+		.tab-btn {
+			background: none;
+			border: 2px solid transparent;
+			color: #ffffff;
+			font-size: 1.4rem;
+			font-family: Arial, sans-serif;
+			font-weight: bold;
+			cursor: pointer;
+			padding: 5px 10px;
+			transition: opacity 0.3s ease;
+		}
 
-        .tab-btn:hover {
-            opacity: 0.8;
-            text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
-        }
+		.tab-btn:hover {
+			opacity: 0.7;
+		}
 
-        .tab-btn.active {
-            font-weight: bold;
-            border-bottom: 2px solid #ef4444;
-        }
+		.tab-btn.active {
+			border: 2px solid #ffffff; 
+			border-radius: 6px;
+		}
 
-        /* Tab Content Control */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
+		.tab-content {
+			display: none;
+			animation: fadeIn 0.4s;
+		}
 
-        .tab-content.active {
-            display: block;
-        }
+		.tab-content.active {
+			display: block;
+		}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+		@keyframes fadeIn {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
 
-        /* Content Text Styling */
 		.tab-content p {
 			margin-bottom: 1rem;
-			font-family: "Times New Roman", Times, serif !important;
 			font-size: 0.95rem !important;
 		}
 
-		.skills-section {
-			margin-top: 1.2rem;
-			padding-top: 0.8rem;
-			border-top: 1px solid rgba(255, 255, 255, 0.15);
-			font-size: 0.95rem !important;
+		/* --- CV Custom Viewer Styles --- */
+		.cv-controls-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 15px;
+			flex-wrap: wrap;
+			gap: 10px;
 		}
 
-        /* Download Button Styling */
-        .download-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff !important;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-            font-family: Arial, sans-serif;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
+		.zoom-controls {
+			display: flex;
+			gap: 8px;
+		}
 
-        .download-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
+		.cv-action-btn {
+			display: inline-block;
+			padding: 8px 16px;
+			background: rgba(255, 255, 255, 0.1);
+			color: #ffffff !important;
+			text-decoration: none;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 6px;
+			font-family: Arial, sans-serif;
+			font-size: 0.9rem;
+			cursor: pointer;
+			transition: background 0.3s ease;
+		}
+
+		.cv-action-btn:hover {
+			background: rgba(255, 255, 255, 0.25);
+		}
+
+		.cv-viewer-container {
+			width: 100%;
+			height: 650px;
+			overflow: auto;
+			background: rgba(0, 0, 0, 0.2);
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			border-radius: 8px;
+			padding: 20px;
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		#cv-image-wrapper {
+			transition: transform 0.2s ease-in-out;
+			transform-origin: top center; 
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+		}
+
+		.cv-image {
+			max-width: 100%;
+			height: auto;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+		}
+
+		/* --- Game Area Styles --- */
+		.game-menu {
+			display: flex;
+			gap: 15px;
+			margin-bottom: 20px;
+		}
+
+		.game-container {
+			display: none;
+			background: rgba(0,0,0,0.2);
+			padding: 20px;
+			border-radius: 8px;
+			border: 1px solid rgba(255,255,255,0.1);
+			text-align: center;
+		}
+
+		.game-container.active {
+			display: block;
+		}
+
+		/* Tic Tac Toe */
+		.ttt-board {
+			display: grid;
+			grid-template-columns: repeat(3, 80px);
+			gap: 5px;
+			justify-content: center;
+			margin: 20px auto;
+		}
+
+		.ttt-cell {
+			width: 80px;
+			height: 80px;
+			background: rgba(255,255,255,0.1);
+			border: 2px solid rgba(255,255,255,0.3);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2.5rem;
+			font-family: Arial, sans-serif;
+			cursor: pointer;
+			color: white;
+		}
+		
+		.ttt-cell:hover {
+			background: rgba(255,255,255,0.2);
+		}
+
+		/* Snake & Ladder */
+		.sl-board {
+			display: grid;
+			grid-template-columns: repeat(10, 40px);
+			grid-template-rows: repeat(10, 40px);
+			gap: 2px;
+			justify-content: center;
+			margin: 20px auto;
+			background: #eee;
+			border: 2px solid #333;
+			padding: 2px;
+		}
+
+		.sl-cell {
+			background: #fff;
+			color: #333;
+			font-size: 10px;
+			font-family: Arial;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			font-weight: bold;
+		}
+
+		.sl-player {
+			width: 15px;
+			height: 15px;
+			background: #ef4444; /* Red */
+			border-radius: 50%;
+			position: absolute;
+			box-shadow: 0 0 5px rgba(0,0,0,0.5);
+			z-index: 10;
+		}
+
+		.sl-info {
+			color: white;
+			font-family: Arial, sans-serif;
+			margin-top: 15px;
+		}
 
 		/* Footer Styling */
 		#footer {
 			margin-top: 2.5rem !important;
 			text-align: center !important;
 			width: 100% !important;
-			position: relative !important;
-			bottom: auto !important;
 		}
 
 		#footer .copyright {
@@ -207,21 +320,22 @@
 			padding: 0;
 			color: rgba(255, 255, 255, 0.5);
 			font-size: 0.8rem;
-			font-family: "Times New Roman", Times, serif !important;
 		}
 
-		/* Mobile responsiveness */
 		@media (max-width: 768px) {
 			.container {
 				grid-template-columns: 1fr;
-				gap: 1.8rem;
 				padding: 1.5rem;
 			}
-            .tabs-nav {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
+			.tabs-nav {
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+			}
+			.sl-board {
+				grid-template-columns: repeat(10, 25px);
+				grid-template-rows: repeat(10, 25px);
+			}
 		}
 	</style>
 </head>
@@ -230,7 +344,7 @@
 
 	<div class="container">
 		
-		<!-- Left Column: Image, Name, and Links -->
+		<!-- Left Column -->
 		<div class="left-column">
 			<img src="images/Main_One.jpeg" alt="Prannay Nath" class="profile-pic" />
 			<h1>Prannay Nath</h1>
@@ -244,67 +358,78 @@
 			</ul>
 		</div>
 
-		<!-- Right Column: Tabs and Content -->
+		<!-- Right Column -->
 		<div class="right-column">
-            
-            <!-- Tabs Navigation -->
-            <div class="tabs-nav">
-                <button class="tab-btn active" onclick="openTab(event, 'intro-tab')">Introduction</button>
-                <button class="tab-btn" onclick="openTab(event, 'cv-tab')">CV</button>
-                <button class="tab-btn" onclick="openTab(event, 'games-tab')">Page Games</button>
-            </div>
+			
+			<!-- Tabs Navigation -->
+			<div class="tabs-nav">
+				<button class="tab-btn active" onclick="openTab(event, 'intro-tab')">Introduction</button>
+				<button class="tab-btn" onclick="openTab(event, 'cv-tab')">CV</button>
+				<button class="tab-btn" onclick="openTab(event, 'games-tab')">Page Games</button>
+			</div>
 
-            <!-- TAB 1: INTRODUCTION -->
-            <div id="intro-tab" class="tab-content active">
-                <p>
-                    <strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong>
-                </p>
+			<!-- TAB 1: INTRODUCTION -->
+			<div id="intro-tab" class="tab-content active">
+				<p><strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+				<p>I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.</p>
+				<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
+				<p>My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.</p>
+				<p>My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through the integration of engineering, software development, and analytics.</p>
+				<div style="margin-top: 1.2rem; border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 0.8rem;">
+					<strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor
+				</div>
+			</div>
 
-                <p>
-                    I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.
-                </p>
+			<!-- TAB 2: CV -->
+			<div id="cv-tab" class="tab-content">
+				<div class="cv-controls-wrapper">
+					<div class="zoom-controls">
+						<button class="cv-action-btn" onclick="zoomCV(0.2)">➕ Zoom In</button>
+						<button class="cv-action-btn" onclick="zoomCV(-0.2)">➖ Zoom Out</button>
+						<button class="cv-action-btn" onclick="resetZoom()">🔄 Reset</button>
+					</div>
+					<a href="Document/Prannay_CV_MA_De.pdf" download="Prannay_CV_MA_De.pdf" class="cv-action-btn">Download CV</a>
+				</div>
+				<div class="cv-viewer-container">
+					<div id="cv-image-wrapper">
+						<img src="images/Prannay_CV_MA-1.png" alt="CV Page 1" class="cv-image">
+						<img src="images/Prannay_CV_MA-2.png" alt="CV Page 2" class="cv-image">
+					</div>
+				</div>
+			</div>
 
-                <p>
-                    Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.
-                </p>
+			<!-- TAB 3: GAMES -->
+			<div id="games-tab" class="tab-content">
+				<div class="game-menu">
+					<button class="cv-action-btn" onclick="showGame('tic-tac-toe')">⭕ Tic Tac Toe</button>
+					<button class="cv-action-btn" onclick="showGame('snake-ladder')">🎲 Snake & Ladder</button>
+				</div>
 
-                <p>
-                    My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.
-                </p>
+				<!-- Game 1: Tic Tac Toe -->
+				<div id="tic-tac-toe" class="game-container active">
+					<h2 style="font-family: Arial; color: white;">Tic Tac Toe</h2>
+					<div class="ttt-board" id="ttt-board">
+						<!-- Generated by JS -->
+					</div>
+					<h3 id="ttt-status" style="font-family: Arial; color: white;">Player X's Turn</h3>
+					<button class="cv-action-btn" onclick="resetTTT()">Restart Game</button>
+				</div>
 
-                <p>
-                    My goal is to develop innovative solutions for aerospace, defense, and advanced technology industries through the integration of engineering, software development, and analytics.
-                </p>
-
-                <div class="skills-section">
-                    <strong>Skills:</strong> Python • C • SQL • Data Analytics • Inventor
-                </div>
-            </div>
-
-            <!-- TAB 2: CV -->
-            <div id="cv-tab" class="tab-content">
-                <!-- Top Right Download Button -->
-                <div style="text-align: right; margin-bottom: 15px;">
-                    <a href="Document/Prannay_CV_MA_De.pdf" download="Prannay_CV_MA_De.pdf" class="download-btn">Download CV</a>
-                </div>
-                <!-- PDF Viewer -->
-                <iframe src="Document/Prannay_CV_MA_De.pdf" width="100%" height="650px" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;">
-                    This browser does not support viewing PDFs. Please download the CV to view it.
-                </iframe>
-            </div>
-
-            <!-- TAB 3: GAMES -->
-            <div id="games-tab" class="tab-content">
-                <h2 style="color: white; font-family: Arial, sans-serif; margin-bottom: 1rem;">Arcade Zone</h2>
-                <p>Select a game below to start playing:</p>
-                <ul style="color: white; font-family: Arial, sans-serif; line-height: 2;">
-                    <li>🎮 <strong>Snake & Ladder</strong> (Coming soon - upload your JS logic here!)</li>
-                    <li>⭕ <strong>Tic Tac Toe</strong> (Coming soon - upload your JS logic here!)</li>
-                </ul>
-            </div>
+				<!-- Game 2: Snake & Ladder -->
+				<div id="snake-ladder" class="game-container">
+					<h2 style="font-family: Arial; color: white;">Snake & Ladder (Solo)</h2>
+					<div class="sl-board" id="sl-board">
+						<!-- Generated by JS -->
+					</div>
+					<div class="sl-info">
+						<button class="cv-action-btn" onclick="rollDice()" id="roll-btn">Roll Dice 🎲</button>
+						<button class="cv-action-btn" onclick="resetSL()">Restart</button>
+						<h3 id="sl-status" style="margin-top: 15px;">Roll to start!</h3>
+					</div>
+				</div>
+			</div>
 
 		</div>
-
 	</div>
 
 	<footer id="footer">
@@ -314,29 +439,214 @@
 		</ul>
 	</footer>
 
-    <!-- Tab Switching Logic -->
-    <script>
-        function openTab(evt, tabName) {
-            // Get all elements with class="tab-content" and hide them
-            let tabContents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabContents.length; i++) {
-                tabContents[i].style.display = "none";
-                tabContents[i].classList.remove("active");
-            }
+	<!-- Scripts -->
+	<script>
+		// --- 1. TAB LOGIC ---
+		function openTab(evt, tabName) {
+			let tabContents = document.getElementsByClassName("tab-content");
+			for (let i = 0; i < tabContents.length; i++) {
+				tabContents[i].classList.remove("active");
+			}
+			let tabBtns = document.getElementsByClassName("tab-btn");
+			for (let i = 0; i < tabBtns.length; i++) {
+				tabBtns[i].classList.remove("active");
+			}
+			document.getElementById(tabName).classList.add("active");
+			evt.currentTarget.classList.add("active");
+		}
 
-            // Get all elements with class="tab-btn" and remove the class "active"
-            let tabBtns = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < tabBtns.length; i++) {
-                tabBtns[i].classList.remove("active");
-            }
+		// --- 2. CV ZOOM LOGIC ---
+		let currentZoom = 1;
+		function zoomCV(step) {
+			currentZoom += step;
+			if (currentZoom > 2.5) currentZoom = 2.5;
+			if (currentZoom < 0.5) currentZoom = 0.5;
+			document.getElementById('cv-image-wrapper').style.transform = `scale(${currentZoom})`;
+		}
+		function resetZoom() {
+			currentZoom = 1;
+			document.getElementById('cv-image-wrapper').style.transform = `scale(1)`;
+		}
 
-            // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
+		// --- 3. GAMES MENU LOGIC ---
+		function showGame(gameId) {
+			document.getElementById('tic-tac-toe').classList.remove('active');
+			document.getElementById('snake-ladder').classList.remove('active');
+			document.getElementById(gameId).classList.add('active');
+		}
 
+		// --- 4. TIC TAC TOE LOGIC ---
+		let board = ['', '', '', '', '', '', '', '', ''];
+		let currentPlayer = 'X';
+		let gameActive = true;
+
+		function initTTT() {
+			const boardElement = document.getElementById('ttt-board');
+			boardElement.innerHTML = '';
+			for (let i = 0; i < 9; i++) {
+				const cell = document.createElement('div');
+				cell.classList.add('ttt-cell');
+				cell.addEventListener('click', () => handleTTTClick(i, cell));
+				boardElement.appendChild(cell);
+			}
+		}
+
+		function handleTTTClick(index, cell) {
+			if (board[index] !== '' || !gameActive) return;
+			board[index] = currentPlayer;
+			cell.innerText = currentPlayer;
+			cell.style.color = currentPlayer === 'X' ? '#ef4444' : '#3b82f6';
+			checkTTTWin();
+		}
+
+		function checkTTTWin() {
+			const winConditions = [
+				[0,1,2], [3,4,5], [6,7,8], // Rows
+				[0,3,6], [1,4,7], [2,5,8], // Cols
+				[0,4,8], [2,4,6]           // Diagonals
+			];
+			
+			let roundWon = false;
+			for (let condition of winConditions) {
+				const [a, b, c] = condition;
+				if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+					roundWon = true;
+					break;
+				}
+			}
+
+			if (roundWon) {
+				document.getElementById('ttt-status').innerText = `Player ${currentPlayer} Wins! 🎉`;
+				gameActive = false;
+				return;
+			}
+			
+			if (!board.includes('')) {
+				document.getElementById('ttt-status').innerText = "It's a Draw! 🤝";
+				gameActive = false;
+				return;
+			}
+
+			currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+			document.getElementById('ttt-status').innerText = `Player ${currentPlayer}'s Turn`;
+		}
+
+		function resetTTT() {
+			board = ['', '', '', '', '', '', '', '', ''];
+			currentPlayer = 'X';
+			gameActive = true;
+			document.getElementById('ttt-status').innerText = "Player X's Turn";
+			initTTT();
+		}
+
+		// --- 5. SNAKE & LADDER LOGIC ---
+		let slPosition = 0; // 0 means haven't started (off board)
+		const slBoard = document.getElementById('sl-board');
+		
+		// Map of Snakes and Ladders
+		const slMoves = {
+			// Ladders (Start : End)
+			3: 22, 5: 8, 11: 26, 20: 29, 27: 1, // wait, 27 to 1 is a snake!
+			4: 14, 9: 31, 21: 42, 28: 84, 51: 67, 71: 91, 80: 100,
+			// Snakes (Start : End)
+			17: 7, 54: 34, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 79
+		};
+
+		function initSL() {
+			slBoard.innerHTML = '';
+			// Build 100 to 1 in standard snake and ladder zig-zag
+			for (let row = 9; row >= 0; row--) {
+				for (let col = 0; col < 10; col++) {
+					let num;
+					if (row % 2 === 0) {
+						// Left to Right (e.g. 1 to 10, 21 to 30)
+						num = row * 10 + col + 1;
+					} else {
+						// Right to Left (e.g. 20 down to 11, 40 down to 31)
+						num = row * 10 + (9 - col) + 1;
+					}
+					
+					const cell = document.createElement('div');
+					cell.classList.add('sl-cell');
+					cell.id = 'cell-' + num;
+					cell.innerText = num;
+					
+					// Add visual indicators for snakes and ladders
+					if (slMoves[num]) {
+						if (slMoves[num] > num) {
+							cell.style.backgroundColor = '#dcfce7'; // light green for ladder
+							cell.innerHTML += '<br>🪜';
+						} else {
+							cell.style.backgroundColor = '#fee2e2'; // light red for snake
+							cell.innerHTML += '<br>🐍';
+						}
+					}
+					slBoard.appendChild(cell);
+				}
+			}
+		}
+
+		function updateSLPlayerPosition() {
+			// Remove existing player token
+			const existing = document.querySelector('.sl-player');
+			if (existing) existing.remove();
+
+			if (slPosition > 0) {
+				const targetCell = document.getElementById('cell-' + slPosition);
+				if (targetCell) {
+					const token = document.createElement('div');
+					token.classList.add('sl-player');
+					targetCell.appendChild(token);
+				}
+			}
+		}
+
+		function rollDice() {
+			if (slPosition >= 100) return; // Game over
+
+			const roll = Math.floor(Math.random() * 6) + 1;
+			let statusMsg = `You rolled a ${roll}! 🎲<br>`;
+			
+			if (slPosition + roll > 100) {
+				statusMsg += "You need an exact roll to win!";
+			} else {
+				slPosition += roll;
+				statusMsg += `Moved to ${slPosition}. `;
+				
+				// Check for Snake or Ladder
+				if (slMoves[slPosition]) {
+					const newPos = slMoves[slPosition];
+					if (newPos > slPosition) {
+						statusMsg += `<br>Awesome! You climbed a ladder to ${newPos}! 🪜`;
+					} else {
+						statusMsg += `<br>Oh no! A snake bit you! Slid down to ${newPos}. 🐍`;
+					}
+					slPosition = newPos;
+				}
+			}
+
+			updateSLPlayerPosition();
+			
+			if (slPosition === 100) {
+				statusMsg = `You rolled a ${roll}. YOU WIN! 🎉🏆`;
+				document.getElementById('roll-btn').disabled = true;
+			}
+
+			document.getElementById('sl-status').innerHTML = statusMsg;
+		}
+
+		function resetSL() {
+			slPosition = 0;
+			document.getElementById('sl-status').innerHTML = "Roll to start!";
+			document.getElementById('roll-btn').disabled = false;
+			updateSLPlayerPosition();
+		}
+
+		// Initialize Games on load
+		initTTT();
+		initSL();
+
+	</script>
 	<script src="assets/js/main.js"></script>
 
 </body>
