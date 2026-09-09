@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="theme-color" content="#07111f">
 	<title>EngineerinChief | Prannay Nath</title>
 
@@ -11,414 +11,480 @@
 
 	<style>
 		:root {
-			--dark: #07111f;
-			--mid: #102a43;
-			--glass: rgba(10, 28, 48, .75);
-			--text: #e9f3ff;
-			--muted: #b7c7da;
-			--blue: #38bdf8;
-			--purple: #a78bfa;
-			--gold: #fbbf24;
-			--red: #fb7185;
-			--z: 1;
+			--dark:#07111f;
+			--text:#eef6ff;
+			--muted:#b9c8db;
+			--blue:#38bdf8;
+			--gold:#fbbf24;
+			--purple:#a78bfa;
+			--red:#fb7185;
+			--z:1;
 		}
 
-		* { box-sizing: border-box; }
+		* { box-sizing:border-box; }
 
-		html {
-			min-height: 100%;
-			scroll-behavior: smooth;
+		html,body {
+			min-height:100%;
+			margin:0;
 		}
 
 		body {
-			display: flex !important;
-			flex-direction: column !important;
-			align-items: center !important;
-			justify-content: center !important;
-			min-width: 320px;
-			min-height: 100vh;
-			margin: 0;
-			padding: 2rem 1.25rem;
-			overflow-x: hidden;
-			color: var(--text);
-			font-family: Arial, Helvetica, sans-serif !important;
+			display:flex !important;
+			flex-direction:column !important;
+			align-items:center !important;
+			justify-content:center !important;
+			min-width:320px;
+			min-height:100vh;
+			padding:2rem 1.25rem;
+			overflow-x:hidden;
+			color:var(--text);
+			font-family:Arial,Helvetica,sans-serif !important;
 			background:
-				radial-gradient(circle at 12% 15%, rgba(56,189,248,.18), transparent 30%),
-				radial-gradient(circle at 88% 80%, rgba(167,139,250,.18), transparent 32%),
-				linear-gradient(135deg, var(--dark), var(--mid), #111827);
+				radial-gradient(circle at 12% 15%,rgba(56,189,248,.17),transparent 30%),
+				radial-gradient(circle at 88% 80%,rgba(167,139,250,.17),transparent 31%),
+				linear-gradient(135deg,#07111f,#102a43,#111827);
 		}
 
 		body::before {
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			width: 100%;
-			height: 4px;
-			content: "";
-			background: linear-gradient(90deg, var(--blue), var(--gold), var(--purple));
-			box-shadow: 0 0 18px var(--gold);
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:-1;
+			width:100%;
+			height:4px;
+			content:"";
+			background:linear-gradient(90deg,var(--blue),var(--gold),var(--purple));
+			box-shadow:0 0 20px var(--gold);
 		}
 
-		button,
-		a {
-			-webkit-tap-highlight-color: transparent;
+		button,a {
+			-webkit-tap-highlight-color:transparent;
 		}
 
 		button:focus-visible,
 		a:focus-visible {
-			outline: 3px solid var(--gold);
-			outline-offset: 3px;
+			outline:3px solid var(--gold);
+			outline-offset:3px;
 		}
 
 		.container {
-			display: grid !important;
-			grid-template-columns: 215px minmax(0, 1fr);
-			gap: 2rem;
-			width: 100%;
-			max-width: 1040px;
-			padding: 2rem;
-			background: var(--glass);
-			border: 1px solid rgba(255,255,255,.16);
-			border-radius: 22px;
-			box-shadow: 0 25px 60px rgba(0,0,0,.42);
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
+			display:grid !important;
+			grid-template-columns:220px minmax(0,1fr);
+			gap:2rem;
+			width:100%;
+			max-width:1100px;
+			padding:2rem;
+			background:rgba(10,28,48,.79);
+			border:1px solid rgba(255,255,255,.16);
+			border-radius:22px;
+			box-shadow:0 25px 60px rgba(0,0,0,.45);
+			backdrop-filter:blur(18px);
+			-webkit-backdrop-filter:blur(18px);
 		}
 
 		.left-column {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			text-align:center;
 		}
 
 		.profile-pic {
-			width: 132px;
-			height: 132px;
-			object-fit: cover;
-			border: 3px solid var(--gold);
-			border-radius: 50%;
-			box-shadow: 0 0 0 7px rgba(251,191,36,.12), 0 12px 28px rgba(0,0,0,.45);
+			width:140px;
+			height:140px;
+			object-fit:cover;
+			border:3px solid var(--gold);
+			border-radius:50%;
+			box-shadow:
+				0 0 0 7px rgba(251,191,36,.12),
+				0 12px 28px rgba(0,0,0,.45);
 		}
 
 		.left-column h1 {
-			margin: 1rem 0 .25rem !important;
-			color: white !important;
-			font-family: Georgia, "Times New Roman", serif !important;
-			font-size: 1.45rem !important;
-		}
-
-		.role-label {
-			margin: 0 0 1.15rem;
-			color: var(--gold);
-			font-size: .68rem;
-			font-weight: bold;
-			letter-spacing: 1.35px;
-			text-transform: uppercase;
+			margin:1rem 0 1.2rem !important;
+			color:white !important;
+			font-family:Georgia,"Times New Roman",serif !important;
+			font-size:1.5rem !important;
 		}
 
 		.social-handles-vertical {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			gap: 8px;
-			padding: 0;
-			margin: 0;
-			list-style: none;
+			display:flex;
+			flex-direction:column;
+			width:100%;
+			gap:9px;
+			padding:0;
+			margin:0;
+			list-style:none;
 		}
 
 		.social-handles-vertical a,
-		.action-btn {
-			display: block;
-			padding: 9px 11px;
-			color: var(--text) !important;
-			font-family: Arial, Helvetica, sans-serif !important;
-			font-size: .78rem !important;
-			font-weight: 600;
-			text-decoration: none;
-			cursor: pointer;
-			background: rgba(255,255,255,.06);
-			border: 1px solid rgba(255,255,255,.14);
-			border-radius: 8px;
-			transition: transform .2s ease, background .2s ease, border-color .2s ease;
+		.action-btn,
+		.tab-btn {
+			display:inline-flex;
+			align-items:center;
+			justify-content:center;
+			min-height:42px;
+			padding:10px 13px;
+			color:var(--text) !important;
+			font-family:Arial,Helvetica,sans-serif !important;
+			font-size:.78rem !important;
+			font-weight:600;
+			line-height:1;
+			text-decoration:none;
+			cursor:pointer;
+			background:rgba(255,255,255,.065);
+			border:1px solid rgba(255,255,255,.18);
+			border-radius:9px;
+			transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
+		}
+
+		.social-handles-vertical a {
+			display:flex;
+			width:100%;
 		}
 
 		.social-handles-vertical a:hover,
-		.action-btn:hover {
-			transform: translateY(-2px);
-			color: white !important;
-			background: rgba(56,189,248,.17);
-			border-color: var(--blue);
-			box-shadow: 0 8px 18px rgba(0,0,0,.22);
+		.action-btn:hover,
+		.tab-btn:hover {
+			transform:translateY(-2px);
+			color:white !important;
+			background:rgba(56,189,248,.17);
+			border-color:var(--blue);
+			box-shadow:0 8px 18px rgba(0,0,0,.3);
 		}
 
-		.right-column { min-width: 0; }
+		.right-column {
+			display:flex;
+			flex-direction:column;
+			min-width:0;
+		}
 
 		.tabs-nav {
-			display: flex;
-			gap: 8px;
-			margin-bottom: 1.3rem;
-			padding: 7px;
-			background: rgba(0,0,0,.18);
-			border: 1px solid rgba(255,255,255,.1);
-			border-radius: 12px;
+			display:flex;
+			gap:8px;
+			padding:7px;
+			margin-bottom:1.4rem;
+			background:rgba(0,0,0,.2);
+			border:1px solid rgba(255,255,255,.11);
+			border-radius:12px;
 		}
 
 		.tab-btn {
-			flex: 1;
-			min-height: 40px;
-			padding: 8px 7px;
-			color: var(--muted);
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: .78rem;
-			font-weight: bold;
-			cursor: pointer;
-			background: transparent;
-			border: 1px solid transparent;
-			border-radius: 8px;
-			transition: .2s ease;
+			flex:1;
+			background:transparent;
 		}
 
-		.tab-btn:hover { color: white; background: rgba(255,255,255,.07); }
-
 		.tab-btn.active {
-			color: #182033;
-			background: linear-gradient(135deg, var(--gold), #f59e0b);
-			border-color: #fde68a;
-			box-shadow: 0 5px 14px rgba(251,191,36,.22);
+			color:#182033 !important;
+			background:linear-gradient(135deg,var(--gold),#f59e0b);
+			border-color:#fde68a;
+			box-shadow:0 5px 14px rgba(251,191,36,.25);
 		}
 
 		.tab-content,
-		.game-container { display: none; }
+		.game-container {
+			display:none;
+		}
 
 		.tab-content.active,
 		.game-container.active {
-			display: block;
-			animation: fadeIn .3s ease;
+			display:block;
+			animation:show .3s ease;
 		}
 
-		@keyframes fadeIn {
-			from { opacity: 0; transform: translateY(6px); }
-			to { opacity: 1; transform: translateY(0); }
+		@keyframes show {
+			from {
+				opacity:0;
+				transform:translateY(6px);
+			}
+			to {
+				opacity:1;
+				transform:none;
+			}
 		}
 
 		.intro-card,
 		.game-container {
-			padding: 1.25rem;
-			background: rgba(255,255,255,.045);
-			border: 1px solid rgba(255,255,255,.1);
-			border-left: 3px solid var(--gold);
-			border-radius: 14px;
+			padding:1.5rem;
+			background:rgba(255,255,255,.045);
+			border:1px solid rgba(255,255,255,.12);
+			border-left:3px solid var(--gold);
+			border-radius:14px;
+		}
+
+		.intro-card {
+			text-align:center;
 		}
 
 		.intro-card p {
-			margin: 0 0 .75rem !important;
-			color: var(--muted);
-			font-size: .81rem !important;
-			line-height: 1.65;
+			max-width:700px;
+			margin:0 auto .8rem !important;
+			color:var(--muted);
+			font-size:.81rem !important;
+			line-height:1.65;
 		}
 
 		.intro-card p:first-child {
-			color: white;
-			font-size: .84rem !important;
+			color:white;
+			font-size:.85rem !important;
 		}
 
 		.skills {
-			margin-top: 1rem;
-			padding-top: .9rem;
-			font-size: .76rem;
-			border-top: 1px solid rgba(255,255,255,.12);
+			margin-top:1rem;
+			padding-top:.9rem;
+			border-top:1px solid rgba(255,255,255,.14);
 		}
 
 		.skills span {
-			display: inline-block;
-			margin: 5px 4px 0 0;
-			padding: 4px 8px;
-			color: #dff5ff;
-			font-size: .68rem;
-			background: rgba(56,189,248,.12);
-			border: 1px solid rgba(56,189,248,.22);
-			border-radius: 999px;
+			display:inline-block;
+			padding:4px 8px;
+			margin:5px 3px 0;
+			color:#dff5ff;
+			font-size:.68rem;
+			background:rgba(56,189,248,.12);
+			border:1px solid rgba(56,189,248,.22);
+			border-radius:999px;
 		}
 
 		.controls,
 		.game-menu {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-			margin-bottom: 13px;
+			display:flex;
+			flex-wrap:wrap;
+			align-items:center;
+			gap:8px;
+			margin-bottom:13px;
+		}
+
+		.game-menu {
+			justify-content:center;
+		}
+
+		.download-cv {
+			margin-left:auto;
 		}
 
 		.cv-viewer {
-			height: min(68vh, 560px);
-			min-height: 330px;
-			padding: 16px;
-			overflow: auto;
-			text-align: center;
-			cursor: grab;
-			touch-action: pan-x pan-y;
-			background: rgba(0,0,0,.24);
-			border: 1px solid rgba(255,255,255,.12);
-			border-radius: 12px;
-			scrollbar-color: var(--blue) rgba(255,255,255,.08);
+			height:min(68vh,580px);
+			min-height:330px;
+			padding:14px;
+			overflow:auto;
+			text-align:center;
+			cursor:grab;
+			touch-action:pan-x pan-y;
+			background:rgba(0,0,0,.24);
+			border:1px solid rgba(255,255,255,.14);
+			border-radius:12px;
 		}
 
 		.cv-viewer.dragging {
-			cursor: grabbing;
-			user-select: none;
+			cursor:grabbing;
+			user-select:none;
 		}
 
-		.cv-viewer.dragging .cv-image { pointer-events: none; }
+		.cv-viewer.dragging .cv-image {
+			pointer-events:none;
+		}
 
 		#cv-wrapper {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			width: calc(100% * var(--z));
-			gap: 16px;
-			margin: 0 auto;
-			transition: width .2s ease;
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			width:calc(100% * var(--z));
+			gap:16px;
+			margin:auto;
+			transition:width .2s ease;
 		}
 
 		.cv-image {
-			display: block;
-			width: 100%;
-			max-width: 100%;
-			height: auto;
-			border-radius: 4px;
-			box-shadow: 0 8px 20px rgba(0,0,0,.48);
+			display:block;
+			width:100%;
+			height:auto;
+			box-shadow:0 8px 20px rgba(0,0,0,.5);
 		}
 
-		.game-container { text-align: center; }
+		.game-container {
+			text-align:center;
+		}
 
 		.game-container h3 {
-			margin: 0 0 .35rem;
-			color: var(--gold);
-			font-size: 1rem;
+			margin:0 0 .35rem;
+			color:var(--gold);
+			font-size:1rem;
 		}
 
 		.game-note,
 		#ttt-status,
 		#sl-status {
-			margin: .5rem 0 .85rem;
-			color: var(--muted);
-			font-size: .76rem;
-			line-height: 1.45;
+			margin:.5rem 0 .9rem;
+			color:var(--muted);
+			font-size:.76rem;
+			line-height:1.45;
 		}
 
 		.ttt-board {
-			display: grid;
-			grid-template-columns: repeat(3, 70px);
-			gap: 7px;
-			justify-content: center;
-			margin: 1rem auto;
+			display:grid;
+			grid-template-columns:repeat(3,76px);
+			gap:8px;
+			justify-content:center;
+			margin:1rem auto;
 		}
 
 		.ttt-cell {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 70px;
-			height: 70px;
-			font-size: 1.8rem;
-			font-weight: bold;
-			cursor: pointer;
-			background: rgba(255,255,255,.08);
-			border: 1px solid rgba(255,255,255,.18);
-			border-radius: 10px;
-			transition: .2s ease;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			width:76px;
+			height:76px;
+			font-size:2rem;
+			font-weight:bold;
+			cursor:pointer;
+			background:rgba(255,255,255,.08);
+			border:1px solid rgba(255,255,255,.22);
+			border-radius:11px;
+			transition:.2s ease;
 		}
 
 		.ttt-cell:hover {
-			background: rgba(56,189,248,.15);
-			border-color: var(--blue);
-			transform: scale(1.04);
+			transform:scale(1.04);
+			background:rgba(56,189,248,.15);
+			border-color:var(--blue);
 		}
 
 		.sl-board {
-			display: grid;
-			grid-template-columns: repeat(10, 32px);
-			gap: 2px;
-			justify-content: center;
-			margin: 1rem auto;
-			padding: 3px;
-			background: #0a1726;
-			border: 2px solid rgba(251,191,36,.55);
-			border-radius: 8px;
+			display:grid;
+			grid-template-columns:repeat(10,45px);
+			gap:3px;
+			justify-content:center;
+			margin:1rem auto;
+			padding:5px;
+			background:#06111e;
+			border:2px solid rgba(251,191,36,.65);
+			border-radius:12px;
+			box-shadow:inset 0 0 22px rgba(56,189,248,.14);
 		}
 
 		.sl-cell {
-			position: relative;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 32px;
-			height: 32px;
-			color: #172033;
-			font-size: 8px;
-			font-weight: bold;
-			background: #f1f5f9;
+			position:relative;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			width:45px;
+			height:45px;
+			color:#152238;
+			font-size:9px;
+			font-weight:bold;
+			background:#f1f5f9;
+			border-radius:3px;
+		}
+
+		.sl-cell.snake {
+			color:#7f1d1d;
+			background:linear-gradient(135deg,#fee2e2,#fca5a5);
+		}
+
+		.sl-cell.ladder {
+			color:#14532d;
+			background:linear-gradient(135deg,#dcfce7,#86efac);
+		}
+
+		.sl-cell b {
+			position:absolute;
+			right:3px;
+			bottom:2px;
+			font-size:13px;
 		}
 
 		.sl-player {
-			position: absolute;
-			width: 11px;
-			height: 11px;
-			background: var(--red);
-			border: 2px solid white;
-			border-radius: 50%;
-			box-shadow: 0 0 7px var(--red);
+			position:absolute;
+			width:15px;
+			height:15px;
+			background:var(--red);
+			border:3px solid white;
+			border-radius:50%;
+			box-shadow:0 0 10px var(--red);
 		}
 
 		#footer {
-			width: 100%;
-			margin-top: 1.35rem;
-			color: rgba(255,255,255,.65);
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: .72rem;
-			text-align: center;
+			width:100%;
+			margin-top:1.35rem;
+			color:rgba(255,255,255,.65);
+			font-family:Arial,Helvetica,sans-serif;
+			font-size:.72rem;
+			text-align:center;
 		}
 
-		@media (max-width: 768px) {
+		@media (max-width:768px) {
 			body {
-				justify-content: flex-start !important;
-				padding: 1rem;
+				justify-content:flex-start !important;
+				padding:1rem;
 			}
 
 			.container {
-				grid-template-columns: 1fr;
-				gap: 1.5rem;
-				padding: 1.25rem;
+				grid-template-columns:1fr;
+				gap:1.5rem;
+				padding:1.25rem;
 			}
 
-			.tabs-nav { flex-direction: column; }
+			.tabs-nav {
+				flex-direction:column;
+			}
 
-			.tab-btn { width: 100%; }
+			.download-cv {
+				margin-left:0;
+			}
 
 			.cv-viewer {
-				height: 62vh;
-				min-height: 300px;
-				padding: 10px;
+				height:62vh;
+				min-height:300px;
+				padding:8px;
 			}
 
-			.sl-board { grid-template-columns: repeat(10, 27px); }
+			.sl-board {
+				grid-template-columns:repeat(10,30px);
+				gap:2px;
+			}
 
 			.sl-cell {
-				width: 27px;
-				height: 27px;
+				width:30px;
+				height:30px;
+				font-size:7px;
+			}
+
+			.sl-cell b {
+				font-size:10px;
+			}
+
+			.ttt-board {
+				grid-template-columns:repeat(3,68px);
+			}
+
+			.ttt-cell {
+				width:68px;
+				height:68px;
 			}
 		}
 
-		@media (max-width: 360px) {
-			body { padding: .7rem; }
-			.container { padding: 1rem; }
-			.sl-board { grid-template-columns: repeat(10, 24px); }
-			.sl-cell { width: 24px; height: 24px; font-size: 7px; }
+		@media (max-width:360px) {
+			.container {
+				padding:1rem;
+			}
+
+			.sl-board {
+				grid-template-columns:repeat(10,25px);
+			}
+
+			.sl-cell {
+				width:25px;
+				height:25px;
+				font-size:6px;
+			}
 		}
 
-		@media (prefers-reduced-motion: reduce) {
-			* { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+		@media (prefers-reduced-motion:reduce) {
+			* {
+				animation:none !important;
+				transition:none !important;
+			}
 		}
 	</style>
 </head>
@@ -426,11 +492,11 @@
 <body>
 
 	<div class="container">
+
 		<aside class="left-column">
 			<img class="profile-pic" src="images/Main_One.jpeg" alt="Prannay Nath">
 
 			<h1>Prannay Nath</h1>
-			<p class="role-label">Engineering • Data • Aerospace</p>
 
 			<ul class="social-handles-vertical">
 				<li><a href="https://github.com/engineerinchief/Python-Programme" target="_blank" rel="noopener">Python Projects</a></li>
@@ -443,7 +509,8 @@
 		</aside>
 
 		<main class="right-column">
-			<nav class="tabs-nav" aria-label="Website sections">
+
+			<nav class="tabs-nav">
 				<button class="tab-btn active" type="button" data-tab="intro-tab">Introduction</button>
 				<button class="tab-btn" type="button" data-tab="cv-tab">CV</button>
 				<button class="tab-btn" type="button" data-tab="games-tab">Games</button>
@@ -452,13 +519,20 @@
 			<section id="intro-tab" class="tab-content active">
 				<div class="intro-card">
 					<p><strong>Interdisciplinary Engineering &amp; Management Student | Aerospace &amp; Defense Enthusiast | Python Programmer | Data Analyst</strong></p>
+
 					<p>I am an interdisciplinary Engineering &amp; Management student in Germany with a strong interest in aerospace systems, defense technologies, data science, simulation engineering, and advanced technology innovation.</p>
+
 					<p>Through my internship at GMV GmbH, I contributed to ESA-related initiatives, including RNMD4SSC, working with L3Harris Wescam MX systems and VR-Forces simulation environments.</p>
+
 					<p>My academic path combines Engineering, Management, Mechatronics, and Data Science, enabling me to bridge technology, analytics, and strategic decision-making.</p>
 
 					<div class="skills">
 						<strong>Skills</strong><br>
-						<span>Python</span><span>C</span><span>SQL</span><span>Data Analytics</span><span>Inventor</span>
+						<span>Python</span>
+						<span>C</span>
+						<span>SQL</span>
+						<span>Data Analytics</span>
+						<span>Inventor</span>
 					</div>
 				</div>
 			</section>
@@ -468,10 +542,15 @@
 					<button class="action-btn" id="zoom-in" type="button">➕ Zoom In</button>
 					<button class="action-btn" id="zoom-out" type="button">➖ Zoom Out</button>
 					<button class="action-btn" id="zoom-reset" type="button">↺ Reset</button>
-					<a class="action-btn" href="Documents/Prannay_CV_MA.pdf" download="Prannay_CV_MA.pdf">Download CV</a>
+
+					<a class="action-btn download-cv"
+					   href="Documents/Prannay_CV_MA.pdf"
+					   download="Prannay_CV_MA.pdf">
+						Download CV
+					</a>
 				</div>
 
-				<div class="cv-viewer" id="cv-viewer" aria-label="Draggable CV viewer">
+				<div class="cv-viewer" id="cv-viewer">
 					<div id="cv-wrapper">
 						<img class="cv-image" src="Documents/Prannay_CV_MA-1.png" alt="CV Page 1">
 						<img class="cv-image" src="Documents/Prannay_CV_MA-2.png" alt="CV Page 2">
@@ -480,6 +559,7 @@
 			</section>
 
 			<section id="games-tab" class="tab-content">
+
 				<div class="game-menu">
 					<button class="action-btn" type="button" data-game="tic-tac-toe">⭕ Tic Tac Toe</button>
 					<button class="action-btn" type="button" data-game="snake-ladder">🎲 Snake &amp; Ladder</button>
@@ -488,19 +568,26 @@
 				<div id="tic-tac-toe" class="game-container active">
 					<h3>Tic Tac Toe: Challenge Mode</h3>
 					<p class="game-note">You are X. The bot is smart, but it can make mistakes.</p>
+
 					<div id="ttt-board" class="ttt-board"></div>
-					<p id="ttt-status" aria-live="polite">Your turn. Jeetega bhai jeetega! 🏆</p>
+
+					<p id="ttt-status">Your turn. Jeetega bhai jeetega! 🏆</p>
+
 					<button id="ttt-reset" class="action-btn" type="button">Restart Game</button>
 				</div>
 
 				<div id="snake-ladder" class="game-container">
 					<h3>Snake &amp; Ladder: Hard Mode</h3>
 					<p class="game-note">More snakes, fewer ladders, and exact roll required for 100.</p>
+
 					<div id="sl-board" class="sl-board"></div>
+
 					<button id="roll-btn" class="action-btn" type="button">Roll Dice 🎲</button>
 					<button id="sl-reset" class="action-btn" type="button">Restart</button>
-					<p id="sl-status" aria-live="polite">Roll the dice. Aaj kuch toofani karte hain!</p>
+
+					<p id="sl-status">Roll the dice. Aaj kuch toofani karte hain!</p>
 				</div>
+
 			</section>
 		</main>
 	</div>
@@ -517,6 +604,7 @@
 			button.onclick = () => {
 				tabs.forEach(tab => tab.classList.remove("active"));
 				contents.forEach(content => content.classList.remove("active"));
+
 				button.classList.add("active");
 				document.getElementById(button.dataset.tab).classList.add("active");
 			};
@@ -524,7 +612,10 @@
 
 		document.querySelectorAll("[data-game]").forEach(button => {
 			button.onclick = () => {
-				document.querySelectorAll(".game-container").forEach(game => game.classList.remove("active"));
+				document.querySelectorAll(".game-container").forEach(game => {
+					game.classList.remove("active");
+				});
+
 				document.getElementById(button.dataset.game).classList.add("active");
 			};
 		});
@@ -538,12 +629,12 @@
 		}
 
 		document.getElementById("zoom-in").onclick = () => {
-			zoom = Math.min(zoom + .2, 2.5);
+			zoom = Math.min(zoom + 0.2, 2.5);
 			updateZoom();
 		};
 
 		document.getElementById("zoom-out").onclick = () => {
-			zoom = Math.max(zoom - .2, .6);
+			zoom = Math.max(zoom - 0.2, 0.6);
 			updateZoom();
 		};
 
@@ -554,32 +645,37 @@
 		};
 
 		let dragging = false;
-		let startX = 0, startY = 0, scrollX = 0, scrollY = 0;
+		let startX = 0;
+		let startY = 0;
+		let startLeft = 0;
+		let startTop = 0;
 
 		viewer.addEventListener("pointerdown", event => {
 			dragging = true;
 			startX = event.clientX;
 			startY = event.clientY;
-			scrollX = viewer.scrollLeft;
-			scrollY = viewer.scrollTop;
+			startLeft = viewer.scrollLeft;
+			startTop = viewer.scrollTop;
+
 			viewer.classList.add("dragging");
 			viewer.setPointerCapture(event.pointerId);
 		});
 
 		viewer.addEventListener("pointermove", event => {
 			if (!dragging) return;
-			viewer.scrollLeft = scrollX - (event.clientX - startX);
-			viewer.scrollTop = scrollY - (event.clientY - startY);
+
+			viewer.scrollLeft = startLeft - (event.clientX - startX);
+			viewer.scrollTop = startTop - (event.clientY - startY);
 		});
 
-		function endDrag() {
+		function stopDragging() {
 			dragging = false;
 			viewer.classList.remove("dragging");
 		}
 
-		viewer.addEventListener("pointerup", endDrag);
-		viewer.addEventListener("pointercancel", endDrag);
-		viewer.addEventListener("lostpointercapture", endDrag);
+		viewer.addEventListener("pointerup", stopDragging);
+		viewer.addEventListener("pointercancel", stopDragging);
+		viewer.addEventListener("lostpointercapture", stopDragging);
 
 		const phrases = {
 			win: [
@@ -587,35 +683,39 @@
 				"Jeetega bhai jeetega... aur jeet gaya! 🔥🏆",
 				"Baap baap hota hai! Victory is yours. 😎🏆",
 				"Kya baat hai sirji! Absolute masterclass. 🎯🎉",
-				"Ek number! You played like a true champion. 💪🏆",
-				"Ye hui na baat! Winner mode activated. 👑🎉"
+				"Ek number! You played like a true champion. 💪🏆"
 			],
+
 			lose: [
-				"Bhai, kya kar raha hai tu?",
-				"Arre yaar! Bot ne game palat diya. 😭",
-				"Bhagg! B*DK. 🤬",
+				"Bhai, kya kar raha hai tu? Bot wins! 🤖",
+				"Arre yaar! Bot ne game palat diya. 😭🤖",
 				"Picture abhi baaki hai mere dost. Try again! 🎬",
 				"System hang ho gaya kya? Bot takes this round. 🤖",
-				"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅",
-				"Bot bola: control Uday, control! 🤖"
+				"Ye dukh kahe khatam nahi hota be? Better luck next time. 😅"
 			],
+
 			draw: [
 				"All is well. It is a draw. 🤝",
 				"Takkkar ki thi! Nobody gives up. Draw. 🤝",
-				"Perfectly balanced, as all things should be. ⚖️",
 				"Match tie ho gaya, but respect is real. 🤝",
 				"Dono players strong nikle. Draw! 💪",
 				"Game kehta hai: phir se khelo! It is a draw. 🔁"
 			]
 		};
 
-		const lastPhrase = { win: -1, lose: -1, draw: -1 };
+		const lastPhrase = {
+			win: -1,
+			lose: -1,
+			draw: -1
+		};
 
 		function randomPhrase(type) {
 			let index;
+
 			do {
 				index = Math.floor(Math.random() * phrases[type].length);
 			} while (index === lastPhrase[type]);
+
 			lastPhrase[type] = index;
 			return phrases[type][index];
 		}
@@ -626,73 +726,104 @@
 		const tttBoard = document.getElementById("ttt-board");
 		const tttStatus = document.getElementById("ttt-status");
 
-		const wins = [
-			[0,1,2], [3,4,5], [6,7,8],
-			[0,3,6], [1,4,7], [2,5,8],
-			[0,4,8], [2,4,6]
+		const winLines = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6]
 		];
 
-		function result(current) {
-			for (const [a,b,c] of wins) {
-				if (current[a] && current[a] === current[b] && current[a] === current[c]) return current[a];
+		function gameResult(currentBoard) {
+			for (const [a, b, c] of winLines) {
+				if (
+					currentBoard[a] &&
+					currentBoard[a] === currentBoard[b] &&
+					currentBoard[a] === currentBoard[c]
+				) {
+					return currentBoard[a];
+				}
 			}
-			return current.includes("") ? null : "draw";
+
+			return currentBoard.includes("") ? null : "draw";
 		}
 
 		function drawTTT() {
 			tttBoard.innerHTML = "";
+
 			board.forEach((value, index) => {
 				const cell = document.createElement("button");
+
 				cell.type = "button";
 				cell.className = "ttt-cell";
 				cell.textContent = value;
-				cell.setAttribute("aria-label", `Square ${index + 1}${value ? `, ${value}` : ""}`);
 				cell.style.color = value === "X" ? "#fbbf24" : "#38bdf8";
 				cell.onclick = () => playerMove(index);
+
 				tttBoard.appendChild(cell);
 			});
 		}
 
-		function botChoice() {
-			const empty = board.map((v,i) => v === "" ? i : null).filter(v => v !== null);
+		function botMove() {
+			const emptyCells = board
+				.map((value, index) => value === "" ? index : null)
+				.filter(index => index !== null);
 
-			for (const i of empty) {
-				board[i] = "O";
-				if (result(board) === "O") { board[i] = ""; return i; }
-				board[i] = "";
+			for (const index of emptyCells) {
+				board[index] = "O";
+
+				if (gameResult(board) === "O") {
+					board[index] = "";
+					return index;
+				}
+
+				board[index] = "";
 			}
 
-			for (const i of empty) {
-				board[i] = "X";
-				if (result(board) === "X") {
-					board[i] = "";
-					if (Math.random() < .8) return i;
+			for (const index of emptyCells) {
+				board[index] = "X";
+
+				if (gameResult(board) === "X") {
+					board[index] = "";
+
+					if (Math.random() < 0.8) {
+						return index;
+					}
+
 					break;
 				}
-				board[i] = "";
+
+				board[index] = "";
 			}
 
-			const strong = [4,0,2,6,8].filter(i => board[i] === "");
-			return strong.length && Math.random() < .65
-				? strong[Math.floor(Math.random() * strong.length)]
-				: empty[Math.floor(Math.random() * empty.length)];
+			const strongPositions = [4, 0, 2, 6, 8]
+				.filter(index => board[index] === "");
+
+			if (strongPositions.length > 0 && Math.random() < 0.65) {
+				return strongPositions[Math.floor(Math.random() * strongPositions.length)];
+			}
+
+			return emptyCells[Math.floor(Math.random() * emptyCells.length)];
 		}
 
 		function playerMove(index) {
-			if (!active || board[index]) return;
+			if (!active || board[index] !== "") return;
 
 			board[index] = "X";
 			drawTTT();
 
-			let winner = result(board);
+			let result = gameResult(board);
 
-			if (winner === "X") {
+			if (result === "X") {
 				tttStatus.textContent = randomPhrase("win");
 				active = false;
 				return;
 			}
 
-			if (winner === "draw") {
+			if (result === "draw") {
 				tttStatus.textContent = randomPhrase("draw");
 				active = false;
 				return;
@@ -702,16 +833,17 @@
 			tttStatus.textContent = "Bot is thinking... picture abhi baaki hai!";
 
 			setTimeout(() => {
-				board[botChoice()] = "O";
+				board[botMove()] = "O";
 				drawTTT();
-				winner = result(board);
 
-				if (winner === "O") {
+				result = gameResult(board);
+
+				if (result === "O") {
 					tttStatus.textContent = randomPhrase("lose");
 					return;
 				}
 
-				if (winner === "draw") {
+				if (result === "draw") {
 					tttStatus.textContent = randomPhrase("draw");
 					return;
 				}
@@ -729,15 +861,31 @@
 		};
 
 		let position = 0;
+
 		const slBoard = document.getElementById("sl-board");
 		const slStatus = document.getElementById("sl-status");
 		const rollButton = document.getElementById("roll-btn");
 
 		const moves = {
-			3:22, 11:26, 20:38, 36:44, 51:67,
-			17:6, 29:8, 41:19, 47:25, 54:34,
-			62:18, 66:45, 73:52, 79:39, 87:24,
-			92:70, 95:56, 98:60
+			3: 22,
+			11: 26,
+			20: 38,
+			36: 44,
+			51: 67,
+
+			17: 6,
+			29: 8,
+			41: 19,
+			47: 25,
+			54: 34,
+			62: 18,
+			66: 45,
+			73: 52,
+			79: 39,
+			87: 24,
+			92: 70,
+			95: 56,
+			98: 60
 		};
 
 		function drawSnakeLadder() {
@@ -745,18 +893,22 @@
 
 			for (let row = 9; row >= 0; row--) {
 				for (let col = 0; col < 10; col++) {
-					const n = row % 2 === 0 ? row * 10 + col + 1 : row * 10 + (9 - col) + 1;
-					const cell = document.createElement("div");
-					cell.className = "sl-cell";
-					cell.textContent = n;
+					const number = row % 2 === 0
+						? row * 10 + col + 1
+						: row * 10 + (9 - col) + 1;
 
-					if (moves[n]) {
-						const ladder = moves[n] > n;
-						cell.style.background = ladder ? "#d1fae5" : "#ffe4e6";
-						cell.innerHTML += ladder ? "<br>🪜" : "<br>🐍";
+					const cell = document.createElement("div");
+					const destination = moves[number];
+
+					cell.className = "sl-cell";
+
+					if (destination) {
+						cell.classList.add(destination > number ? "ladder" : "snake");
 					}
 
-					if (n === position) {
+					cell.innerHTML = `${number}${destination ? `<b>${destination > number ? "🪜" : "🐍"}</b>` : ""}`;
+
+					if (number === position) {
 						const player = document.createElement("div");
 						player.className = "sl-player";
 						cell.appendChild(player);
@@ -778,9 +930,11 @@
 
 				if (moves[position]) {
 					const destination = moves[position];
+
 					message += destination > position
 						? `Wah bhai wah! Ladder to ${destination}. 🪜`
 						: `Arre yaar! Snake to ${destination}. 🐍`;
+
 					position = destination;
 				}
 			} else {
