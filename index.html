@@ -519,6 +519,15 @@ a:focus-visible{
 	z-index:2;
 }
 
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-4px) rotate(-10deg); }
+	75% { transform: translateX(4px) rotate(10deg); }
+}
+.shake {
+	animation: shake 0.3s ease-in-out;
+}
+
 footer{
 	margin:1.4rem 0 0;
 	color:rgba(255,255,255,.65);
@@ -1488,7 +1497,7 @@ const moves = {
 	98:35
 };
 
-function drawSL(){
+function drawSL(shake = false){
 	sl.innerHTML = "";
 
 	for(let row = 9; row >= 0; row--){
@@ -1518,7 +1527,7 @@ function drawSL(){
 			if(number === position){
 				const player = document.createElement("div");
 
-				player.className = "player";
+				player.className = "player" + (shake ? " shake" : "");
 				player.setAttribute("aria-label", "Player position");
 
 				square.appendChild(player);
@@ -1533,6 +1542,7 @@ roll.addEventListener("click", () => {
 	const dice = Math.floor(Math.random() * 6) + 1;
 
 	let message = `You rolled ${dice}. `;
+	let shakePlayer = false;
 
 	if(position + dice <= 100){
 		position += dice;
@@ -1548,6 +1558,7 @@ roll.addEventListener("click", () => {
 		}
 	}else{
 		message += "Exact number needed.";
+		shakePlayer = true;
 	}
 
 	if(position === 100){
@@ -1556,7 +1567,7 @@ roll.addEventListener("click", () => {
 	}
 
 	slStatus.textContent = message;
-	drawSL();
+	drawSL(shakePlayer);
 });
 
 document.getElementById("sl-reset").addEventListener("click", () => {
