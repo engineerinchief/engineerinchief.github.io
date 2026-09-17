@@ -3,7 +3,7 @@
 <head>
 <meta name="google-site-verification" content="DLH_GSTgv-vpxMKZt-gtEGcFruG1PMzghSLN9oyyPSo" />
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#07111f">
 <meta name="description" content="Portfolio of Prannay Nath">
 <title>EngineerinChief</title>
@@ -47,25 +47,28 @@ body{
 body{
 	min-width:320px;
 	min-height:100vh;
-	padding:2rem 1.25rem;
+	min-height:100dvh;
+	padding:max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 	color:var(--text);
 	font-family:Arial, Helvetica, sans-serif;
 	background:
 		radial-gradient(circle at 10% 15%, rgba(56,189,248,.16), transparent 30%),
 		radial-gradient(circle at 90% 85%, rgba(167,139,250,.16), transparent 32%),
 		linear-gradient(135deg, var(--bg), var(--panel), #111827);
+	-webkit-text-size-adjust:100%;
 }
 
 body::before{
 	position:fixed;
 	top:0;
 	left:0;
-	z-index:-1;
+	z-index:100;
 	width:100%;
 	height:4px;
 	content:"";
 	background:linear-gradient(90deg, var(--blue), var(--gold), var(--purple));
 	box-shadow:0 0 18px var(--gold);
+	pointer-events:none;
 }
 
 button,
@@ -304,7 +307,7 @@ a:focus-visible{
 .dialog-title{
 	margin:0 0 var(--space-3);
 	color:#fff;
-	font-size:.85rem;
+	font-size:clamp(.85rem, 2vw, .95rem);
 	font-weight:700;
 	line-height:1.45;
 }
@@ -360,11 +363,12 @@ a:focus-visible{
 
 .viewer{
 	width:100%;
-	height:520px;
+	height:clamp(260px, 55vh, 520px);
 	padding:10px;
 	overflow:auto;
 	cursor:grab;
 	touch-action:pan-x pan-y;
+	-webkit-overflow-scrolling:touch;
 	background:rgba(0,0,0,.24);
 	border:1px solid rgba(255,255,255,.14);
 	border-radius:12px;
@@ -385,7 +389,7 @@ a:focus-visible{
 	align-items:center;
 	gap:12px;
 	width:100%;
-	margin:auto;
+	margin:0 auto;
 	transition:width .2s ease;
 }
 
@@ -394,6 +398,8 @@ a:focus-visible{
 	width:100%;
 	height:auto;
 	box-shadow:0 8px 20px rgba(0,0,0,.55);
+	user-select:none;
+	-webkit-user-drag:none;
 }
 
 /* =====================================================
@@ -429,18 +435,18 @@ a:focus-visible{
 
 .ttt{
 	display:grid;
-	grid-template-columns:repeat(3, 72px);
+	grid-template-columns:repeat(3, clamp(52px, 18vw, 72px));
 	justify-content:center;
-	gap:8px;
+	gap:clamp(6px, 1.8vw, 8px);
 	margin:16px auto;
 }
 
 .cell{
-	width:72px;
-	height:72px;
+	width:clamp(52px, 18vw, 72px);
+	height:clamp(52px, 18vw, 72px);
 	color:#fff;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:1.9rem;
+	font-size:clamp(1.4rem, 4.5vw, 1.9rem);
 	font-weight:bold;
 	cursor:pointer;
 	background:rgba(255,255,255,.09);
@@ -450,6 +456,7 @@ a:focus-visible{
 		transform .2s ease,
 		background .2s ease,
 		border-color .2s ease;
+	touch-action:manipulation;
 }
 
 .cell:hover:not(:disabled){
@@ -461,13 +468,14 @@ a:focus-visible{
 .sl{
 	display:grid;
 	grid-template-columns:repeat(10, minmax(0, 1fr));
-	gap:3px;
-	width:min(100%, 530px);
+	gap:clamp(1px, 0.4vw, 3px);
+	width:min(100%, 500px, 68vh);
 	margin:16px auto;
-	padding:5px;
+	padding:clamp(3px, 1vw, 5px);
 	background:#06111e;
 	border:2px solid rgba(251,191,36,.65);
 	border-radius:12px;
+	aspect-ratio:1;
 }
 
 .sq{
@@ -477,10 +485,11 @@ a:focus-visible{
 	justify-content:center;
 	aspect-ratio:1;
 	color:#152238;
-	font-size:clamp(7px, 1.5vw, 10px);
+	font-size:clamp(6px, 1.7vw, 10px);
 	font-weight:bold;
 	background:#f1f5f9;
 	border-radius:3px;
+	user-select:none;
 }
 
 .snake{
@@ -493,19 +502,21 @@ a:focus-visible{
 
 .sq b{
 	position:absolute;
-	right:2px;
+	right:1px;
 	bottom:1px;
-	font-size:clamp(9px, 2.2vw, 15px);
+	font-size:clamp(8px, 2vw, 14px);
+	line-height:1;
 }
 
 .player{
 	position:absolute;
-	width:15px;
-	height:15px;
+	width:clamp(10px, 2.8vw, 15px);
+	height:clamp(10px, 2.8vw, 15px);
 	background:var(--red);
-	border:3px solid #fff;
+	border:clamp(1.5px, 0.4vw, 3px) solid #fff;
 	border-radius:50%;
 	box-shadow:0 0 10px var(--red);
+	z-index:2;
 }
 
 footer{
@@ -516,16 +527,94 @@ footer{
 }
 
 /* =====================================================
-   MOBILE
+   TOP HUD, DUAL CLOCKS & SESSION TIMER
+   ===================================================== */
+
+.top-hud {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: var(--space-4);
+	width: 100%;
+}
+
+#dual-clocks {
+	background: #06111e;
+	color: #fff;
+	padding: 10px 14px;
+	border: 1px solid rgba(255, 255, 255, .24);
+	border-radius: 10px;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.clock-row {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	align-items: center;
+}
+
+#site-timer {
+	background: #06111e;
+	color: #fff;
+	padding: 10px 14px;
+	border: 1px solid rgba(255, 255, 255, .24);
+	border-radius: 10px;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: clamp(0.82rem, 1.8vw, 0.95rem);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* On wide screens with plenty of margin, float HUD to viewport corners */
+@media (min-width: 1440px) {
+	#dual-clocks {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		z-index: 999;
+	}
+
+	#site-timer {
+		position: fixed;
+		bottom: 20px;
+		left: 20px;
+		z-index: 999;
+	}
+
+	.top-hud {
+		display: contents;
+	}
+}
+
+/* =====================================================
+   MOBILE & TABLET BREAKPOINTS
    ===================================================== */
 
 @media(max-width:850px){
 	body{
-		padding:1rem;
+		padding:max(0.8rem, env(safe-area-inset-top)) max(0.8rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(0.8rem, env(safe-area-inset-left));
 	}
 
 	.site{
 		width:min(700px, 100%);
+	}
+
+	.top-hud {
+		justify-content: center;
+		gap: 8px;
+		margin-bottom: var(--space-3);
+	}
+
+	#dual-clocks,
+	#site-timer {
+		font-size: 0.85rem;
+		padding: 8px 12px;
 	}
 
 	.layout{
@@ -559,7 +648,9 @@ footer{
 	}
 
 	.tab{
-		font-size:.66rem;
+		height: 40px;
+		font-size:.72rem;
+		font-weight: 600;
 	}
 
 	.cv-controls,
@@ -572,8 +663,7 @@ footer{
 	}
 
 	.viewer{
-		height:62vh;
-		min-height:300px;
+		height:clamp(280px, 50vh, 460px);
 	}
 
 	.dialog{
@@ -581,41 +671,166 @@ footer{
 	}
 }
 
+/* BlackBerry Passport & short/square viewports */
+@media (max-height: 620px), ((max-aspect-ratio: 1.15/1) and (max-width: 850px)){
+	body{
+		padding:max(0.5rem, env(safe-area-inset-top)) max(0.5rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
+	}
+
+	.top-hud {
+		gap: 6px;
+		margin-bottom: 8px;
+	}
+
+	#dual-clocks,
+	#site-timer {
+		padding: 6px 10px;
+		font-size: 0.78rem;
+	}
+
+	.layout {
+		padding: 10px;
+		gap: 10px;
+	}
+
+	.profile img {
+		width: 76px;
+		height: 76px;
+	}
+
+	.profile h1 {
+		font-size: 1.15rem;
+		margin-top: 6px;
+	}
+
+	.tab {
+		height: 36px;
+		font-size: 0.68rem;
+		padding: 4px 6px;
+	}
+
+	.viewer {
+		height: clamp(210px, 42vh, 340px);
+	}
+
+	.cv-controls,
+	.game-menu {
+		gap: 5px;
+		margin-bottom: 6px;
+	}
+
+	.sl {
+		width: min(100%, 320px, 56vh);
+		margin: 8px auto;
+	}
+
+	.ttt {
+		gap: 6px;
+		margin: 8px auto;
+	}
+
+	.cell {
+		width: clamp(48px, 14vw, 58px);
+		height: clamp(48px, 14vw, 58px);
+		font-size: 1.4rem;
+	}
+}
+
+/* iPhone SE (1st gen: 320px, 2nd/3rd gen: 375px) & small devices */
 @media(max-width:380px){
 	body{
-		padding:.7rem;
+		padding:max(0.5rem, env(safe-area-inset-top)) max(0.35rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.35rem, env(safe-area-inset-left));
+	}
+
+	.top-hud {
+		flex-direction: column;
+		width: 100%;
+		gap: 6px;
+	}
+
+	#dual-clocks,
+	#site-timer {
+		width: 100%;
+		text-align: center;
+		justify-content: center;
+		padding: 6px 8px;
+		font-size: 0.78rem;
+	}
+
+	.clock-row {
+		grid-template-columns: 90px 1fr;
 	}
 
 	.layout{
-		padding:1rem;
+		padding: 10px 8px;
+		border-radius: 14px;
+	}
+
+	.profile img {
+		width: 88px;
+		height: 88px;
+	}
+
+	.tabs {
+		padding: 4px;
+		gap: 3px;
 	}
 
 	.tab{
-		height:36px;
-		padding:6px 2px;
-		font-size:.58rem;
+		height:38px;
+		padding:4px 2px;
+		font-size:.68rem;
+		font-weight: 700;
+	}
+
+	.links a,
+	.button {
+		min-height: 38px;
+		padding: 6px 8px;
+		font-size: 0.74rem;
 	}
 
 	.ttt{
-		grid-template-columns:repeat(3, 62px);
+		grid-template-columns:repeat(3, 56px);
+		gap: 6px;
 	}
 
 	.cell{
-		width:62px;
-		height:62px;
+		width:56px;
+		height:56px;
+		font-size: 1.5rem;
 	}
 
 	.sl{
 		gap:1px;
-		padding:3px;
+		padding:2px;
 	}
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="site">
+
+	<!-- RESPONSIVE HEADER HUD -->
+	<header class="top-hud" aria-label="Quick statistics">
+		<div id="site-timer" aria-label="Time spent on site">
+			⏱️ Time on site: <span id="time-spent">00:00:00</span>
+		</div>
+
+		<div id="dual-clocks" aria-label="World clocks">
+			<div class="clock-row">
+				<span class="city-label">München:</span>
+				<span id="time-munich">--:--:--</span>
+			</div>
+			<div class="clock-row">
+				<span class="city-label">New Delhi:</span>
+				<span id="time-delhi">--:--:--</span>
+			</div>
+		</div>
+	</header>
 
 	<div class="layout">
 
@@ -722,12 +937,12 @@ footer{
 
 				<div class="dialog">
 
-					<p class="dialog-title">
+					<h2 class="dialog-title">
 						Engineering and Management (EMB) B.Sc. Student |
 						Aerospace &amp; Defense Enthusiast |
 						Python Programmer |
 						Data Analyst
-					</p>
+					</h2>
 
 					<p>
 						I am currently studying Engineering and Management (EMB) B.Sc.
@@ -794,12 +1009,14 @@ footer{
 						<img
 							class="cv-image"
 							src="Documents/Prannay_CV_MA-1.png"
-							alt="Prannay Nath CV, page 1">
+							alt="Prannay Nath CV, page 1"
+							draggable="false">
 
 						<img
 							class="cv-image"
 							src="Documents/Prannay_CV_MA-2.png"
-							alt="Prannay Nath CV, page 2">
+							alt="Prannay Nath CV, page 2"
+							draggable="false">
 					</div>
 				</div>
 
@@ -1009,6 +1226,7 @@ const tttStatus = document.getElementById("ttt-status");
 
 let board = Array(9).fill("");
 let playing = true;
+let botTimeout = null;
 
 const lines = [
 	[0,1,2],
@@ -1049,8 +1267,8 @@ const tttMessages = {
 	],
 
 	loss: [
-		"Bhagg B*DK! Bot wins! 🤖",
-		"Picture abhi baaki hai mere dost. Bot wins! 🤖",
+		"Picture abhi baaki hai mere dost! Bot wins! 🤖",
+		"Haar ke jeetne wale ko baazigar kehte hain... agla round khelo! 🤖",
 		"Bot bola: Don ko harana mushkil hi nahi, namumkin hai! 😎",
 		"Rahul, naam toh suna hoga... bot jeet gaya! 🤖",
 		"Pushpa jhukega nahi... par tum haar gaye! 😤",
@@ -1071,7 +1289,7 @@ const tttMessages = {
 	],
 
 	thinking: [
-		"Bot soch raha hai... bada harami player hai! 🤖",
+		"Bot soch raha hai... agla kadam kya hoga? 🤖",
 		"Ruko zara, sabar karo... bot planning kar raha hai. 🧠",
 		"Bot ka dimaag garam ho raha hai... 🔥",
 		"System hang nahi hai, bot strategy bana raha hai! ⚙️",
@@ -1199,7 +1417,8 @@ function playMove(index){
 	drawTTT();
 	setTTTStatus("thinking");
 
-	setTimeout(() => {
+	if(botTimeout) clearTimeout(botTimeout);
+	botTimeout = setTimeout(() => {
 		const move = botMove();
 
 		if(move !== undefined){
@@ -1229,6 +1448,7 @@ function playMove(index){
 }
 
 document.getElementById("ttt-reset").addEventListener("click", () => {
+	if(botTimeout) clearTimeout(botTimeout);
 	board = Array(9).fill("");
 	playing = true;
 	drawTTT();
@@ -1243,7 +1463,7 @@ const sl = document.getElementById("sl");
 const slStatus = document.getElementById("sl-status");
 const roll = document.getElementById("roll");
 
-let position = 0;
+let position = 1;
 
 const moves = {
 	3:22,
@@ -1340,7 +1560,7 @@ roll.addEventListener("click", () => {
 });
 
 document.getElementById("sl-reset").addEventListener("click", () => {
-	position = 0;
+	position = 1;
 	roll.disabled = false;
 	slStatus.textContent = "Roll the dice. Aaj kuch toofani karte hain!";
 	drawSL();
@@ -1353,6 +1573,46 @@ document.getElementById("sl-reset").addEventListener("click", () => {
 drawTTT();
 setTTTStatus("turn");
 drawSL();
+
+    // --- DUAL CLOCKS LOGIC ---
+    function updateClocks() {
+        const now = new Date();
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+        const munichTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Europe/Berlin' }).format(now);
+        const delhiTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Asia/Kolkata' }).format(now);
+
+        document.getElementById('time-munich').textContent = munichTime;
+        document.getElementById('time-delhi').textContent = delhiTime;
+    }
+
+    // --- SESSION TIMER LOGIC ---
+    let startTime = null;
+    try {
+        startTime = Number(sessionStorage.getItem('siteLoginTime'));
+        if (!startTime || isNaN(startTime)) {
+            startTime = Date.now();
+            sessionStorage.setItem('siteLoginTime', String(startTime));
+        }
+    } catch (e) {
+        startTime = Date.now();
+    }
+
+    function updateSiteTimer() {
+        const diffInSeconds = Math.floor((Date.now() - startTime) / 1000);
+        const hours = String(Math.floor(diffInSeconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((diffInSeconds % 3600) / 60)).padStart(2, '0');
+        const seconds = String(diffInSeconds % 60).padStart(2, '0');
+
+        document.getElementById('time-spent').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Run immediately and start updating
+    updateClocks();
+    updateSiteTimer();
+    setInterval(updateClocks, 1000);
+    setInterval(updateSiteTimer, 1000);
+
 </script>
 
 </body>
