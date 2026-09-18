@@ -436,6 +436,56 @@ a:focus-visible{
 	text-align:center;
 }
 
+.scoreboard {
+	display: flex;
+	justify-content: center;
+	gap: clamp(8px, 2vw, 16px);
+	margin: 18px 0 10px;
+}
+
+.score-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 12px;
+	padding: 8px clamp(12px, 3vw, 20px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.score-label {
+	font-size: 0.65rem;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: var(--muted);
+	margin-bottom: 2px;
+}
+
+.score-value {
+	font-size: 1.5rem;
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.score-box.win .score-value {
+	color: var(--gold);
+	text-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+}
+
+.score-box.draw .score-value {
+	color: var(--blue);
+	text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+.score-box.loss .score-value {
+	color: var(--red);
+	text-shadow: 0 0 12px rgba(251, 113, 133, 0.5);
+}
+
 .ttt{
 	display:grid;
 	grid-template-columns:repeat(3, clamp(52px, 18vw, 72px));
@@ -1066,6 +1116,21 @@ footer{
 							You are X. The bot is strategic but still beatable.
 						</p>
 
+						<div class="scoreboard" id="ttt-score">
+							<div class="score-box win">
+								<span class="score-label">Wins</span>
+								<span class="score-value" id="ttt-wins">0</span>
+							</div>
+							<div class="score-box draw">
+								<span class="score-label">Draws</span>
+								<span class="score-value" id="ttt-draws">0</span>
+							</div>
+							<div class="score-box loss">
+								<span class="score-label">Losses</span>
+								<span class="score-value" id="ttt-losses">0</span>
+							</div>
+						</div>
+
 						<div
 							id="ttt"
 							class="ttt"
@@ -1239,6 +1304,9 @@ const tttStatus = document.getElementById("ttt-status");
 let board = Array(9).fill("");
 let playing = true;
 let botTimeout = null;
+let tttWins = 0;
+let tttLosses = 0;
+let tttDraws = 0;
 
 const lines = [
 	[0,1,2],
@@ -1319,6 +1387,17 @@ function randomMessage(type){
 
 function setTTTStatus(type){
 	tttStatus.textContent = randomMessage(type);
+
+	if (type === "win") {
+		tttWins++;
+		document.getElementById("ttt-wins").textContent = tttWins;
+	} else if (type === "loss") {
+		tttLosses++;
+		document.getElementById("ttt-losses").textContent = tttLosses;
+	} else if (type === "draw") {
+		tttDraws++;
+		document.getElementById("ttt-draws").textContent = tttDraws;
+	}
 }
 
 function winner(currentBoard){
@@ -1600,7 +1679,6 @@ drawSL();
         document.getElementById('time-delhi').textContent = delhiTime;
     }
 
-    // --- SESSION TIMER LOGIC ---
     let startTime = null;
     try {
         startTime = Number(sessionStorage.getItem('siteLoginTime'));
