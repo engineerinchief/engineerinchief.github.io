@@ -1310,64 +1310,45 @@ const lines = [
 	[2,4,6]
 ];
 
-/* =====================================================
-   HINDI MEME + SRK MOVIE MESSAGES
-   ===================================================== */
-
 const tttMessages = {
 	turn: [
-		"Your turn. Darr Ke Aage Jeet Hai! 🏆",
-		"Ab tera number hai. Aaj kuch toofani karte hain! ⚡",
-		"Chal beta, ab dekhte hain kitna dum hai! 💪",
-		"Game bajana hai toh khel, warna side ho ja! 😤",
-		"Jaldi kar bhai, mausam badal raha hai! 🌦️",
-		"Don ko pakadna mushkil hi nahi, namumkin hai... par move toh kar! 😎",
-		"Senorita, bade bade games mein aisi choti mistakes hoti rehti hain. ♟️",
-		"Main hoon na! Ab apni best move chalo. 🔥"
+		"Bade bade deshon mein aisi choti moves chalti rehti hain. Your turn! ♟️",
+		"Jaldi kar, kal subah Panvel nikalna hai! 🏃‍♂️💨",
+		"Main hoon na! Dikhao apni best move. 🔥",
+		"50 rupya kaat overacting ka, aur move chal! 💸",
+		"Abhi maza aayega na bhidu! Let's see your strategy. 😎"
 	],
 
 	win: [
-		"Mogambo khush hua! You won! 🏆",
-		"Ruko zara, sabar karo... kya zabardast jeet hai! 🔥",
-		"Baap baap hota hai! You won! 😎",
-		"Naam yaad rakhna, champion! 🥇",
-		"Picture abhi baaki hai mere dost, par yeh round tumhara hai! 🏆",
-		"Don ka intezaar toh gyarah mulkon ki police karti hai... bot tumhari jeet ka karega! 😎",
-		"Om Shanti Om! Kya solid comeback maara hai! ✨",
-		"Baazigar style win! Haar ke jeetne wale ko hi baazigar kehte hain. 🏅"
+		"Haar ke jeetne wale ko hi Baazigar kehte hain. You won! 🏅",
+		"Arey, yeh toh dhoti khol raha hai! You won! 🏆",
+		"Theek hai, samajh gaya. You win this round! 🤝",
+		"Jalwa hai humara yahan... wait, you actually beat me? 😳",
+		"Mogambo khush hua! Solid comeback! ✨"
 	],
 
 	loss: [
-		"Picture abhi baaki hai mere dost! Bot wins! 🤖",
-		"Haar ke jeetne wale ko baazigar kehte hain... agla round khelo! 🤖",
-		"Bot bola: Don ko harana mushkil hi nahi, namumkin hai! 😎",
-		"Rahul, naam toh suna hoga... bot jeet gaya! 🤖",
-		"Pushpa jhukega nahi... par tum haar gaye! 😤",
-		"Teja main hoon, mark idhar hai. Bot wins! 😂",
-		"Chennai Express nikal gayi, tum station par hi reh gaye! 🚂",
-		"Game over. Kal Ho Naa Ho, lekin next round zaroor hoga! 😄"
+		"Rahul, naam toh suna hoga? Better luck next time! 🤖",
+		"Paisa double, game over! I win this one. 💰",
+		"Don ka intezaar toh gyarah mulkon ki police karti hai. Outplayed! 😎",
+		"Control Uday, control! You'll get me next time. 🎮",
+		"Keh diya na, bas keh diya. Victory is mine! 👑"
 	],
 
 	draw: [
-		"Na tum jeete, na bot jeeta. Yeh toh tie ho gaya! 🤝",
-		"Ek number ka draw! Dono ki izzat bach gayi. 😄",
-		"Match draw hai. Abhi toh party shuru hui hai! 🎉",
-		"Yeh kya hua? Game tie ho gaya, bhai! 🤝",
-		"Dono barabar nikle. Khel khatam, paisa hazam! 😎",
-		"Draw! Na idhar ke rahe, na udhar ke. 😂",
-		"Om Shanti Om... ek aur game, ek aur mauka! ✨",
-		"Senorita, game draw hua hai — dil chhota mat karo. 🤝"
+		"Dono barabar nikle. Yeh toh tie ho gaya, Senorita! 🤝",
+		"Khatam, bye bye, tata, goodbye. It's a draw! 👋",
+		"Na idhar ke rahe, na udhar ke. Draw! 😂",
+		"Dono taraf se equal dhamaal. A tie game! ⚔️",
+		"No winner this time. Khel khatam, paisa hazam! 🤐"
 	],
 
 	thinking: [
-		"Bot soch raha hai... agla kadam kya hoga? 🤖",
-		"Ruko zara, sabar karo... bot planning kar raha hai. 🧠",
-		"Bot ka dimaag garam ho raha hai... 🔥",
-		"System hang nahi hai, bot strategy bana raha hai! ⚙️",
-		"Bot bol raha hai: abhi maza aayega na bhidu! 😏",
-		"Ek minute... bot apni chaal chal raha hai. ♟️",
+		"Ruko zara, sabar karo... scheme soch raha hoon. 🧠",
 		"Don apni next move plan kar raha hai... sambhal jao! 😎",
-		"Main hoon na... bot ka calculation chal raha hai. 🤖"
+		"Main apni strategy bana raha hoon, control! ⚙️",
+		"Hold on, let me cook. 🔥",
+		"Calculating my inevitable victory... 🤖"
 	]
 };
 
@@ -1438,36 +1419,30 @@ function botMove(){
 		.map((value, index) => value === "" ? index : null)
 		.filter(index => index !== null);
 
-	/* Bot wins if possible */
 	for(const index of empty){
 		board[index] = "O";
-
 		if(winner(board) === "O"){
 			board[index] = "";
 			return index;
 		}
-
 		board[index] = "";
 	}
 
-	/* Bot blocks player if needed */
 	for(const index of empty){
 		board[index] = "X";
-
 		if(winner(board) === "X"){
 			board[index] = "";
 			return index;
 		}
-
 		board[index] = "";
 	}
 
-	/* Bot prefers centre and corners */
-	const goodMoves = [4, 0, 2, 6, 8].filter(index => {
-		return board[index] === "";
-	});
+	if (Math.random() < 0.2 && empty.length > 2) {
+		return empty[Math.floor(Math.random() * empty.length)];
+	}
 
-	if(goodMoves.length && Math.random() < .75){
+	const goodMoves = [4, 0, 2, 6, 8].filter(index => board[index] === "");
+	if(goodMoves.length){
 		return goodMoves[Math.floor(Math.random() * goodMoves.length)];
 	}
 
