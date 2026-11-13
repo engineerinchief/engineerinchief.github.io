@@ -23,6 +23,7 @@
 	--gold:#fbbf24;
 	--purple:#a78bfa;
 	--red:#fb7185;
+	--green:#34d399;
 
 	--sidebar-width:210px;
 	--content-width:650px;
@@ -75,14 +76,18 @@ body::before{
 }
 
 button,
-a{
+a,
+input,
+select{
 	-webkit-tap-highlight-color:transparent;
 }
 
 button:focus-visible,
-a:focus-visible{
-	outline:3px solid var(--gold);
-	outline-offset:3px;
+a:focus-visible,
+input:focus-visible,
+select:focus-visible{
+	outline:2px solid var(--gold);
+	outline-offset:2px;
 }
 
 .site{
@@ -100,10 +105,6 @@ a:focus-visible{
 		"profile tabs"
 		"links content";
 
-	/*
-		max-content lets the profile row grow according to
-		the image and name. This prevents name overlap.
-	*/
 	grid-template-columns:
 		minmax(180px, var(--sidebar-width))
 		minmax(0, var(--content-width));
@@ -298,7 +299,7 @@ a:focus-visible{
 .dialog{
 	width:100%;
 	min-height:var(--link-height);
-	padding:11px var(--space-4) 22px;
+	padding:14px var(--space-4) 22px;
 	text-align:left;
 	background:rgba(255,255,255,.055);
 	border:1px solid rgba(255,255,255,.14);
@@ -348,10 +349,343 @@ a:focus-visible{
 }
 
 /* =====================================================
-   CV
+   PERSONAL PRODUCTIVITY DASHBOARD (PPD)
    ===================================================== */
 
-.cv-controls,
+.ppd-header{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-between;
+	align-items:center;
+	gap:10px;
+	margin-bottom:14px;
+	padding-bottom:12px;
+	border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.ppd-greeting{
+	margin:0;
+	color:#fff;
+	font-size:1rem;
+	font-weight:700;
+}
+
+.ppd-subtitle{
+	margin:3px 0 0;
+	color:var(--muted);
+	font-size:.74rem;
+}
+
+.ppd-user-bar{
+	display:grid;
+	grid-template-columns:1fr 1fr auto;
+	gap:8px;
+	margin-bottom:14px;
+	padding:10px;
+	background:rgba(6,17,30,.55);
+	border:1px solid rgba(255,255,255,.12);
+	border-radius:10px;
+}
+
+.ppd-input,
+.ppd-select{
+	width:100%;
+	min-width:0;
+	height:34px;
+	padding:6px 10px;
+	color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:.75rem;
+	background:rgba(255,255,255,.08);
+	border:1px solid rgba(255,255,255,.2);
+	border-radius:7px;
+}
+
+.ppd-input::placeholder{
+	color:rgba(189,201,216,.65);
+}
+
+.ppd-select option{
+	background:#0f2138;
+	color:#fff;
+}
+
+.ppd-btn-sm{
+	min-height:34px;
+	height:34px;
+	padding:6px 12px;
+	font-size:.73rem;
+	white-space:nowrap;
+}
+
+.ppd-btn-gold{
+	color:#172033;
+	background:linear-gradient(135deg, var(--gold), #f59e0b);
+	border-color:#fde68a;
+}
+
+.ppd-btn-gold:hover{
+	color:#0f172a;
+	background:linear-gradient(135deg, #fcd34d, var(--gold));
+}
+
+/* WP6: Analytics Summary Cards */
+.ppd-stats-grid{
+	display:grid;
+	grid-template-columns:repeat(3, minmax(0, 1fr));
+	gap:8px;
+	margin-bottom:14px;
+}
+
+.ppd-stat-card{
+	padding:10px;
+	background:rgba(255,255,255,.045);
+	border:1px solid rgba(255,255,255,.1);
+	border-radius:10px;
+}
+
+.ppd-stat-label{
+	display:block;
+	color:var(--muted);
+	font-size:.65rem;
+	text-transform:uppercase;
+	letter-spacing:.6px;
+}
+
+.ppd-stat-val{
+	display:block;
+	margin:4px 0 6px;
+	color:#fff;
+	font-size:1.15rem;
+	font-weight:800;
+}
+
+.ppd-progress-track{
+	width:100%;
+	height:6px;
+	overflow:hidden;
+	background:rgba(255,255,255,.1);
+	border-radius:999px;
+}
+
+.ppd-progress-fill{
+	height:100%;
+	width:0%;
+	border-radius:999px;
+	transition:width .3s ease;
+}
+
+/* Category Activity Classification Chart */
+.ppd-chart-box{
+	margin-bottom:14px;
+	padding:11px 12px;
+	background:rgba(6,17,30,.45);
+	border:1px solid rgba(255,255,255,.1);
+	border-radius:10px;
+}
+
+.ppd-section-head{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:8px;
+	margin-bottom:8px;
+}
+
+.ppd-section-title{
+	margin:0;
+	color:var(--gold);
+	font-size:.82rem;
+	font-weight:700;
+}
+
+.ppd-cat-bars{
+	display:grid;
+	grid-template-columns:repeat(2, minmax(0, 1fr));
+	gap:8px 14px;
+}
+
+.ppd-cat-row{
+	font-size:.7rem;
+	color:var(--muted);
+}
+
+.ppd-cat-meta{
+	display:flex;
+	justify-content:space-between;
+	margin-bottom:3px;
+}
+
+/* Sub-navigation Pills inside Dashboard */
+.ppd-subnav{
+	display:flex;
+	flex-wrap:wrap;
+	gap:6px;
+	margin-bottom:12px;
+}
+
+.ppd-pill{
+	padding:5px 10px;
+	color:var(--muted);
+	font-size:.71rem;
+	font-weight:600;
+	cursor:pointer;
+	background:rgba(255,255,255,.06);
+	border:1px solid rgba(255,255,255,.14);
+	border-radius:999px;
+	transition:all .18s ease;
+}
+
+.ppd-pill.active,
+.ppd-pill:hover{
+	color:#172033;
+	background:var(--blue);
+	border-color:var(--blue);
+}
+
+/* WP4 & WP5 Modules */
+.ppd-module{
+	margin-bottom:14px;
+	padding:12px;
+	background:rgba(255,255,255,.04);
+	border:1px solid rgba(255,255,255,.11);
+	border-radius:10px;
+}
+
+.ppd-task-form{
+	display:grid;
+	grid-template-columns:2fr 1.1fr 1.1fr auto;
+	gap:6px;
+	margin-bottom:10px;
+}
+
+.ppd-habit-form{
+	display:grid;
+	grid-template-columns:2fr 1.1fr auto;
+	gap:6px;
+	margin-bottom:10px;
+}
+
+.ppd-list{
+	display:flex;
+	flex-direction:column;
+	gap:7px;
+	max-height:230px;
+	overflow-y:auto;
+	padding-right:2px;
+}
+
+.ppd-item{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:8px;
+	padding:8px 10px;
+	background:rgba(10,24,44,.75);
+	border:1px solid rgba(255,255,255,.1);
+	border-radius:8px;
+}
+
+.ppd-item.done{
+	opacity:.62;
+}
+
+.ppd-item.done .ppd-item-title{
+	text-decoration:line-through;
+	color:var(--muted);
+}
+
+.ppd-item-left{
+	display:flex;
+	align-items:flex-start;
+	gap:8px;
+	min-width:0;
+	flex:1;
+}
+
+.ppd-check{
+	width:16px;
+	height:16px;
+	margin-top:2px;
+	accent-color:var(--gold);
+	cursor:pointer;
+	flex-shrink:0;
+}
+
+.ppd-item-info{
+	min-width:0;
+	flex:1;
+}
+
+.ppd-item-title{
+	display:block;
+	color:#fff;
+	font-size:.77rem;
+	font-weight:600;
+	word-break:break-word;
+}
+
+.ppd-badges{
+	display:flex;
+	flex-wrap:wrap;
+	gap:5px;
+	margin-top:4px;
+}
+
+.ppd-badge{
+	padding:2px 6px;
+	font-size:.63rem;
+	font-weight:600;
+	border-radius:4px;
+	background:rgba(56,189,248,.14);
+	color:#bae6fd;
+}
+
+.ppd-badge.due-overdue{
+	background:rgba(251,113,133,.2);
+	color:#fecdd3;
+}
+
+.ppd-badge.due-today{
+	background:rgba(251,191,36,.22);
+	color:#fde68a;
+}
+
+.ppd-badge.streak{
+	background:rgba(52,211,153,.18);
+	color:#a7f3d0;
+}
+
+.ppd-actions{
+	display:flex;
+	gap:4px;
+	flex-shrink:0;
+}
+
+.ppd-icon-btn{
+	padding:4px 7px;
+	color:var(--muted);
+	font-size:.7rem;
+	cursor:pointer;
+	background:rgba(255,255,255,.07);
+	border:1px solid rgba(255,255,255,.15);
+	border-radius:5px;
+}
+
+.ppd-icon-btn:hover{
+	color:#fff;
+	border-color:var(--blue);
+}
+
+.ppd-icon-btn.del:hover{
+	color:#fecdd3;
+	border-color:var(--red);
+}
+
+/* =====================================================
+   GAMES
+   ===================================================== */
+
 .game-menu{
 	display:flex;
 	flex-wrap:wrap;
@@ -359,55 +693,6 @@ a:focus-visible{
 	gap:8px;
 	margin-bottom:10px;
 }
-
-.download{
-	margin-left:auto;
-}
-
-.viewer{
-	width:100%;
-	height:clamp(260px, 55vh, 520px);
-	padding:10px;
-	overflow:auto;
-	cursor:grab;
-	touch-action:pan-x pan-y;
-	-webkit-overflow-scrolling:touch;
-	background:rgba(0,0,0,.24);
-	border:1px solid rgba(255,255,255,.14);
-	border-radius:12px;
-}
-
-.viewer.dragging{
-	cursor:grabbing;
-	user-select:none;
-}
-
-.viewer.dragging img{
-	pointer-events:none;
-}
-
-#cv-wrap{
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	gap:12px;
-	width:100%;
-	margin:0 auto;
-	transition:width .2s ease;
-}
-
-.cv-image{
-	display:block;
-	width:100%;
-	height:auto;
-	box-shadow:0 8px 20px rgba(0,0,0,.55);
-	user-select:none;
-	-webkit-user-drag:none;
-}
-
-/* =====================================================
-   GAMES
-   ===================================================== */
 
 .game{
 	display:none;
@@ -633,7 +918,6 @@ footer{
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
-/* On wide screens with plenty of margin, float HUD to viewport corners */
 @media (min-width: 1440px) {
 	#dual-clocks {
 		position: fixed;
@@ -715,25 +999,29 @@ footer{
 		font-weight: 600;
 	}
 
-	.cv-controls,
 	.game-menu{
 		justify-content:center;
-	}
-
-	.download{
-		margin-left:0;
-	}
-
-	.viewer{
-		height:clamp(280px, 50vh, 460px);
 	}
 
 	.dialog{
 		padding:11px var(--space-3) 20px;
 	}
+
+	.ppd-user-bar,
+	.ppd-task-form,
+	.ppd-habit-form{
+		grid-template-columns:1fr;
+	}
+
+	.ppd-stats-grid{
+		grid-template-columns:1fr;
+	}
+
+	.ppd-cat-bars{
+		grid-template-columns:1fr;
+	}
 }
 
-/* BlackBerry Passport & short/square viewports */
 @media (max-height: 620px), ((max-aspect-ratio: 1.15/1) and (max-width: 850px)){
 	body{
 		padding:max(0.5rem, env(safe-area-inset-top)) max(0.5rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
@@ -771,11 +1059,6 @@ footer{
 		padding: 4px 6px;
 	}
 
-	.viewer {
-		height: clamp(210px, 42vh, 340px);
-	}
-
-	.cv-controls,
 	.game-menu {
 		gap: 5px;
 		margin-bottom: 6px;
@@ -798,7 +1081,6 @@ footer{
 	}
 }
 
-/* iPhone SE (1st gen: 320px, 2nd/3rd gen: 375px) & small devices */
 @media(max-width:380px){
 	body{
 		padding:max(0.5rem, env(safe-area-inset-top)) max(0.35rem, env(safe-area-inset-right)) max(0.5rem, env(safe-area-inset-bottom)) max(0.35rem, env(safe-area-inset-left));
@@ -868,7 +1150,6 @@ footer{
 		padding:2px;
 	}
 }
-
 </style>
 </head>
 
@@ -915,13 +1196,13 @@ footer{
 
 			<button
 				class="tab"
-				id="cv-tab"
+				id="dashboard-tab"
 				type="button"
 				role="tab"
 				aria-selected="false"
-				aria-controls="cv"
-				data-tab="cv">
-				CV
+				aria-controls="dashboard"
+				data-tab="dashboard">
+				Productivity
 			</button>
 
 			<button
@@ -972,7 +1253,6 @@ footer{
 					Instagram
 				</a>
 			</li>
-			
 
 			<li>
 				<a href="mailto:engineerinchief@outlook.co.nz">
@@ -983,6 +1263,7 @@ footer{
 
 		<main class="content">
 
+			<!-- INTRODUCTION PANEL -->
 			<section
 				id="intro"
 				class="panel active"
@@ -1029,52 +1310,156 @@ footer{
 				</div>
 			</section>
 
+			<!-- PERSONAL PRODUCTIVITY DASHBOARD PANEL (Replaces CV) -->
 			<section
-				id="cv"
+				id="dashboard"
 				class="panel"
 				role="tabpanel"
-				aria-labelledby="cv-tab"
+				aria-labelledby="dashboard-tab"
 				hidden>
 
-				<div class="cv-controls">
-					<button class="button" id="zoom-in" type="button">
-						➕ Zoom In
-					</button>
+				<div class="dialog">
 
-					<button class="button" id="zoom-out" type="button">
-						➖ Zoom Out
-					</button>
-
-					<button class="button" id="zoom-reset" type="button">
-						↺ Reset
-					</button>
-
-					<a
-						class="button download"
-						href="Documents/Prannay_CV_MA.pdf"
-						download>
-						Download CV
-					</a>
-				</div>
-
-				<div class="viewer" id="viewer" aria-label="CV document viewer">
-					<div id="cv-wrap">
-						<img
-							class="cv-image"
-							src="Documents/Prannay_CV_MA-1.png"
-							alt="Prannay Nath CV, page 1"
-							draggable="false">
-
-						<img
-							class="cv-image"
-							src="Documents/Prannay_CV_MA-2.png"
-							alt="Prannay Nath CV, page 2"
-							draggable="false">
+					<!-- Personalized Header & User Input -->
+					<div class="ppd-header">
+						<div>
+							<h2 class="ppd-greeting" id="ppd-greeting">Welcome, Prannay 👋</h2>
+							<p class="ppd-subtitle" id="ppd-focus-display">Focus: Semester MVP &amp; Academic Deadlines</p>
+						</div>
+						<button class="button ppd-btn-sm" id="ppd-reset-demo" type="button" title="Reset sample activities">
+							↺ Reset Demo
+						</button>
 					</div>
+
+					<form class="ppd-user-bar" id="ppd-profile-form">
+						<input
+							class="ppd-input"
+							id="ppd-user-name"
+							type="text"
+							maxlength="40"
+							placeholder="Enter your name (e.g. Prannay)..."
+							aria-label="Your Name">
+						<input
+							class="ppd-input"
+							id="ppd-user-focus"
+							type="text"
+							maxlength="60"
+							placeholder="Main goal / focus..."
+							aria-label="Main Goal or Focus">
+						<button class="button ppd-btn-sm ppd-btn-gold" type="submit">
+							Save Profile
+						</button>
+					</form>
+
+					<!-- WP6: Analytics Dashboard Summary -->
+					<div class="ppd-stats-grid" aria-label="Productivity statistics">
+						<div class="ppd-stat-card">
+							<span class="ppd-stat-label">Tasks Done</span>
+							<span class="ppd-stat-val" id="stat-tasks">0%</span>
+							<div class="ppd-progress-track">
+								<div class="ppd-progress-fill" id="bar-tasks" style="background:var(--blue);"></div>
+							</div>
+						</div>
+
+						<div class="ppd-stat-card">
+							<span class="ppd-stat-label">Daily Habits</span>
+							<span class="ppd-stat-val" id="stat-habits">0%</span>
+							<div class="ppd-progress-track">
+								<div class="ppd-progress-fill" id="bar-habits" style="background:var(--green);"></div>
+							</div>
+						</div>
+
+						<div class="ppd-stat-card">
+							<span class="ppd-stat-label">Overall Score</span>
+							<span class="ppd-stat-val" id="stat-overall">0%</span>
+							<div class="ppd-progress-track">
+								<div class="ppd-progress-fill" id="bar-overall" style="background:var(--gold);"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Activity Domain Classification Chart -->
+					<div class="ppd-chart-box">
+						<div class="ppd-section-head">
+							<h3 class="ppd-section-title">📊 Activity Classification Overview</h3>
+							<span style="font-size:.68rem; color:var(--muted);" id="stat-counts">0 tasks · 0 habits</span>
+						</div>
+						<div class="ppd-cat-bars" id="ppd-cat-bars"></div>
+					</div>
+
+					<!-- Filter Pills -->
+					<div class="ppd-subnav" role="group" aria-label="Activity filters">
+						<button class="ppd-pill active" type="button" data-filter="all">All Activities</button>
+						<button class="ppd-pill" type="button" data-filter="Academic & Study">Academic</button>
+						<button class="ppd-pill" type="button" data-filter="Work & Admin">Work &amp; Admin</button>
+						<button class="ppd-pill" type="button" data-filter="Health & Wellbeing">Health</button>
+						<button class="ppd-pill" type="button" data-filter="Skill Growth">Skills</button>
+					</div>
+
+					<!-- WP4: Task & Deadline Management Module -->
+					<div class="ppd-module">
+						<div class="ppd-section-head">
+							<h3 class="ppd-section-title">✅ Tasks &amp; Deadlines (WP4)</h3>
+						</div>
+
+						<form class="ppd-task-form" id="ppd-task-form">
+							<input
+								class="ppd-input"
+								id="task-title"
+								type="text"
+								required
+								placeholder="Add real-world task (e.g. Submit WBS report)...">
+							<select class="ppd-select" id="task-category" aria-label="Task Category">
+								<option value="Academic & Study">Academic &amp; Study</option>
+								<option value="Work & Admin">Work &amp; Admin</option>
+								<option value="Health & Wellbeing">Health &amp; Wellbeing</option>
+								<option value="Skill Growth">Skill Growth</option>
+							</select>
+							<input
+								class="ppd-input"
+								id="task-deadline"
+								type="date"
+								aria-label="Deadline">
+							<button class="button ppd-btn-sm ppd-btn-gold" type="submit">
+								+ Task
+							</button>
+						</form>
+
+						<div class="ppd-list" id="ppd-task-list"></div>
+					</div>
+
+					<!-- WP5: Habit Tracking Module -->
+					<div class="ppd-module" style="margin-bottom:0;">
+						<div class="ppd-section-head">
+							<h3 class="ppd-section-title">🔁 Daily Habit Tracker (WP5)</h3>
+						</div>
+
+						<form class="ppd-habit-form" id="ppd-habit-form">
+							<input
+								class="ppd-input"
+								id="habit-title"
+								type="text"
+								required
+								placeholder="Add recurring habit (e.g. 30m German B1/B2)...">
+							<select class="ppd-select" id="habit-category" aria-label="Habit Category">
+								<option value="Academic & Study">Academic &amp; Study</option>
+								<option value="Health & Wellbeing">Health &amp; Wellbeing</option>
+								<option value="Skill Growth">Skill Growth</option>
+								<option value="Work & Admin">Work &amp; Admin</option>
+							</select>
+							<button class="button ppd-btn-sm" type="submit">
+								+ Habit
+							</button>
+						</form>
+
+						<div class="ppd-list" id="ppd-habit-list"></div>
+					</div>
+
 				</div>
 
 			</section>
 
+			<!-- GAMES PANEL -->
 			<section
 				id="games"
 				class="panel"
@@ -1212,6 +1597,375 @@ tabs.forEach(tab => {
 });
 
 /* =====================================================
+   PERSONAL PRODUCTIVITY DASHBOARD (WP3 - WP6)
+   ===================================================== */
+
+const PPD_STORAGE_KEY = "ppd_state_v1";
+
+function getTodayISO(offsetDays = 0) {
+	const d = new Date();
+	d.setDate(d.getDate() + offsetDays);
+	return d.toISOString().split("T")[0];
+}
+
+const defaultPPDState = {
+	userName: "Prannay",
+	userFocus: "TH Mannheim Semester & MVP Prototype",
+	tasks: [
+		{
+			id: 1,
+			title: "Finalize Project Management WBS & Milestone Plan",
+			category: "Academic & Study",
+			deadline: getTodayISO(0),
+			done: true
+		},
+		{
+			id: 2,
+			title: "Collect usability feedback from 3–5 close friends (WP7)",
+			category: "Academic & Study",
+			deadline: getTodayISO(3),
+			done: false
+		},
+		{
+			id: 3,
+			title: "Log weekly courier shift hours & expenses",
+			category: "Work & Admin",
+			deadline: getTodayISO(2),
+			done: false
+		},
+		{
+			id: 4,
+			title: "Check bicycle tire pressure (4 bar) & brakes",
+			category: "Health & Wellbeing",
+			deadline: getTodayISO(1),
+			done: false
+		}
+	],
+	habits: [
+		{
+			id: 101,
+			title: "German B1/B2 vocabulary & reading (30 mins)",
+			category: "Academic & Study",
+			streak: 5,
+			doneToday: true
+		},
+		{
+			id: 102,
+			title: "Python / C coding practice",
+			category: "Skill Growth",
+			streak: 4,
+			doneToday: false
+		},
+		{
+			id: 103,
+			title: "Drink 2.5L water & 20m stretching",
+			category: "Health & Wellbeing",
+			streak: 7,
+			doneToday: true
+		}
+	]
+};
+
+let ppdState = loadPPDState();
+let currentCategoryFilter = "all";
+
+function loadPPDState() {
+	try {
+		const raw = localStorage.getItem(PPD_STORAGE_KEY);
+		if (raw) {
+			const parsed = JSON.parse(raw);
+			if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.habits)) {
+				return parsed;
+			}
+		}
+	} catch (e) {}
+	return JSON.parse(JSON.stringify(defaultPPDState));
+}
+
+function savePPDState() {
+	try {
+		localStorage.setItem(PPD_STORAGE_KEY, JSON.stringify(ppdState));
+	} catch (e) {}
+}
+
+function escapeHTML(str) {
+	return String(str)
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
+}
+
+function getDeadlineBadge(deadlineStr, isDone) {
+	if (!deadlineStr) return "";
+	const today = getTodayISO(0);
+	if (isDone) {
+		return `<span class="ppd-badge">📅 ${escapeHTML(deadlineStr)}</span>`;
+	}
+	if (deadlineStr < today) {
+		return `<span class="ppd-badge due-overdue">⚠️ Overdue (${escapeHTML(deadlineStr)})</span>`;
+	}
+	if (deadlineStr === today) {
+		return `<span class="ppd-badge due-today">⏰ Due Today</span>`;
+	}
+	return `<span class="ppd-badge">📅 Due ${escapeHTML(deadlineStr)}</span>`;
+}
+
+function renderPPD() {
+	// 1. Update User Profile Header
+	const displayName = (ppdState.userName || "").trim() || "Student";
+	const displayFocus = (ppdState.userFocus || "").trim() || "Stay organized & track daily progress";
+	document.getElementById("ppd-greeting").textContent = `Welcome, ${displayName} 👋`;
+	document.getElementById("ppd-focus-display").textContent = `Focus: ${displayFocus}`;
+	document.getElementById("ppd-user-name").value = ppdState.userName || "";
+	document.getElementById("ppd-user-focus").value = ppdState.userFocus || "";
+
+	// 2. Calculate WP6 Analytics
+	const totalTasks = ppdState.tasks.length;
+	const completedTasks = ppdState.tasks.filter(t => t.done).length;
+	const taskPct = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+	const totalHabits = ppdState.habits.length;
+	const completedHabits = ppdState.habits.filter(h => h.doneToday).length;
+	const habitPct = totalHabits ? Math.round((completedHabits / totalHabits) * 100) : 0;
+
+	const totalItems = totalTasks + totalHabits;
+	const completedItems = completedTasks + completedHabits;
+	const overallPct = totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
+
+	document.getElementById("stat-tasks").textContent = `${taskPct}%`;
+	document.getElementById("bar-tasks").style.width = `${taskPct}%`;
+
+	document.getElementById("stat-habits").textContent = `${habitPct}%`;
+	document.getElementById("bar-habits").style.width = `${habitPct}%`;
+
+	document.getElementById("stat-overall").textContent = `${overallPct}%`;
+	document.getElementById("bar-overall").style.width = `${overallPct}%`;
+
+	document.getElementById("stat-counts").textContent =
+		`${completedTasks}/${totalTasks} tasks · ${completedHabits}/${totalHabits} habits`;
+
+	// 3. Render Category Classification Breakdown
+	const categories = [
+		{ name: "Academic & Study", color: "#38bdf8" },
+		{ name: "Work & Admin", color: "#fbbf24" },
+		{ name: "Health & Wellbeing", color: "#34d399" },
+		{ name: "Skill Growth", color: "#a78bfa" }
+	];
+
+	const catBarsEl = document.getElementById("ppd-cat-bars");
+	catBarsEl.innerHTML = categories.map(cat => {
+		const catTasks = ppdState.tasks.filter(t => t.category === cat.name);
+		const catHabits = ppdState.habits.filter(h => h.category === cat.name);
+		const total = catTasks.length + catHabits.length;
+		const done = catTasks.filter(t => t.done).length + catHabits.filter(h => h.doneToday).length;
+		const pct = total ? Math.round((done / total) * 100) : 0;
+
+		return `
+			<div class="ppd-cat-row">
+				<div class="ppd-cat-meta">
+					<span>${escapeHTML(cat.name)}</span>
+					<span>${done}/${total} (${pct}%)</span>
+				</div>
+				<div class="ppd-progress-track">
+					<div class="ppd-progress-fill" style="width:${pct}%; background:${cat.color};"></div>
+				</div>
+			</div>
+		`;
+	}).join("");
+
+	// 4. Render WP4 Task List
+	const filteredTasks = currentCategoryFilter === "all"
+		? ppdState.tasks
+		: ppdState.tasks.filter(t => t.category === currentCategoryFilter);
+
+	const taskListEl = document.getElementById("ppd-task-list");
+	if (filteredTasks.length === 0) {
+		taskListEl.innerHTML = `<p class="note" style="margin:6px 0;">No tasks in this category yet. Add one above!</p>`;
+	} else {
+		taskListEl.innerHTML = filteredTasks.map(task => `
+			<div class="ppd-item ${task.done ? "done" : ""}">
+				<div class="ppd-item-left">
+					<input
+						class="ppd-check"
+						type="checkbox"
+						${task.done ? "checked" : ""}
+						onchange="togglePPDTask(${task.id})"
+						aria-label="Mark task complete">
+					<div class="ppd-item-info">
+						<span class="ppd-item-title">${escapeHTML(task.title)}</span>
+						<div class="ppd-badges">
+							<span class="ppd-badge">${escapeHTML(task.category)}</span>
+							${getDeadlineBadge(task.deadline, task.done)}
+						</div>
+					</div>
+				</div>
+				<div class="ppd-actions">
+					<button class="ppd-icon-btn" type="button" onclick="editPPDTask(${task.id})" title="Edit task">✏️</button>
+					<button class="ppd-icon-btn del" type="button" onclick="deletePPDTask(${task.id})" title="Delete task">🗑️</button>
+				</div>
+			</div>
+		`).join("");
+	}
+
+	// 5. Render WP5 Habit List
+	const filteredHabits = currentCategoryFilter === "all"
+		? ppdState.habits
+		: ppdState.habits.filter(h => h.category === currentCategoryFilter);
+
+	const habitListEl = document.getElementById("ppd-habit-list");
+	if (filteredHabits.length === 0) {
+		habitListEl.innerHTML = `<p class="note" style="margin:6px 0;">No habits in this category yet. Add a daily routine above!</p>`;
+	} else {
+		habitListEl.innerHTML = filteredHabits.map(habit => `
+			<div class="ppd-item ${habit.doneToday ? "done" : ""}">
+				<div class="ppd-item-left">
+					<input
+						class="ppd-check"
+						type="checkbox"
+						${habit.doneToday ? "checked" : ""}
+						onchange="togglePPDHabit(${habit.id})"
+						aria-label="Mark habit done today">
+					<div class="ppd-item-info">
+						<span class="ppd-item-title">${escapeHTML(habit.title)}</span>
+						<div class="ppd-badges">
+							<span class="ppd-badge">${escapeHTML(habit.category)}</span>
+							<span class="ppd-badge streak">🔥 ${habit.streak} day streak</span>
+						</div>
+					</div>
+				</div>
+				<div class="ppd-actions">
+					<button class="ppd-icon-btn del" type="button" onclick="deletePPDHabit(${habit.id})" title="Delete habit">🗑️</button>
+				</div>
+			</div>
+		`).join("");
+	}
+}
+
+// Profile Form Event
+document.getElementById("ppd-profile-form").addEventListener("submit", event => {
+	event.preventDefault();
+	ppdState.userName = document.getElementById("ppd-user-name").value.trim() || "Student";
+	ppdState.userFocus = document.getElementById("ppd-user-focus").value.trim() || "Daily Productivity";
+	savePPDState();
+	renderPPD();
+});
+
+// Add Task Event (WP4)
+document.getElementById("ppd-task-form").addEventListener("submit", event => {
+	event.preventDefault();
+	const titleInput = document.getElementById("task-title");
+	const catInput = document.getElementById("task-category");
+	const dateInput = document.getElementById("task-deadline");
+
+	const title = titleInput.value.trim();
+	if (!title) return;
+
+	ppdState.tasks.unshift({
+		id: Date.now(),
+		title,
+		category: catInput.value,
+		deadline: dateInput.value || getTodayISO(2),
+		done: false
+	});
+
+	titleInput.value = "";
+	savePPDState();
+	renderPPD();
+});
+
+// Add Habit Event (WP5)
+document.getElementById("ppd-habit-form").addEventListener("submit", event => {
+	event.preventDefault();
+	const titleInput = document.getElementById("habit-title");
+	const catInput = document.getElementById("habit-category");
+
+	const title = titleInput.value.trim();
+	if (!title) return;
+
+	ppdState.habits.unshift({
+		id: Date.now(),
+		title,
+		category: catInput.value,
+		streak: 1,
+		doneToday: false
+	});
+
+	titleInput.value = "";
+	savePPDState();
+	renderPPD();
+});
+
+// Task Actions (Toggle, Edit, Delete - WP4)
+window.togglePPDTask = function(id) {
+	const task = ppdState.tasks.find(t => t.id === id);
+	if (task) {
+		task.done = !task.done;
+		savePPDState();
+		renderPPD();
+	}
+};
+
+window.editPPDTask = function(id) {
+	const task = ppdState.tasks.find(t => t.id === id);
+	if (!task) return;
+	const updatedTitle = prompt("Edit task title:", task.title);
+	if (updatedTitle !== null && updatedTitle.trim() !== "") {
+		task.title = updatedTitle.trim();
+	}
+	const updatedDate = prompt("Edit deadline (YYYY-MM-DD):", task.deadline || "");
+	if (updatedDate !== null && /^\d{4}-\d{2}-\d{2}$/.test(updatedDate.trim())) {
+		task.deadline = updatedDate.trim();
+	}
+	savePPDState();
+	renderPPD();
+};
+
+window.deletePPDTask = function(id) {
+	ppdState.tasks = ppdState.tasks.filter(t => t.id !== id);
+	savePPDState();
+	renderPPD();
+};
+
+// Habit Actions (Toggle, Delete - WP5)
+window.togglePPDHabit = function(id) {
+	const habit = ppdState.habits.find(h => h.id === id);
+	if (habit) {
+		habit.doneToday = !habit.doneToday;
+		habit.streak = habit.doneToday ? habit.streak + 1 : Math.max(0, habit.streak - 1);
+		savePPDState();
+		renderPPD();
+	}
+};
+
+window.deletePPDHabit = function(id) {
+	ppdState.habits = ppdState.habits.filter(h => h.id !== id);
+	savePPDState();
+	renderPPD();
+};
+
+// Category Filter Pills
+document.querySelectorAll(".ppd-pill").forEach(pill => {
+	pill.addEventListener("click", () => {
+		document.querySelectorAll(".ppd-pill").forEach(p => p.classList.remove("active"));
+		pill.classList.add("active");
+		currentCategoryFilter = pill.dataset.filter;
+		renderPPD();
+	});
+});
+
+// Reset Demo Button
+document.getElementById("ppd-reset-demo").addEventListener("click", () => {
+	ppdState = JSON.parse(JSON.stringify(defaultPPDState));
+	savePPDState();
+	renderPPD();
+});
+
+// Set default date input to tomorrow
+document.getElementById("task-deadline").value = getTodayISO(1);
+renderPPD();
+
+/* =====================================================
    GAME SELECTOR
    ===================================================== */
 
@@ -1222,66 +1976,6 @@ gameButtons.forEach(button => {
 	button.addEventListener("click", () => {
 		games.forEach(game => game.classList.remove("active"));
 		document.getElementById(button.dataset.game).classList.add("active");
-	});
-});
-
-/* =====================================================
-   CV ZOOM AND DRAG
-   ===================================================== */
-
-let zoom = 1;
-
-const viewer = document.getElementById("viewer");
-const cvWrap = document.getElementById("cv-wrap");
-
-function updateZoom(){
-	cvWrap.style.width = `${zoom * 100}%`;
-}
-
-document.getElementById("zoom-in").addEventListener("click", () => {
-	zoom = Math.min(2.5, zoom + .2);
-	updateZoom();
-});
-
-document.getElementById("zoom-out").addEventListener("click", () => {
-	zoom = Math.max(.6, zoom - .2);
-	updateZoom();
-});
-
-document.getElementById("zoom-reset").addEventListener("click", () => {
-	zoom = 1;
-	updateZoom();
-	viewer.scrollTo(0, 0);
-});
-
-let dragging = false;
-let startX = 0;
-let startY = 0;
-let startLeft = 0;
-let startTop = 0;
-
-viewer.addEventListener("pointerdown", event => {
-	dragging = true;
-	startX = event.clientX;
-	startY = event.clientY;
-	startLeft = viewer.scrollLeft;
-	startTop = viewer.scrollTop;
-
-	viewer.classList.add("dragging");
-	viewer.setPointerCapture(event.pointerId);
-});
-
-viewer.addEventListener("pointermove", event => {
-	if(!dragging) return;
-
-	viewer.scrollLeft = startLeft - (event.clientX - startX);
-	viewer.scrollTop = startTop - (event.clientY - startY);
-});
-
-["pointerup", "pointercancel", "lostpointercapture"].forEach(eventName => {
-	viewer.addEventListener(eventName, () => {
-		dragging = false;
-		viewer.classList.remove("dragging");
 	});
 });
 
@@ -1626,51 +2320,48 @@ document.getElementById("sl-reset").addEventListener("click", () => {
 });
 
 /* =====================================================
-   INITIAL PAGE STATE
+   INITIAL PAGE STATE & DUAL CLOCKS
    ===================================================== */
 
 drawTTT();
 setTTTStatus("turn");
 drawSL();
 
-    // --- DUAL CLOCKS LOGIC ---
-    function updateClocks() {
-        const now = new Date();
-        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+function updateClocks() {
+	const now = new Date();
+	const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
 
-        const munichTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Europe/Berlin' }).format(now);
-        const delhiTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Asia/Kolkata' }).format(now);
+	const munichTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Europe/Berlin' }).format(now);
+	const delhiTime = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Asia/Kolkata' }).format(now);
 
-        document.getElementById('time-munich').textContent = munichTime;
-        document.getElementById('time-delhi').textContent = delhiTime;
-    }
+	document.getElementById('time-munich').textContent = munichTime;
+	document.getElementById('time-delhi').textContent = delhiTime;
+}
 
-    let startTime = null;
-    try {
-        startTime = Number(sessionStorage.getItem('siteLoginTime'));
-        if (!startTime || isNaN(startTime)) {
-            startTime = Date.now();
-            sessionStorage.setItem('siteLoginTime', String(startTime));
-        }
-    } catch (e) {
-        startTime = Date.now();
-    }
+let startTime = null;
+try {
+	startTime = Number(sessionStorage.getItem('siteLoginTime'));
+	if (!startTime || isNaN(startTime)) {
+		startTime = Date.now();
+		sessionStorage.setItem('siteLoginTime', String(startTime));
+	}
+} catch (e) {
+	startTime = Date.now();
+}
 
-    function updateSiteTimer() {
-        const diffInSeconds = Math.floor((Date.now() - startTime) / 1000);
-        const hours = String(Math.floor(diffInSeconds / 3600)).padStart(2, '0');
-        const minutes = String(Math.floor((diffInSeconds % 3600) / 60)).padStart(2, '0');
-        const seconds = String(diffInSeconds % 60).padStart(2, '0');
+function updateSiteTimer() {
+	const diffInSeconds = Math.floor((Date.now() - startTime) / 1000);
+	const hours = String(Math.floor(diffInSeconds / 3600)).padStart(2, '0');
+	const minutes = String(Math.floor((diffInSeconds % 3600) / 60)).padStart(2, '0');
+	const seconds = String(diffInSeconds % 60).padStart(2, '0');
 
-        document.getElementById('time-spent').textContent = `${hours}:${minutes}:${seconds}`;
-    }
+	document.getElementById('time-spent').textContent = `${hours}:${minutes}:${seconds}`;
+}
 
-    // Run immediately and start updating
-    updateClocks();
-    updateSiteTimer();
-    setInterval(updateClocks, 1000);
-    setInterval(updateSiteTimer, 1000);
-
+updateClocks();
+updateSiteTimer();
+setInterval(updateClocks, 1000);
+setInterval(updateSiteTimer, 1000);
 </script>
 
 </body>
