@@ -1,6 +1,6 @@
 Prannay Nath
 engineerinchief.com | LinkedIn: engineerinchief
-Mannheim, Germany
+Munich, Germany
 
 
 Servus!
