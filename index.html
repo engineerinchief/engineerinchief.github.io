@@ -1337,7 +1337,7 @@ footer{
 							id="ppd-user-name"
 							type="text"
 							maxlength="40"
-							placeholder="Enter your name (e.g. Prannay)..."
+							placeholder="Enter your name (e.g. Chief)..."
 							aria-label="Your Name">
 						<input
 							class="ppd-input"
@@ -1609,7 +1609,7 @@ function getTodayISO(offsetDays = 0) {
 }
 
 const defaultPPDState = {
-	userName: "Prannay",
+	userName: "Chief",
 	userFocus: "TH Mannheim Semester & MVP Prototype",
 	tasks: [
 		{
@@ -1713,7 +1713,7 @@ function getDeadlineBadge(deadlineStr, isDone) {
 
 function renderPPD() {
 	// 1. Update User Profile Header
-	const displayName = (ppdState.userName || "").trim() || "Student";
+	const displayName = (ppdState.userName || "").trim() || "Chief";
 	const displayFocus = (ppdState.userFocus || "").trim() || "Stay organized & track daily progress";
 	document.getElementById("ppd-greeting").textContent = `Welcome, ${displayName} 👋`;
 	document.getElementById("ppd-focus-display").textContent = `Focus: ${displayFocus}`;
@@ -1845,7 +1845,7 @@ function renderPPD() {
 // Profile Form Event
 document.getElementById("ppd-profile-form").addEventListener("submit", event => {
 	event.preventDefault();
-	ppdState.userName = document.getElementById("ppd-user-name").value.trim() || "Student";
+	ppdState.userName = document.getElementById("ppd-user-name").value.trim() || "Chief";
 	ppdState.userFocus = document.getElementById("ppd-user-focus").value.trim() || "Daily Productivity";
 	savePPDState();
 	renderPPD();
